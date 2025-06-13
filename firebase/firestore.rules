@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /activities/{document} {
+      allow create: if request.auth != null;
+      allow read: if true;
+      allow write: if resource.data.creatorRef == /databases/$(database)/documents/users/$(request.auth.uid);
+      allow delete: if resource.data.creatorRef == /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    match /users/{document} {
+      allow create: if request.auth.uid == document;
+      allow read: if request.auth.uid == document;
+      allow write: if request.auth.uid == document;
+      allow delete: if request.auth.uid == document;
+    }
+
+    match /activities/{parent}/activity_comments/{document} {
+      allow create: if /databases/$(database)/documents/users/$(request.auth.uid) in get(/databases/$(database)/documents/activities/$(parent)).data.participants;
+      allow read: if /databases/$(database)/documents/users/$(request.auth.uid) in get(/databases/$(database)/documents/activities/$(parent)).data.participants;
+      allow write: if /databases/$(database)/documents/users/$(request.auth.uid) in get(/databases/$(database)/documents/activities/$(parent)).data.participants;
+      allow delete: if resource.data.commenterRef == /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+  }
+}
