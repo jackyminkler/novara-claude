@@ -74,6 +74,8 @@ class _TimeSelectorWidgetState extends State<TimeSelectorWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
+                logFirebaseEvent('TIME_SELECTOR_Container_ojzxtlqx_ON_TAP');
+                logFirebaseEvent('Container_alert_dialog');
                 await showAlignedDialog(
                   barrierColor: FlutterFlowTheme.of(context).accent4,
                   context: context,

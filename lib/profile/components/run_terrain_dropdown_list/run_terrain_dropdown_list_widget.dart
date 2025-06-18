@@ -85,17 +85,23 @@ class _RunTerrainDropdownListWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'RUN_TERRAIN_DROPDOWN_LIST_Row_5x3toxey_O');
+                          logFirebaseEvent('Row_update_app_state');
                           FFAppState().SelectedRunTerrainHomeFilter =
                               listRunTerrainItem;
                           FFAppState().update(() {});
                           if (FFAppState().updater) {
+                            logFirebaseEvent('Row_update_app_state');
                             FFAppState().updater = false;
                             safeSetState(() {});
                           } else {
+                            logFirebaseEvent('Row_update_app_state');
                             FFAppState().updater = true;
                             safeSetState(() {});
                           }
 
+                          logFirebaseEvent('Row_dismiss_dialog');
                           Navigator.pop(context);
                         },
                         child: Row(

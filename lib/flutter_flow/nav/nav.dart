@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -86,11 +85,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? HomeWidget() : WalkthroughWidget(),
         ),
         FFRoute(
-          name: ActivityDetails2Widget.routeName,
-          path: ActivityDetails2Widget.routePath,
-          builder: (context, params) => ActivityDetails2Widget(),
-        ),
-        FFRoute(
           name: LoginGoogleSSOWidget.routeName,
           path: LoginGoogleSSOWidget.routePath,
           builder: (context, params) => LoginGoogleSSOWidget(),
@@ -103,7 +97,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: MyProfileWidget.routeName,
           path: MyProfileWidget.routePath,
-          builder: (context, params) => MyProfileWidget(),
+          builder: (context, params) => MyProfileWidget(
+            currentUserRef: params.getParam(
+              'currentUserRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+          ),
         ),
         FFRoute(
           name: WalkthroughWidget.routeName,
@@ -111,83 +112,87 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => WalkthroughWidget(),
         ),
         FFRoute(
-          name: RunDetails2Widget.routeName,
-          path: RunDetails2Widget.routePath,
-          builder: (context, params) => RunDetails2Widget(),
-        ),
-        FFRoute(
-          name: ActivityDetailsWidget.routeName,
-          path: ActivityDetailsWidget.routePath,
-          builder: (context, params) => ActivityDetailsWidget(
-            data: params.getParam(
-              'data',
-              ParamType.DataStruct,
-              isList: false,
-              structBuilder: EventsStruct.fromSerializableMap,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: RunDetailsWidget.routeName,
-          path: RunDetailsWidget.routePath,
-          builder: (context, params) => RunDetailsWidget(
-            data: params.getParam(
-              'data',
-              ParamType.DataStruct,
-              isList: false,
-              structBuilder: EventsStruct.fromSerializableMap,
-            ),
-            isCompleted: params.getParam(
-              'isCompleted',
-              ParamType.bool,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: ViewOtherProfilesWidget.routeName,
-          path: ViewOtherProfilesWidget.routePath,
-          builder: (context, params) => ViewOtherProfilesWidget(),
-        ),
-        FFRoute(
-          name: ProfileEditWidget.routeName,
-          path: ProfileEditWidget.routePath,
-          builder: (context, params) => ProfileEditWidget(),
-        ),
-        FFRoute(
-          name: ActivityCreationSuccessWidget.routeName,
-          path: ActivityCreationSuccessWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => ActivityCreationSuccessWidget(
-            eventData: params.getParam(
-              'eventData',
-              ParamType.DataStruct,
-              isList: false,
-              structBuilder: EventsStruct.fromSerializableMap,
-            ),
-          ),
+          name: EditProfileWidget.routeName,
+          path: EditProfileWidget.routePath,
+          builder: (context, params) => EditProfileWidget(),
         ),
         FFRoute(
           name: EditRunActivityWidget.routeName,
           path: EditRunActivityWidget.routePath,
-          requireAuth: true,
           builder: (context, params) => EditRunActivityWidget(),
         ),
         FFRoute(
-          name: NotificatiosWidget.routeName,
-          path: NotificatiosWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => NotificatiosWidget(),
+          name: NotificationsWidget.routeName,
+          path: NotificationsWidget.routePath,
+          builder: (context, params) => NotificationsWidget(),
         ),
         FFRoute(
           name: CreateRunActivityWidget.routeName,
           path: CreateRunActivityWidget.routePath,
-          requireAuth: true,
           builder: (context, params) => CreateRunActivityWidget(),
         ),
         FFRoute(
           name: HomeWidget.routeName,
           path: HomeWidget.routePath,
           builder: (context, params) => HomeWidget(),
+        ),
+        FFRoute(
+          name: UserProfileWidget.routeName,
+          path: UserProfileWidget.routePath,
+          builder: (context, params) => UserProfileWidget(
+            selectedUserRef: params.getParam(
+              'selectedUserRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ActivityDetailsWidget.routeName,
+          path: ActivityDetailsWidget.routePath,
+          asyncParams: {
+            'activityData':
+                getDoc(['activities'], ActivitiesRecord.fromSnapshot),
+          },
+          builder: (context, params) => ActivityDetailsWidget(
+            activityData: params.getParam(
+              'activityData',
+              ParamType.Document,
+            ),
+            activityParticipants: params.getParam(
+              'activityParticipants',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MyActivityDetailsWidget.routeName,
+          path: MyActivityDetailsWidget.routePath,
+          asyncParams: {
+            'activityRef':
+                getDoc(['activities'], ActivitiesRecord.fromSnapshot),
+          },
+          builder: (context, params) => MyActivityDetailsWidget(
+            activityRef: params.getParam(
+              'activityRef',
+              ParamType.Document,
+            ),
+            participantRef: params.getParam(
+              'participantRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+            commentRef: params.getParam(
+              'commentRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['activities', 'activity_comments'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -374,13 +379,15 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Container(
-                  color: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/rfefrgrr.gif',
-                    fit: BoxFit.cover,
-                  ),
-                )
+              ? isWeb
+                  ? Container()
+                  : Container(
+                      color: Colors.transparent,
+                      child: Image.asset(
+                        'assets/images/gj2q4_N.png',
+                        fit: BoxFit.cover,
+                      ),
+                    )
               : page;
 
           final transitionInfo = state.transitionInfo;

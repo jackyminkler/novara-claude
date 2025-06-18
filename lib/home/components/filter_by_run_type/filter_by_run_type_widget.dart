@@ -118,17 +118,23 @@ class _FilterByRunTypeWidgetState extends State<FilterByRunTypeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FILTER_BY_RUN_TYPE_Row_ybrpzbsy_ON_TAP');
+                                  logFirebaseEvent('Row_update_app_state');
                                   FFAppState().SelectedRunTypeHomeFilter =
                                       listRunTypeItem;
                                   FFAppState().update(() {});
                                   if (FFAppState().updater) {
+                                    logFirebaseEvent('Row_update_app_state');
                                     FFAppState().updater = false;
                                     safeSetState(() {});
                                   } else {
+                                    logFirebaseEvent('Row_update_app_state');
                                     FFAppState().updater = true;
                                     safeSetState(() {});
                                   }
 
+                                  logFirebaseEvent('Row_dismiss_dialog');
                                   Navigator.pop(context);
                                 },
                                 child: Row(

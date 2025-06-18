@@ -75,6 +75,8 @@ class _LocationDropdownWidgetState extends State<LocationDropdownWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
+                logFirebaseEvent('LOCATION_DROPDOWN_Container_wcidzolh_ON_');
+                logFirebaseEvent('Container_alert_dialog');
                 await showAlignedDialog(
                   barrierColor: FlutterFlowTheme.of(context).accent4,
                   context: context,

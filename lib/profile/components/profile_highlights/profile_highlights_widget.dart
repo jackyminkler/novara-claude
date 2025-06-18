@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,12 @@ import 'profile_highlights_model.dart';
 export 'profile_highlights_model.dart';
 
 class ProfileHighlightsWidget extends StatefulWidget {
-  const ProfileHighlightsWidget({super.key});
+  const ProfileHighlightsWidget({
+    super.key,
+    required this.userRef,
+  });
+
+  final UsersRecord? userRef;
 
   @override
   State<ProfileHighlightsWidget> createState() =>
@@ -51,7 +57,12 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Road',
+                  valueOrDefault<String>(
+                    widget.userRef?.favRunTerrain,
+                    'Road',
+                  ).maybeHandleOverflow(
+                    maxChars: 5,
+                  ),
                   style: FlutterFlowTheme.of(context).displayMedium.override(
                         font: GoogleFonts.rubik(
                           fontWeight: FontWeight.w500,
@@ -108,7 +119,12 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '8:30',
+                  valueOrDefault<String>(
+                    widget.userRef?.avgPace,
+                    '9:00',
+                  ).maybeHandleOverflow(
+                    maxChars: 5,
+                  ),
                   style: FlutterFlowTheme.of(context).displayMedium.override(
                         font: GoogleFonts.rubik(
                           fontWeight: FontWeight.w500,
@@ -164,7 +180,12 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '3-6m',
+                  valueOrDefault<String>(
+                    widget.userRef?.prefDistance,
+                    '3-5m',
+                  ).maybeHandleOverflow(
+                    maxChars: 5,
+                  ),
                   style: FlutterFlowTheme.of(context).displayMedium.override(
                         font: GoogleFonts.rubik(
                           fontWeight: FontWeight.w500,

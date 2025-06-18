@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -85,6 +86,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent('NAV_BAR_COMP_HomeStack_ON_TAP');
+                        logFirebaseEvent('HomeStack_navigate_to');
+
                         context.goNamed(
                           HomeWidget.routeName,
                           extra: <String, dynamic>{
@@ -155,6 +159,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent('NAV_BAR_COMP_CreateStack_ON_TAP');
+                        logFirebaseEvent('CreateStack_navigate_to');
+
                         context.goNamed(
                           CreateRunActivityWidget.routeName,
                           extra: <String, dynamic>{
@@ -230,8 +237,17 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent('NAV_BAR_COMP_Stack_h7os8a82_ON_TAP');
+                        logFirebaseEvent('Stack_navigate_to');
+
                         context.goNamed(
                           MyProfileWidget.routeName,
+                          queryParameters: {
+                            'currentUserRef': serializeParam(
+                              currentUserReference,
+                              ParamType.DocumentReference,
+                            ),
+                          }.withoutNulls,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,

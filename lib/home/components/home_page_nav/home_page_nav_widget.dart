@@ -125,7 +125,10 @@ class _HomePageNavWidgetState extends State<HomePageNavWidget> {
                       size: 22.0,
                     ),
                     onPressed: () async {
-                      context.pushNamed(NotificatiosWidget.routeName);
+                      logFirebaseEvent('HOME_PAGE_NAV_COMP_bell01_ICN_ON_TAP');
+                      logFirebaseEvent('IconButton_navigate_to');
+
+                      context.pushNamed(NotificationsWidget.routeName);
                     },
                   ),
                 ),

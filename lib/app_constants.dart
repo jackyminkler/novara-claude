@@ -18,6 +18,7 @@ abstract class FFAppConstants {
     'Noe Valley',
     'Marina',
     'Golden Gate Park',
-    'Presidio'
+    'Presidio',
+    'Dolores Park'
   ];
 }

@@ -46,6 +46,8 @@ class _WidgetActivityOptionsWidgetState
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: () async {
+        logFirebaseEvent('WIDGET_ACTIVITY_OPTIONS_Column_itgst3g5_');
+        logFirebaseEvent('Column_bottom_sheet');
         Navigator.pop(context);
       },
       child: Column(
@@ -74,6 +76,9 @@ class _WidgetActivityOptionsWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'WIDGET_ACTIVITY_OPTIONS_Row_7gu3q41b_ON_');
+                            logFirebaseEvent('Row_bottom_sheet');
                             Navigator.pop(context);
                           },
                           child: Row(
@@ -149,6 +154,9 @@ class _WidgetActivityOptionsWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'WIDGET_ACTIVITY_OPTIONS_Row_r7msl4uq_ON_');
+                            logFirebaseEvent('Row_bottom_sheet');
                             Navigator.pop(context);
                           },
                           child: Row(
@@ -224,6 +232,9 @@ class _WidgetActivityOptionsWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'WIDGET_ACTIVITY_OPTIONS_Row_bcuohywl_ON_');
+                            logFirebaseEvent('Row_bottom_sheet');
                             Navigator.pop(context);
                           },
                           child: Row(
@@ -298,6 +309,8 @@ class _WidgetActivityOptionsWidgetState
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
+                  logFirebaseEvent('WIDGET_ACTIVITY_OPTIONS_Container_w31i2t');
+                  logFirebaseEvent('Container_bottom_sheet');
                   Navigator.pop(context);
                 },
                 child: Container(

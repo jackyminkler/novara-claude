@@ -33,17 +33,22 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
     super.initState();
     _model = createModel(context, () => QuestionsModel());
 
-    _model.textController1 ??= TextEditingController(text: 'San Francisco, CA');
-    _model.textFieldFocusNode1 ??= FocusNode();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Questions'});
+    _model.inputLocationTextController ??= TextEditingController();
+    _model.inputLocationFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController(text: '9:00');
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.inputAvgPaceTextController ??= TextEditingController();
+    _model.inputAvgPaceFocusNode ??= FocusNode();
 
-    _model.textFieldMask2 = MaskTextInputFormatter(mask: 'XX:XX');
-    _model.textController3 ??= TextEditingController(text: '3-5m');
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.inputAvgPaceMask = MaskTextInputFormatter(mask: 'XX:XX');
+    _model.inputPrefDistanceTextController ??= TextEditingController();
+    _model.inputPrefDistanceFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
+          _model.inputLocationTextController?.text = 'San Francisco, CA';
+          _model.inputAvgPaceTextController?.text = '9:00';
+          _model.inputPrefDistanceTextController?.text = '3-5m';
+        }));
   }
 
   @override
@@ -110,9 +115,14 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             size: 24.0,
                           ),
                           onPressed: () async {
+                            logFirebaseEvent(
+                                'QUESTIONS_PAGE_BackButton_ON_TAP');
                             if (_model.pageViewGroupCurrentIndex <= 0) {
+                              logFirebaseEvent('BackButton_navigate_to');
+
                               context.pushNamed(WalkthroughWidget.routeName);
                             } else {
+                              logFirebaseEvent('BackButton_page_view');
                               await _model.pageViewGroupController
                                   ?.previousPage(
                                 duration: Duration(milliseconds: 300),
@@ -192,10 +202,16 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                               controller: _model.pageViewGroupController ??=
                                   PageController(initialPage: 0),
                               onPageChanged: (_) async {
+                                logFirebaseEvent(
+                                    'QUESTIONS_PageView-Group_ON_WIDGET_SWIPE');
                                 if (FFAppState().updater) {
+                                  logFirebaseEvent(
+                                      'PageView-Group_update_app_state');
                                   FFAppState().updater = false;
                                   safeSetState(() {});
                                 } else {
+                                  logFirebaseEvent(
+                                      'PageView-Group_update_app_state');
                                   FFAppState().updater = true;
                                   safeSetState(() {});
                                 }
@@ -304,12 +320,17 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                 child: Container(
                                                   width: double.infinity,
                                                   child: TextFormField(
-                                                    controller:
-                                                        _model.textController1,
+                                                    controller: _model
+                                                        .inputLocationTextController,
                                                     focusNode: _model
-                                                        .textFieldFocusNode1,
+                                                        .inputLocationFocusNode,
                                                     onFieldSubmitted:
                                                         (_) async {
+                                                      logFirebaseEvent(
+                                                          'QUESTIONS_Input_Location_ON_TEXTFIELD_SU');
+                                                      logFirebaseEvent(
+                                                          'Input_Location_backend_call');
+
                                                       await currentUserReference!
                                                           .update(
                                                               createUsersRecordData(
@@ -457,7 +478,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                                 context)
                                                             .primaryText,
                                                     validator: _model
-                                                        .textController1Validator
+                                                        .inputLocationTextControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
@@ -629,14 +650,20 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'QUESTIONS_PAGE_Container_v7hgbdl9_ON_TAP');
                                                             if (FFAppState()
                                                                         .SelectedRunTerrainProfile !=
                                                                     '') {
+                                                              logFirebaseEvent(
+                                                                  'Container_update_app_state');
                                                               FFAppState()
                                                                   .SelectedRunTerrainProfile = '';
                                                               safeSetState(
                                                                   () {});
                                                             } else {
+                                                              logFirebaseEvent(
+                                                                  'Container_update_app_state');
                                                               FFAppState()
                                                                       .SelectedRunTerrainProfile =
                                                                   FFAppState()
@@ -829,10 +856,13 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                       width: double.infinity,
                                                       child: TextFormField(
                                                         controller: _model
-                                                            .textController2,
+                                                            .inputAvgPaceTextController,
                                                         focusNode: _model
-                                                            .textFieldFocusNode2,
+                                                            .inputAvgPaceFocusNode,
                                                         autofocus: false,
+                                                        textInputAction:
+                                                            TextInputAction
+                                                                .next,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -970,17 +1000,20 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                                       .titleSmall
                                                                       .fontStyle,
                                                                 ),
-                                                        maxLength: 5,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
                                                         cursorColor:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
                                                         validator: _model
-                                                            .textController2Validator
+                                                            .inputAvgPaceTextControllerValidator
                                                             .asValidator(
                                                                 context),
                                                         inputFormatters: [
-                                                          _model.textFieldMask2
+                                                          _model
+                                                              .inputAvgPaceMask
                                                         ],
                                                       ),
                                                     ),
@@ -1046,9 +1079,9 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                       width: double.infinity,
                                                       child: TextFormField(
                                                         controller: _model
-                                                            .textController3,
+                                                            .inputPrefDistanceTextController,
                                                         focusNode: _model
-                                                            .textFieldFocusNode3,
+                                                            .inputPrefDistanceFocusNode,
                                                         autofocus: false,
                                                         obscureText: false,
                                                         decoration:
@@ -1197,7 +1230,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                                                     context)
                                                                 .primaryText,
                                                         validator: _model
-                                                            .textController3Validator
+                                                            .inputPrefDistanceTextControllerValidator
                                                             .asValidator(
                                                                 context),
                                                       ),
@@ -1225,13 +1258,59 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                         EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (_model.pageViewGroupCurrentIndex >= 2) {
-                          context.pushNamed(HomeWidget.routeName);
-                        } else {
-                          await _model.pageViewGroupController?.nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.ease,
-                          );
+                        logFirebaseEvent('QUESTIONS_PAGE_CONTINUE_BTN_ON_TAP');
+                        final firestoreBatch =
+                            FirebaseFirestore.instance.batch();
+                        try {
+                          if (_model.pageViewGroupCurrentIndex == 0) {
+                            logFirebaseEvent('Button_backend_call');
+
+                            firestoreBatch.update(
+                                currentUserReference!,
+                                createUsersRecordData(
+                                  location:
+                                      _model.inputLocationTextController.text,
+                                ));
+                            logFirebaseEvent('Button_page_view');
+                            await _model.pageViewGroupController?.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
+                          }
+                          if (_model.pageViewGroupCurrentIndex == 1) {
+                            logFirebaseEvent('Button_backend_call');
+
+                            firestoreBatch.update(
+                                currentUserReference!,
+                                createUsersRecordData(
+                                  favRunTerrain:
+                                      FFAppState().SelectedRunTerrainProfile,
+                                ));
+                            logFirebaseEvent('Button_page_view');
+                            await _model.pageViewGroupController?.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
+                          }
+                          if (_model.pageViewGroupCurrentIndex == 2) {
+                            logFirebaseEvent('Button_backend_call');
+
+                            firestoreBatch.update(
+                                currentUserReference!,
+                                createUsersRecordData(
+                                  avgPace:
+                                      _model.inputAvgPaceTextController.text,
+                                  prefDistance: _model
+                                      .inputPrefDistanceTextController.text,
+                                ));
+                            logFirebaseEvent('Button_page_view');
+                            await _model.pageViewGroupController?.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
+                          }
+                        } finally {
+                          await firestoreBatch.commit();
                         }
                       },
                       text: 'Continue',

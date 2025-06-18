@@ -76,6 +76,8 @@ class _RunTerrainDropdownWidgetState extends State<RunTerrainDropdownWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
+                logFirebaseEvent('RUN_TERRAIN_DROPDOWN_Container_cto9avxx_');
+                logFirebaseEvent('Container_alert_dialog');
                 await showAlignedDialog(
                   barrierColor: FlutterFlowTheme.of(context).accent4,
                   context: context,

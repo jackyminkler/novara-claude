@@ -1,60 +1,66 @@
-import '/create_run/components/date_selector/date_selector_widget.dart';
-import '/create_run/components/distance_field/distance_field_widget.dart';
-import '/create_run/components/input_field_title/input_field_title_widget.dart';
-import '/create_run/components/location_dropdown/location_dropdown_widget.dart';
-import '/create_run/components/time_selector/time_selector_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'create_run_activity_widget.dart' show CreateRunActivityWidget;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateRunActivityModel extends FlutterFlowModel<CreateRunActivityWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Model for TitleField.
-  late InputFieldTitleModel titleFieldModel;
-  // Model for LocationDropdown component.
-  late LocationDropdownModel locationDropdownModel;
-  // Model for DistanceField component.
-  late DistanceFieldModel distanceFieldModel;
-  // Model for DateSelector component.
-  late DateSelectorModel dateSelectorModel;
-  // Model for TimeSelector component.
-  late TimeSelectorModel timeSelectorModel;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController1;
-  String? get choiceChipsValue1 =>
-      choiceChipsValueController1?.value?.firstOrNull;
-  set choiceChipsValue1(String? val) =>
-      choiceChipsValueController1?.value = val != null ? [val] : [];
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController2;
-  String? get choiceChipsValue2 =>
-      choiceChipsValueController2?.value?.firstOrNull;
-  set choiceChipsValue2(String? val) =>
-      choiceChipsValueController2?.value = val != null ? [val] : [];
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for TextField-Title widget.
+  FocusNode? textFieldTitleFocusNode;
+  TextEditingController? textFieldTitleTextController;
+  String? Function(BuildContext, String?)?
+      textFieldTitleTextControllerValidator;
+  // State field(s) for TextField-Details widget.
+  FocusNode? textFieldDetailsFocusNode;
+  TextEditingController? textFieldDetailsTextController;
+  String? Function(BuildContext, String?)?
+      textFieldDetailsTextControllerValidator;
+  // State field(s) for DropDown-Location widget.
+  String? dropDownLocationValue;
+  FormFieldController<String>? dropDownLocationValueController;
+  // State field(s) for TextField-Distance widget.
+  FocusNode? textFieldDistanceFocusNode1;
+  TextEditingController? textFieldDistanceTextController1;
+  String? Function(BuildContext, String?)?
+      textFieldDistanceTextController1Validator;
+  // State field(s) for TextField-Distance widget.
+  FocusNode? textFieldDistanceFocusNode2;
+  TextEditingController? textFieldDistanceTextController2;
+  String? Function(BuildContext, String?)?
+      textFieldDistanceTextController2Validator;
+  DateTime? datePicked1;
+  DateTime? datePicked2;
+  // State field(s) for ChoiceChips-RunTerrain widget.
+  FormFieldController<List<String>>? choiceChipsRunTerrainValueController;
+  String? get choiceChipsRunTerrainValue =>
+      choiceChipsRunTerrainValueController?.value?.firstOrNull;
+  set choiceChipsRunTerrainValue(String? val) =>
+      choiceChipsRunTerrainValueController?.value = val != null ? [val] : [];
+  // State field(s) for ChoiceChips-RunType widget.
+  FormFieldController<List<String>>? choiceChipsRunTypeValueController;
+  String? get choiceChipsRunTypeValue =>
+      choiceChipsRunTypeValueController?.value?.firstOrNull;
+  set choiceChipsRunTypeValue(String? val) =>
+      choiceChipsRunTypeValueController?.value = val != null ? [val] : [];
 
   @override
-  void initState(BuildContext context) {
-    titleFieldModel = createModel(context, () => InputFieldTitleModel());
-    locationDropdownModel = createModel(context, () => LocationDropdownModel());
-    distanceFieldModel = createModel(context, () => DistanceFieldModel());
-    dateSelectorModel = createModel(context, () => DateSelectorModel());
-    timeSelectorModel = createModel(context, () => TimeSelectorModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    titleFieldModel.dispose();
-    locationDropdownModel.dispose();
-    distanceFieldModel.dispose();
-    dateSelectorModel.dispose();
-    timeSelectorModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    textFieldTitleFocusNode?.dispose();
+    textFieldTitleTextController?.dispose();
+
+    textFieldDetailsFocusNode?.dispose();
+    textFieldDetailsTextController?.dispose();
+
+    textFieldDistanceFocusNode1?.dispose();
+    textFieldDistanceTextController1?.dispose();
+
+    textFieldDistanceFocusNode2?.dispose();
+    textFieldDistanceTextController2?.dispose();
   }
 }

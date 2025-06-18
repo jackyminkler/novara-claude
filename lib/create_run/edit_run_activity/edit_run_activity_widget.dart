@@ -34,6 +34,8 @@ class _EditRunActivityWidgetState extends State<EditRunActivityWidget> {
     super.initState();
     _model = createModel(context, () => EditRunActivityModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'EditRunActivity'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -72,6 +74,8 @@ class _EditRunActivityWidgetState extends State<EditRunActivityWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
+                logFirebaseEvent('EDIT_RUN_ACTIVITY_arrowLeft_ICN_ON_TAP');
+                logFirebaseEvent('IconButton_navigate_back');
                 context.safePop();
               },
             ),
@@ -584,6 +588,8 @@ class _EditRunActivityWidgetState extends State<EditRunActivityWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(15.0, 25.0, 15.0, 25.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('EDIT_RUN_ACTIVITY_PAGE_SAVE_BTN_ON_TAP');
+                    logFirebaseEvent('Button_navigate_back');
                     context.safePop();
                   },
                   text: 'Save',

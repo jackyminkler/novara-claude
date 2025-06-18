@@ -1,8 +1,9 @@
 import '/backend/backend.dart';
-import '/components/activity_card_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/home/components/activity_card/activity_card_widget.dart';
 import '/home/components/home_page_nav/home_page_nav_widget.dart';
 import '/home/components/nav_bar/nav_bar_widget.dart';
+import '/index.dart';
 import 'home_widget.dart' show HomeWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

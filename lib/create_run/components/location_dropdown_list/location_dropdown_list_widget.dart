@@ -84,16 +84,22 @@ class _LocationDropdownListWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'LOCATION_DROPDOWN_LIST_Row_v4qpkqfw_ON_T');
+                          logFirebaseEvent('Row_update_app_state');
                           FFAppState().SelectedLocation = listLocationsItem;
                           FFAppState().update(() {});
                           if (FFAppState().updater) {
+                            logFirebaseEvent('Row_update_app_state');
                             FFAppState().updater = false;
                             safeSetState(() {});
                           } else {
+                            logFirebaseEvent('Row_update_app_state');
                             FFAppState().updater = true;
                             safeSetState(() {});
                           }
 
+                          logFirebaseEvent('Row_dismiss_dialog');
                           Navigator.pop(context);
                         },
                         child: Row(

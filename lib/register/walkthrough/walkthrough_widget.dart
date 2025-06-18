@@ -29,6 +29,7 @@ class _WalkthroughWidgetState extends State<WalkthroughWidget> {
     super.initState();
     _model = createModel(context, () => WalkthroughModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Walkthrough'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -359,11 +360,16 @@ class _WalkthroughWidgetState extends State<WalkthroughWidget> {
                         EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 15.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('WALKTHROUGH_PAGE_NEXT_BTN_ON_TAP');
+                        logFirebaseEvent('Button_update_app_state');
                         FFAppState().FromRegister = true;
                         safeSetState(() {});
                         if (_model.pageViewCurrentIndex >= 2) {
+                          logFirebaseEvent('Button_navigate_to');
+
                           context.pushNamed(LoginGoogleSSOWidget.routeName);
                         } else {
+                          logFirebaseEvent('Button_page_view');
                           await _model.pageViewController?.nextPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.ease,

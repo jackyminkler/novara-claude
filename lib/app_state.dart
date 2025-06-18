@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
@@ -283,5 +282,111 @@ class FFAppState extends ChangeNotifier {
   String get SelectedRunTerrainProfile => _SelectedRunTerrainProfile;
   set SelectedRunTerrainProfile(String value) {
     _SelectedRunTerrainProfile = value;
+  }
+
+  String _SelectedPaceActivity = '';
+  String get SelectedPaceActivity => _SelectedPaceActivity;
+  set SelectedPaceActivity(String value) {
+    _SelectedPaceActivity = value;
+  }
+
+  String _SelectedAvgPaceProfile = '';
+  String get SelectedAvgPaceProfile => _SelectedAvgPaceProfile;
+  set SelectedAvgPaceProfile(String value) {
+    _SelectedAvgPaceProfile = value;
+  }
+
+  List<DocumentReference> _FilteredActivitiesUpcoming = [];
+  List<DocumentReference> get FilteredActivitiesUpcoming =>
+      _FilteredActivitiesUpcoming;
+  set FilteredActivitiesUpcoming(List<DocumentReference> value) {
+    _FilteredActivitiesUpcoming = value;
+  }
+
+  void addToFilteredActivitiesUpcoming(DocumentReference value) {
+    FilteredActivitiesUpcoming.add(value);
+  }
+
+  void removeFromFilteredActivitiesUpcoming(DocumentReference value) {
+    FilteredActivitiesUpcoming.remove(value);
+  }
+
+  void removeAtIndexFromFilteredActivitiesUpcoming(int index) {
+    FilteredActivitiesUpcoming.removeAt(index);
+  }
+
+  void updateFilteredActivitiesUpcomingAtIndex(
+    int index,
+    DocumentReference Function(DocumentReference) updateFn,
+  ) {
+    FilteredActivitiesUpcoming[index] =
+        updateFn(_FilteredActivitiesUpcoming[index]);
+  }
+
+  void insertAtIndexInFilteredActivitiesUpcoming(
+      int index, DocumentReference value) {
+    FilteredActivitiesUpcoming.insert(index, value);
+  }
+
+  List<DocumentReference> _FilteredActivitiesPast = [];
+  List<DocumentReference> get FilteredActivitiesPast => _FilteredActivitiesPast;
+  set FilteredActivitiesPast(List<DocumentReference> value) {
+    _FilteredActivitiesPast = value;
+  }
+
+  void addToFilteredActivitiesPast(DocumentReference value) {
+    FilteredActivitiesPast.add(value);
+  }
+
+  void removeFromFilteredActivitiesPast(DocumentReference value) {
+    FilteredActivitiesPast.remove(value);
+  }
+
+  void removeAtIndexFromFilteredActivitiesPast(int index) {
+    FilteredActivitiesPast.removeAt(index);
+  }
+
+  void updateFilteredActivitiesPastAtIndex(
+    int index,
+    DocumentReference Function(DocumentReference) updateFn,
+  ) {
+    FilteredActivitiesPast[index] = updateFn(_FilteredActivitiesPast[index]);
+  }
+
+  void insertAtIndexInFilteredActivitiesPast(
+      int index, DocumentReference value) {
+    FilteredActivitiesPast.insert(index, value);
+  }
+
+  List<DocumentReference> _FilteredActivitiesOrganized = [];
+  List<DocumentReference> get FilteredActivitiesOrganized =>
+      _FilteredActivitiesOrganized;
+  set FilteredActivitiesOrganized(List<DocumentReference> value) {
+    _FilteredActivitiesOrganized = value;
+  }
+
+  void addToFilteredActivitiesOrganized(DocumentReference value) {
+    FilteredActivitiesOrganized.add(value);
+  }
+
+  void removeFromFilteredActivitiesOrganized(DocumentReference value) {
+    FilteredActivitiesOrganized.remove(value);
+  }
+
+  void removeAtIndexFromFilteredActivitiesOrganized(int index) {
+    FilteredActivitiesOrganized.removeAt(index);
+  }
+
+  void updateFilteredActivitiesOrganizedAtIndex(
+    int index,
+    DocumentReference Function(DocumentReference) updateFn,
+  ) {
+    FilteredActivitiesOrganized[index] =
+        updateFn(_FilteredActivitiesOrganized[index]);
+  }
+
+  void insertAtIndexInFilteredActivitiesOrganized(
+      int index, DocumentReference value) {
+    FilteredActivitiesOrganized.insert(index, value);
   }
 }

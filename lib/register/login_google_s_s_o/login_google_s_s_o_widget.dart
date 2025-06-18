@@ -28,6 +28,8 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
     super.initState();
     _model = createModel(context, () => LoginGoogleSSOModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Login-GoogleSSO'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -137,16 +139,23 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
+                  logFirebaseEvent('LOGIN_GOOGLE_S_S_O_Container_zfzm7lil_ON');
+                  logFirebaseEvent('Container_auth');
                   GoRouter.of(context).prepareAuthEvent();
                   final user = await authManager.signInWithGoogle(context);
                   if (user == null) {
                     return;
                   }
+                  logFirebaseEvent('Container_backend_call');
                   _model.existingUserDoc =
                       await UsersRecord.getDocumentOnce(currentUserReference!);
                   if (_model.existingUserDoc?.reference != null) {
+                    logFirebaseEvent('Container_navigate_to');
+
                     context.goNamedAuth(HomeWidget.routeName, context.mounted);
                   } else {
+                    logFirebaseEvent('Container_navigate_to');
+
                     context.pushNamedAuth(
                         QuestionsWidget.routeName, context.mounted);
                   }

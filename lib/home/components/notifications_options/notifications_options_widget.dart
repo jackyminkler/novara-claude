@@ -47,6 +47,8 @@ class _NotificationsOptionsWidgetState
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: () async {
+        logFirebaseEvent('NOTIFICATIONS_OPTIONS_Column_ctec6l3y_ON');
+        logFirebaseEvent('Column_bottom_sheet');
         Navigator.pop(context);
       },
       child: Column(
@@ -136,9 +138,13 @@ class _NotificationsOptionsWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent(
+                            'NOTIFICATIONS_OPTIONS_Column_8b4212l9_ON');
+                        logFirebaseEvent('Column_bottom_sheet');
                         Navigator.pop(context);
+                        logFirebaseEvent('Column_navigate_to');
 
-                        context.pushNamed(NotificatiosWidget.routeName);
+                        context.pushNamed(NotificationsWidget.routeName);
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -224,6 +230,8 @@ class _NotificationsOptionsWidgetState
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
+                  logFirebaseEvent('NOTIFICATIONS_OPTIONS_Container_exhsxtq0');
+                  logFirebaseEvent('Container_bottom_sheet');
                   Navigator.pop(context);
                 },
                 child: Container(

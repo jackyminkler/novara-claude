@@ -118,17 +118,23 @@ class _FilterByLocationWidgetState extends State<FilterByLocationWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FILTER_BY_LOCATION_Row_oc51d5ut_ON_TAP');
+                                  logFirebaseEvent('Row_update_app_state');
                                   FFAppState().SelectedLocation =
                                       listLocationItem;
                                   FFAppState().update(() {});
                                   if (FFAppState().updater) {
+                                    logFirebaseEvent('Row_update_app_state');
                                     FFAppState().updater = false;
                                     safeSetState(() {});
                                   } else {
+                                    logFirebaseEvent('Row_update_app_state');
                                     FFAppState().updater = true;
                                     safeSetState(() {});
                                   }
 
+                                  logFirebaseEvent('Row_dismiss_dialog');
                                   Navigator.pop(context);
                                 },
                                 child: Row(

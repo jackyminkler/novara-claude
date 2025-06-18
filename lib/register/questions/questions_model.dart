@@ -15,32 +15,33 @@ class QuestionsModel extends FlutterFlowModel<QuestionsWidget> {
           pageViewGroupController!.page != null
       ? pageViewGroupController!.page!.round()
       : 0;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  late MaskTextInputFormatter textFieldMask2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
+  // State field(s) for Input_Location widget.
+  FocusNode? inputLocationFocusNode;
+  TextEditingController? inputLocationTextController;
+  String? Function(BuildContext, String?)? inputLocationTextControllerValidator;
+  // State field(s) for Input_AvgPace widget.
+  FocusNode? inputAvgPaceFocusNode;
+  TextEditingController? inputAvgPaceTextController;
+  late MaskTextInputFormatter inputAvgPaceMask;
+  String? Function(BuildContext, String?)? inputAvgPaceTextControllerValidator;
+  // State field(s) for Input_PrefDistance widget.
+  FocusNode? inputPrefDistanceFocusNode;
+  TextEditingController? inputPrefDistanceTextController;
+  String? Function(BuildContext, String?)?
+      inputPrefDistanceTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    inputLocationFocusNode?.dispose();
+    inputLocationTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    inputAvgPaceFocusNode?.dispose();
+    inputAvgPaceTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    inputPrefDistanceFocusNode?.dispose();
+    inputPrefDistanceTextController?.dispose();
   }
 }

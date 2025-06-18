@@ -1,12 +1,13 @@
 import '/backend/backend.dart';
-import '/components/activity_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/home/components/activity_card/activity_card_widget.dart';
 import '/home/components/filter_by_location/filter_by_location_widget.dart';
 import '/home/components/filter_by_run_terrain/filter_by_run_terrain_widget.dart';
 import '/home/components/filter_by_run_type/filter_by_run_type_widget.dart';
 import '/home/components/home_page_nav/home_page_nav_widget.dart';
 import '/home/components/nav_bar/nav_bar_widget.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -34,6 +35,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     _model = createModel(context, () => HomeModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Home'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -99,6 +101,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent('HOME_PAGE_RunTypeButton_ON_TAP');
+                            logFirebaseEvent('RunTypeButton_bottom_sheet');
                             await showModalBottomSheet(
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
@@ -217,6 +221,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_Icon_udq6jlhp_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_update_app_state');
                                           FFAppState()
                                               .SelectedRunTypeHomeFilter = '';
                                           safeSetState(() {});
@@ -249,6 +257,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'HOME_PAGE_RunTerrainButton_ON_TAP');
+                            logFirebaseEvent('RunTerrainButton_bottom_sheet');
                             await showModalBottomSheet(
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
@@ -368,6 +379,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_Icon_ku6vyklw_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_update_app_state');
                                           FFAppState()
                                               .SelectedRunTerrainHomeFilter = '';
                                           safeSetState(() {});
@@ -400,6 +415,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent('HOME_PAGE_LcationButton_ON_TAP');
+                            logFirebaseEvent('LcationButton_bottom_sheet');
                             await showModalBottomSheet(
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
@@ -514,6 +531,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_Icon_bisitn3k_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_update_app_state');
                                           FFAppState().SelectedLocation = '';
                                           safeSetState(() {});
                                         },
@@ -658,17 +679,46 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     final listViewActivitiesRecord = _model
                                         .listViewPagingController!
                                         .itemList![listViewIndex];
-                                    return wrapWithModel(
-                                      model: _model.activityCardModels.getModel(
-                                        listViewActivitiesRecord.reference.id,
-                                        listViewIndex,
-                                      ),
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: ActivityCardWidget(
-                                        key: Key(
-                                          'Keyo1t_${listViewActivitiesRecord.reference.id}',
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'HOME_PAGE_Container_o1tjv8xr_ON_TAP');
+                                        logFirebaseEvent(
+                                            'ActivityCard_navigate_to');
+
+                                        context.pushNamed(
+                                          ActivityDetailsWidget.routeName,
+                                          queryParameters: {
+                                            'activityData': serializeParam(
+                                              listViewActivitiesRecord,
+                                              ParamType.Document,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'activityData':
+                                                listViewActivitiesRecord,
+                                          },
+                                        );
+                                      },
+                                      child: wrapWithModel(
+                                        model:
+                                            _model.activityCardModels.getModel(
+                                          listViewActivitiesRecord.reference.id,
+                                          listViewIndex,
                                         ),
-                                        activityDoc: listViewActivitiesRecord,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: ActivityCardWidget(
+                                          key: Key(
+                                            'Keyo1t_${listViewActivitiesRecord.reference.id}',
+                                          ),
+                                          activityCard:
+                                              listViewActivitiesRecord,
+                                        ),
                                       ),
                                     );
                                   },
