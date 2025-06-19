@@ -163,7 +163,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         logFirebaseEvent('CreateStack_navigate_to');
 
                         context.goNamed(
-                          CreateRunActivityWidget.routeName,
+                          CreateEditActivityWidget.routeName,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,

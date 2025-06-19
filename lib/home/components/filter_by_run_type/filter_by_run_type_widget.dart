@@ -134,7 +134,8 @@ class _FilterByRunTypeWidgetState extends State<FilterByRunTypeWidget> {
                                     safeSetState(() {});
                                   }
 
-                                  logFirebaseEvent('Row_dismiss_dialog');
+                                  logFirebaseEvent(
+                                      'Row_close_dialog_drawer_etc');
                                   Navigator.pop(context);
                                 },
                                 child: Row(

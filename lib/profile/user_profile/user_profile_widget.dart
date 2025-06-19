@@ -1,9 +1,9 @@
 import '/backend/backend.dart';
-import '/components/profile_user_activities_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/profile/components/profile_highlights/profile_highlights_widget.dart';
+import '/profile/components/profile_user_activities/profile_user_activities_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user_profile_model.dart';
@@ -230,8 +230,6 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                     updateCallback: () => safeSetState(() {}),
                     child: ProfileUserActivitiesWidget(
                       userRef: widget.selectedUserRef!,
-                      isCurrentUser: /* NOT RECOMMENDED */
-                          widget.selectedUserRef!.id == 'true',
                     ),
                   ),
                 ].addToEnd(SizedBox(height: 15.0)),

@@ -27,7 +27,6 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  aligned_dialog: 0.0.6
   auto_size_text: 3.0.0
   cached_network_image: 3.4.1
   cached_network_image_platform_interface: 4.1.1
@@ -101,7 +100,6 @@ dependencies:
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
-  styled_divider: 1.0.4
   timeago: 3.6.1
   url_launcher: 6.3.0
   url_launcher_android: 6.3.10

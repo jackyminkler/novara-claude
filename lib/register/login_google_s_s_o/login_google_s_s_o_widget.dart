@@ -157,7 +157,7 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
                     logFirebaseEvent('Container_navigate_to');
 
                     context.pushNamedAuth(
-                        QuestionsWidget.routeName, context.mounted);
+                        OnboardingWidget.routeName, context.mounted);
                   }
 
                   safeSetState(() {});
