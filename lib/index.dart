@@ -13,3 +13,5 @@ export '/home/home/home_widget.dart' show HomeWidget;
 export '/profile/user_profile/user_profile_widget.dart' show UserProfileWidget;
 export '/activities/activity_details/activity_details_widget.dart'
     show ActivityDetailsWidget;
+export '/activities/create_edit_activity_copy/create_edit_activity_copy_widget.dart'
+    show CreateEditActivityCopyWidget;

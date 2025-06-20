@@ -53,10 +53,10 @@ class _HomeWidgetState extends State<HomeWidget> {
       stream: queryActivitiesRecord(
         queryBuilder: (activitiesRecord) => activitiesRecord
             .where(
-              'startTime',
-              isGreaterThan: getCurrentTimestamp,
+              'date',
+              isGreaterThanOrEqualTo: getCurrentTimestamp,
             )
-            .orderBy('startTime', descending: true),
+            .orderBy('date', descending: true),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -637,93 +637,103 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
-                              child: Text(
-                                'Upcoming Events',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      font: GoogleFonts.rubik(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  'Upcoming Events',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        font: GoogleFonts.rubik(
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .headlineMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .fontStyle,
-                                    ),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 16.0, 0.0, 0.0),
-                              child: Builder(
-                                builder: (context) {
-                                  final activitiesList =
-                                      homeActivitiesRecordList.toList();
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 16.0, 0.0, 0.0),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final activitiesList =
+                                          homeActivitiesRecordList.toList();
 
-                                  return ListView.separated(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: activitiesList.length,
-                                    separatorBuilder: (_, __) =>
-                                        SizedBox(height: 16.0),
-                                    itemBuilder:
-                                        (context, activitiesListIndex) {
-                                      final activitiesListItem =
-                                          activitiesList[activitiesListIndex];
-                                      return InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'HOME_PAGE_Container_o1tjv8xr_ON_TAP');
-                                          logFirebaseEvent(
-                                              'ActivityCardHome_navigate_to');
+                                      return ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: activitiesList.length,
+                                        separatorBuilder: (_, __) =>
+                                            SizedBox(height: 16.0),
+                                        itemBuilder:
+                                            (context, activitiesListIndex) {
+                                          final activitiesListItem =
+                                              activitiesList[
+                                                  activitiesListIndex];
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_Container_o1tjv8xr_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'ActivityCardHome_navigate_to');
 
-                                          context.pushNamed(
-                                            ActivityDetailsWidget.routeName,
-                                            queryParameters: {
-                                              'activityRef': serializeParam(
-                                                activitiesListItem.reference,
-                                                ParamType.DocumentReference,
+                                              context.goNamed(
+                                                ActivityDetailsWidget.routeName,
+                                                queryParameters: {
+                                                  'activityRef': serializeParam(
+                                                    activitiesListItem
+                                                        .reference,
+                                                    ParamType.DocumentReference,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: wrapWithModel(
+                                              model: _model
+                                                  .activityCardHomeModels
+                                                  .getModel(
+                                                activitiesListItem.reference.id,
+                                                activitiesListIndex,
                                               ),
-                                            }.withoutNulls,
+                                              updateCallback: () =>
+                                                  safeSetState(() {}),
+                                              child: ActivityCardHomeWidget(
+                                                key: Key(
+                                                  'Keyo1t_${activitiesListItem.reference.id}',
+                                                ),
+                                                activityCard:
+                                                    activitiesListItem,
+                                              ),
+                                            ),
                                           );
                                         },
-                                        child: wrapWithModel(
-                                          model: _model.activityCardHomeModels
-                                              .getModel(
-                                            homeActivitiesRecordList,
-                                            activitiesListIndex,
-                                          ),
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: ActivityCardHomeWidget(
-                                            key: Key(
-                                              'Keyo1t_${homeActivitiesRecordList}',
-                                            ),
-                                            activityCard: activitiesListItem,
-                                          ),
-                                        ),
                                       );
                                     },
-                                  );
-                                },
+                                  ),
+                                ),
                               ),
-                            ),
-                          ].addToEnd(SizedBox(height: 16.0)),
+                            ].addToEnd(SizedBox(height: 16.0)),
+                          ),
                         ),
                       ),
                     ),

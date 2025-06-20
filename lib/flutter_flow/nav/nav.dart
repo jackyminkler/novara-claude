@@ -162,6 +162,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               collectionNamePath: ['activities'],
             ),
           ),
+        ),
+        FFRoute(
+          name: CreateEditActivityCopyWidget.routeName,
+          path: CreateEditActivityCopyWidget.routePath,
+          builder: (context, params) => CreateEditActivityCopyWidget(
+            activityRef: params.getParam(
+              'activityRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['activities'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
