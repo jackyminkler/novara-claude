@@ -1,16 +1,9 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/request_manager.dart';
-
-import '/index.dart';
-import 'create_edit_activity_copy_widget.dart'
-    show CreateEditActivityCopyWidget;
-import 'package:flutter/cupertino.dart';
+import 'create_activity_widget.dart' show CreateActivityWidget;
 import 'package:flutter/material.dart';
 
-class CreateEditActivityCopyModel
-    extends FlutterFlowModel<CreateEditActivityCopyWidget> {
+class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
   ///  Local state fields for this page.
 
   DateTime? activityDate;
@@ -42,8 +35,7 @@ class CreateEditActivityCopyModel
   TextEditingController? textFieldDistanceTextController2;
   String? Function(BuildContext, String?)?
       textFieldDistanceTextController2Validator;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
+  DateTime? datePicked;
   // State field(s) for ChoiceChips-RunTerrain widget.
   FormFieldController<List<String>>? choiceChipsRunTerrainValueController;
   String? get choiceChipsRunTerrainValue =>
@@ -56,23 +48,6 @@ class CreateEditActivityCopyModel
       choiceChipsRunTypeValueController?.value?.firstOrNull;
   set choiceChipsRunTypeValue(String? val) =>
       choiceChipsRunTypeValueController?.value = val != null ? [val] : [];
-
-  /// Query cache managers for this widget.
-
-  final _selectedActivityManager = StreamRequestManager<ActivitiesRecord>();
-  Stream<ActivitiesRecord> selectedActivity({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Stream<ActivitiesRecord> Function() requestFn,
-  }) =>
-      _selectedActivityManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearSelectedActivityCache() => _selectedActivityManager.clear();
-  void clearSelectedActivityCacheKey(String? uniqueKey) =>
-      _selectedActivityManager.clearRequest(uniqueKey);
 
   @override
   void initState(BuildContext context) {}
@@ -90,9 +65,5 @@ class CreateEditActivityCopyModel
 
     textFieldDistanceFocusNode2?.dispose();
     textFieldDistanceTextController2?.dispose();
-
-    /// Dispose query cache managers for this widget.
-
-    clearSelectedActivityCache();
   }
 }

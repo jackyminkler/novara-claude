@@ -205,4 +205,10 @@ class FFAppState extends ChangeNotifier {
       int index, DocumentReference value) {
     FilteredActivitiesOrganized.insert(index, value);
   }
+
+  DateTime? _SelectedDateTime;
+  DateTime? get SelectedDateTime => _SelectedDateTime;
+  set SelectedDateTime(DateTime? value) {
+    _SelectedDateTime = value;
+  }
 }

@@ -1,7 +1,7 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/home/components/activity_card_home/activity_card_home_widget.dart';
+import '/home/components/activity_card/activity_card_widget.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -190,7 +190,7 @@ class _ProfileUserActivitiesWidgetState
                                       logFirebaseEvent(
                                           'PROFILE_USER_ACTIVITIES_Container_j3rbe1');
                                       logFirebaseEvent(
-                                          'ActivityCardHome_navigate_to');
+                                          'ActivityCard_navigate_to');
 
                                       context.pushNamed(
                                         ActivityDetailsWidget.routeName,
@@ -203,13 +203,13 @@ class _ProfileUserActivitiesWidgetState
                                       );
                                     },
                                     child: wrapWithModel(
-                                      model: _model.activityCardHomeModels1
-                                          .getModel(
+                                      model:
+                                          _model.activityCardModels1.getModel(
                                         listViewActivitiesRecord.reference.id,
                                         listViewIndex,
                                       ),
                                       updateCallback: () => safeSetState(() {}),
-                                      child: ActivityCardHomeWidget(
+                                      child: ActivityCardWidget(
                                         key: Key(
                                           'Keyj3r_${listViewActivitiesRecord.reference.id}',
                                         ),
@@ -292,7 +292,7 @@ class _ProfileUserActivitiesWidgetState
                                     logFirebaseEvent(
                                         'PROFILE_USER_ACTIVITIES_Container_s64dtd');
                                     logFirebaseEvent(
-                                        'ActivityCardHome_navigate_to');
+                                        'ActivityCard_navigate_to');
 
                                     context.pushNamed(
                                       ActivityDetailsWidget.routeName,
@@ -305,13 +305,12 @@ class _ProfileUserActivitiesWidgetState
                                     );
                                   },
                                   child: wrapWithModel(
-                                    model:
-                                        _model.activityCardHomeModels2.getModel(
+                                    model: _model.activityCardModels2.getModel(
                                       listViewActivitiesRecord.reference.id,
                                       listViewIndex,
                                     ),
                                     updateCallback: () => safeSetState(() {}),
-                                    child: ActivityCardHomeWidget(
+                                    child: ActivityCardWidget(
                                       key: Key(
                                         'Keys64_${listViewActivitiesRecord.reference.id}',
                                       ),
@@ -389,7 +388,7 @@ class _ProfileUserActivitiesWidgetState
                                     logFirebaseEvent(
                                         'PROFILE_USER_ACTIVITIES_Container_8eg08e');
                                     logFirebaseEvent(
-                                        'ActivityCardHome_navigate_to');
+                                        'ActivityCard_navigate_to');
 
                                     context.pushNamed(
                                       ActivityDetailsWidget.routeName,
@@ -402,13 +401,12 @@ class _ProfileUserActivitiesWidgetState
                                     );
                                   },
                                   child: wrapWithModel(
-                                    model:
-                                        _model.activityCardHomeModels3.getModel(
+                                    model: _model.activityCardModels3.getModel(
                                       listViewActivitiesRecord.reference.id,
                                       listViewIndex,
                                     ),
                                     updateCallback: () => safeSetState(() {}),
-                                    child: ActivityCardHomeWidget(
+                                    child: ActivityCardWidget(
                                       key: Key(
                                         'Key8eg_${listViewActivitiesRecord.reference.id}',
                                       ),

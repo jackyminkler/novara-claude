@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -7,42 +6,38 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:ui';
-import '/index.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'create_edit_activity_model.dart';
-export 'create_edit_activity_model.dart';
+import 'edit_activity_model.dart';
+export 'edit_activity_model.dart';
 
-class CreateEditActivityWidget extends StatefulWidget {
-  const CreateEditActivityWidget({
+class EditActivityWidget extends StatefulWidget {
+  const EditActivityWidget({
     super.key,
     this.activityRef,
   });
 
   final DocumentReference? activityRef;
 
-  static String routeName = 'CreateEdit-Activity';
-  static String routePath = '/createEditActivity';
+  static String routeName = 'EditActivity';
+  static String routePath = '/editActivity';
 
   @override
-  State<CreateEditActivityWidget> createState() =>
-      _CreateEditActivityWidgetState();
+  State<EditActivityWidget> createState() => _EditActivityWidgetState();
 }
 
-class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
-  late CreateEditActivityModel _model;
+class _EditActivityWidgetState extends State<EditActivityWidget> {
+  late EditActivityModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateEditActivityModel());
+    _model = createModel(context, () => EditActivityModel());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'CreateEdit-Activity'});
+        parameters: {'screen_name': 'EditActivity'});
 
     _model.textFieldTitleFocusNode ??= FocusNode();
 
@@ -87,7 +82,7 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
           );
         }
 
-        final createEditActivityActivitiesRecord = snapshot.data!;
+        final editActivityActivitiesRecord = snapshot.data!;
 
         return GestureDetector(
           onTap: () {
@@ -112,17 +107,14 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
-                    logFirebaseEvent(
-                        'CREATE_EDIT_ACTIVITY_arrowLeft_ICN_ON_TA');
+                    logFirebaseEvent('EDIT_ACTIVITY_PAGE_arrowLeft_ICN_ON_TAP');
                     logFirebaseEvent('IconButton_navigate_back');
                     context.safePop();
                   },
                 ),
               ),
               title: Text(
-                createEditActivityActivitiesRecord != null
-                    ? 'Edit Activity'
-                    : 'Create Activity',
+                'Edit Run Activity',
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
                       font: GoogleFonts.rubik(
                         fontWeight: FontWeight.w500,
@@ -200,11 +192,8 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                         controller: _model
                                                 .textFieldTitleTextController ??=
                                             TextEditingController(
-                                          text: createEditActivityActivitiesRecord !=
-                                                  null
-                                              ? createEditActivityActivitiesRecord
-                                                  .title
-                                              : '',
+                                          text: editActivityActivitiesRecord
+                                              .title,
                                         ),
                                         focusNode:
                                             _model.textFieldTitleFocusNode,
@@ -366,11 +355,8 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                             controller: _model
                                                     .textFieldDetailsTextController ??=
                                                 TextEditingController(
-                                              text: createEditActivityActivitiesRecord !=
-                                                      null
-                                                  ? createEditActivityActivitiesRecord
-                                                      .description
-                                                  : '',
+                                              text: editActivityActivitiesRecord
+                                                  .description,
                                             ),
                                             focusNode: _model
                                                 .textFieldDetailsFocusNode,
@@ -537,11 +523,8 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                               .dropDownLocationValueController ??=
                                           FormFieldController<String>(
                                         _model.dropDownLocationValue ??=
-                                            createEditActivityActivitiesRecord !=
-                                                    null
-                                                ? createEditActivityActivitiesRecord
-                                                    .location
-                                                : '',
+                                            editActivityActivitiesRecord
+                                                .location,
                                       ),
                                       options: FFAppConstants.LocationOptions,
                                       onChanged: (val) => safeSetState(() =>
@@ -631,11 +614,8 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                       controller: _model
                                               .textFieldDistanceTextController1 ??=
                                           TextEditingController(
-                                        text: createEditActivityActivitiesRecord !=
-                                                null
-                                            ? createEditActivityActivitiesRecord
-                                                .distance
-                                            : '',
+                                        text: editActivityActivitiesRecord
+                                            .distance,
                                       ),
                                       focusNode:
                                           _model.textFieldDistanceFocusNode1,
@@ -782,11 +762,7 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                       controller: _model
                                               .textFieldDistanceTextController2 ??=
                                           TextEditingController(
-                                        text: createEditActivityActivitiesRecord !=
-                                                null
-                                            ? createEditActivityActivitiesRecord
-                                                .pace
-                                            : '',
+                                        text: editActivityActivitiesRecord.pace,
                                       ),
                                       focusNode:
                                           _model.textFieldDistanceFocusNode2,
@@ -904,7 +880,7 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 30.0, 0.0, 0.0),
                                     child: Text(
-                                      'Date',
+                                      'Start Date & Time',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -935,10 +911,10 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'CREATE_EDIT_ACTIVITY_Container-Date_ON_T');
+                                          'EDIT_ACTIVITY_PAGE_Container-Date_ON_TAP');
                                       logFirebaseEvent(
                                           'Container-Date_date_time_picker');
-                                      final _datePicked1Date =
+                                      final _datePickedDate =
                                           await showDatePicker(
                                         context: context,
                                         initialDate: getCurrentTimestamp,
@@ -997,23 +973,23 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                         },
                                       );
 
-                                      if (_datePicked1Date != null) {
+                                      if (_datePickedDate != null) {
                                         safeSetState(() {
-                                          _model.datePicked1 = DateTime(
-                                            _datePicked1Date.year,
-                                            _datePicked1Date.month,
-                                            _datePicked1Date.day,
+                                          _model.datePicked = DateTime(
+                                            _datePickedDate.year,
+                                            _datePickedDate.month,
+                                            _datePickedDate.day,
                                           );
                                         });
-                                      } else if (_model.datePicked1 != null) {
+                                      } else if (_model.datePicked != null) {
                                         safeSetState(() {
-                                          _model.datePicked1 =
+                                          _model.datePicked =
                                               getCurrentTimestamp;
                                         });
                                       }
                                       logFirebaseEvent(
                                           'Container-Date_update_page_state');
-                                      _model.activityDate = _model.datePicked1;
+                                      _model.activityDate = _model.datePicked;
                                       safeSetState(() {});
                                     },
                                     child: Container(
@@ -1034,25 +1010,14 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              createEditActivityActivitiesRecord !=
-                                                      null
-                                                  ? dateTimeFormat(
-                                                      "MMMMEEEEd",
-                                                      createEditActivityActivitiesRecord
-                                                          .date!,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    )
-                                                  : dateTimeFormat(
-                                                      "MMMMEEEEd",
-                                                      _model.activityDate,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    ),
+                                              dateTimeFormat(
+                                                "M/d h:mm a",
+                                                editActivityActivitiesRecord
+                                                    .date!,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -1092,236 +1057,6 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                                       0.0, 0.0, 12.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kcalendar,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 30.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Start Time',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'CREATE_EDIT_ACTIVITY_Container-Time_ON_T');
-                                      logFirebaseEvent(
-                                          'Container-Time_date_time_picker');
-                                      await showModalBottomSheet<bool>(
-                                          context: context,
-                                          builder: (context) {
-                                            final _datePicked2CupertinoTheme =
-                                                CupertinoTheme.of(context);
-                                            return ScrollConfiguration(
-                                              behavior:
-                                                  const MaterialScrollBehavior()
-                                                      .copyWith(
-                                                dragDevices: {
-                                                  PointerDeviceKind.mouse,
-                                                  PointerDeviceKind.touch,
-                                                  PointerDeviceKind.stylus,
-                                                  PointerDeviceKind.unknown
-                                                },
-                                              ),
-                                              child: Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    3,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                child: CupertinoTheme(
-                                                  data:
-                                                      _datePicked2CupertinoTheme
-                                                          .copyWith(
-                                                    textTheme:
-                                                        _datePicked2CupertinoTheme
-                                                            .textTheme
-                                                            .copyWith(
-                                                      dateTimePickerTextStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .rubik(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMedium
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                  child: CupertinoDatePicker(
-                                                    mode:
-                                                        CupertinoDatePickerMode
-                                                            .time,
-                                                    minimumDate: DateTime(1900),
-                                                    initialDateTime:
-                                                        getCurrentTimestamp,
-                                                    maximumDate: DateTime(2050),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryBackground,
-                                                    use24hFormat: false,
-                                                    onDateTimeChanged:
-                                                        (newDateTime) =>
-                                                            safeSetState(() {
-                                                      _model.datePicked2 =
-                                                          newDateTime;
-                                                    }),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          });
-                                      logFirebaseEvent(
-                                          'Container-Time_update_page_state');
-                                      _model.startTime = _model.datePicked2;
-                                      safeSetState(() {});
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 52.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 0.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              createEditActivityActivitiesRecord !=
-                                                      null
-                                                  ? dateTimeFormat(
-                                                      "jm",
-                                                      createEditActivityActivitiesRecord
-                                                          .startTime!,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    )
-                                                  : dateTimeFormat(
-                                                      "jm",
-                                                      _model.startTime,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        font: GoogleFonts.rubik(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 12.0, 0.0),
-                                              child: Icon(
-                                                FFIcons.kclock,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
@@ -1472,11 +1207,8 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                                   .choiceChipsRunTerrainValueController ??=
                                               FormFieldController<List<String>>(
                                             [
-                                              createEditActivityActivitiesRecord !=
-                                                      null
-                                                  ? createEditActivityActivitiesRecord
-                                                      .runTerrain
-                                                  : ''
+                                              editActivityActivitiesRecord
+                                                  .runTerrain
                                             ],
                                           ),
                                           wrapped: true,
@@ -1623,11 +1355,8 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                                                   .choiceChipsRunTypeValueController ??=
                                               FormFieldController<List<String>>(
                                             [
-                                              createEditActivityActivitiesRecord !=
-                                                      null
-                                                  ? createEditActivityActivitiesRecord
-                                                      .runType
-                                                  : ''
+                                              editActivityActivitiesRecord
+                                                  .runType
                                             ],
                                           ),
                                           wrapped: true,
@@ -1649,86 +1378,33 @@ class _CreateEditActivityWidgetState extends State<CreateEditActivityWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent(
-                            'CREATE_EDIT_ACTIVITY_CREATE_RUN_BTN_ON_T');
-                        final firestoreBatch =
-                            FirebaseFirestore.instance.batch();
-                        try {
-                          if ((createEditActivityActivitiesRecord != null) ==
-                              true) {
-                            await Future.wait([
-                              Future(() async {
-                                logFirebaseEvent('Button_navigate_to');
+                            'EDIT_ACTIVITY_SAVE_CHANGES_BTN_ON_TAP');
+                        await Future.wait([
+                          Future(() async {
+                            logFirebaseEvent('Button_navigate_back');
+                            context.safePop();
+                          }),
+                          Future(() async {
+                            logFirebaseEvent('Button_backend_call');
 
-                                context.pushNamed(HomeWidget.routeName);
-                              }),
-                              Future(() async {
-                                logFirebaseEvent('Button_backend_call');
-
-                                firestoreBatch.update(
-                                    widget.activityRef!,
-                                    createActivitiesRecordData(
-                                      title: _model
-                                          .textFieldTitleTextController.text,
-                                      description: _model
-                                          .textFieldDetailsTextController.text,
-                                      startTime: _model.datePicked2,
-                                      date: _model.datePicked1,
-                                      location: _model.dropDownLocationValue,
-                                      runType: _model.choiceChipsRunTypeValue,
-                                      runTerrain:
-                                          _model.choiceChipsRunTerrainValue,
-                                      distance: _model
-                                          .textFieldDistanceTextController1
-                                          .text,
-                                      pace: _model
-                                          .textFieldDistanceTextController2
-                                          .text,
-                                    ));
-                              }),
-                            ]);
-                          } else {
-                            await Future.wait([
-                              Future(() async {
-                                logFirebaseEvent('Button_navigate_to');
-
-                                context.pushNamed(HomeWidget.routeName);
-                              }),
-                              Future(() async {
-                                logFirebaseEvent('Button_backend_call');
-
-                                firestoreBatch.set(
-                                    ActivitiesRecord.collection.doc(),
-                                    createActivitiesRecordData(
-                                      title: _model
-                                          .textFieldTitleTextController.text,
-                                      description: _model
-                                          .textFieldDetailsTextController.text,
-                                      startTime: _model.datePicked2,
-                                      createdAt: getCurrentTimestamp,
-                                      date: _model.datePicked1,
-                                      creatorID: currentUserReference?.id,
-                                      location: _model.dropDownLocationValue,
-                                      runType: _model.choiceChipsRunTypeValue,
-                                      runTerrain:
-                                          _model.choiceChipsRunTerrainValue,
-                                      distance: _model
-                                          .textFieldDistanceTextController1
-                                          .text,
-                                      pace: _model
-                                          .textFieldDistanceTextController2
-                                          .text,
-                                      creatorRef: currentUserReference,
-                                    ));
-                              }),
-                            ]);
-                          }
-                        } finally {
-                          await firestoreBatch.commit();
-                        }
+                            await widget.activityRef!
+                                .update(createActivitiesRecordData(
+                              title: _model.textFieldTitleTextController.text,
+                              description:
+                                  _model.textFieldDetailsTextController.text,
+                              location: _model.dropDownLocationValue,
+                              runType: _model.choiceChipsRunTypeValue,
+                              runTerrain: _model.choiceChipsRunTerrainValue,
+                              pace:
+                                  _model.textFieldDistanceTextController2.text,
+                              distance:
+                                  _model.textFieldDistanceTextController1.text,
+                              date: _model.datePicked,
+                            ));
+                          }),
+                        ]);
                       },
-                      text: createEditActivityActivitiesRecord != null
-                          ? 'Save Changes'
-                          : 'Post Activity',
+                      text: 'Save Changes',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 52.0,

@@ -3,13 +3,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/request_manager.dart';
 
-import '/index.dart';
-import 'create_edit_activity_widget.dart' show CreateEditActivityWidget;
-import 'package:flutter/cupertino.dart';
+import 'edit_activity_widget.dart' show EditActivityWidget;
 import 'package:flutter/material.dart';
 
-class CreateEditActivityModel
-    extends FlutterFlowModel<CreateEditActivityWidget> {
+class EditActivityModel extends FlutterFlowModel<EditActivityWidget> {
   ///  Local state fields for this page.
 
   DateTime? activityDate;
@@ -41,8 +38,7 @@ class CreateEditActivityModel
   TextEditingController? textFieldDistanceTextController2;
   String? Function(BuildContext, String?)?
       textFieldDistanceTextController2Validator;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
+  DateTime? datePicked;
   // State field(s) for ChoiceChips-RunTerrain widget.
   FormFieldController<List<String>>? choiceChipsRunTerrainValueController;
   String? get choiceChipsRunTerrainValue =>

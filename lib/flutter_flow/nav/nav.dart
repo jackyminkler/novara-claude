@@ -123,18 +123,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => NotificationsWidget(),
         ),
         FFRoute(
-          name: CreateEditActivityWidget.routeName,
-          path: CreateEditActivityWidget.routePath,
-          builder: (context, params) => CreateEditActivityWidget(
-            activityRef: params.getParam(
-              'activityRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['activities'],
-            ),
-          ),
-        ),
-        FFRoute(
           name: HomeWidget.routeName,
           path: HomeWidget.routePath,
           builder: (context, params) => HomeWidget(),
@@ -164,9 +152,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: CreateEditActivityCopyWidget.routeName,
-          path: CreateEditActivityCopyWidget.routePath,
-          builder: (context, params) => CreateEditActivityCopyWidget(
+          name: EditActivityWidget.routeName,
+          path: EditActivityWidget.routePath,
+          builder: (context, params) => EditActivityWidget(
             activityRef: params.getParam(
               'activityRef',
               ParamType.DocumentReference,
@@ -174,6 +162,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               collectionNamePath: ['activities'],
             ),
           ),
+        ),
+        FFRoute(
+          name: CreateActivityWidget.routeName,
+          path: CreateActivityWidget.routePath,
+          builder: (context, params) => CreateActivityWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -1,6 +1,6 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/home/components/activity_card_home/activity_card_home_widget.dart';
+import '/home/components/activity_card/activity_card_widget.dart';
 import 'profile_user_activities_widget.dart' show ProfileUserActivitiesWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -23,8 +23,8 @@ class ProfileUserActivitiesModel
   Query? listViewPagingQuery1;
   List<StreamSubscription?> listViewStreamSubscriptions1 = [];
 
-  // Models for ActivityCardHome dynamic component.
-  late FlutterFlowDynamicModels<ActivityCardHomeModel> activityCardHomeModels1;
+  // Models for ActivityCard dynamic component.
+  late FlutterFlowDynamicModels<ActivityCardModel> activityCardModels1;
   // State field(s) for ListView widget.
 
   PagingController<DocumentSnapshot?, ActivitiesRecord>?
@@ -32,8 +32,8 @@ class ProfileUserActivitiesModel
   Query? listViewPagingQuery2;
   List<StreamSubscription?> listViewStreamSubscriptions2 = [];
 
-  // Models for ActivityCardHome dynamic component.
-  late FlutterFlowDynamicModels<ActivityCardHomeModel> activityCardHomeModels2;
+  // Models for ActivityCard dynamic component.
+  late FlutterFlowDynamicModels<ActivityCardModel> activityCardModels2;
   // State field(s) for ListView widget.
 
   PagingController<DocumentSnapshot?, ActivitiesRecord>?
@@ -41,17 +41,14 @@ class ProfileUserActivitiesModel
   Query? listViewPagingQuery3;
   List<StreamSubscription?> listViewStreamSubscriptions3 = [];
 
-  // Models for ActivityCardHome dynamic component.
-  late FlutterFlowDynamicModels<ActivityCardHomeModel> activityCardHomeModels3;
+  // Models for ActivityCard dynamic component.
+  late FlutterFlowDynamicModels<ActivityCardModel> activityCardModels3;
 
   @override
   void initState(BuildContext context) {
-    activityCardHomeModels1 =
-        FlutterFlowDynamicModels(() => ActivityCardHomeModel());
-    activityCardHomeModels2 =
-        FlutterFlowDynamicModels(() => ActivityCardHomeModel());
-    activityCardHomeModels3 =
-        FlutterFlowDynamicModels(() => ActivityCardHomeModel());
+    activityCardModels1 = FlutterFlowDynamicModels(() => ActivityCardModel());
+    activityCardModels2 = FlutterFlowDynamicModels(() => ActivityCardModel());
+    activityCardModels3 = FlutterFlowDynamicModels(() => ActivityCardModel());
   }
 
   @override
@@ -60,15 +57,15 @@ class ProfileUserActivitiesModel
     listViewStreamSubscriptions1.forEach((s) => s?.cancel());
     listViewPagingController1?.dispose();
 
-    activityCardHomeModels1.dispose();
+    activityCardModels1.dispose();
     listViewStreamSubscriptions2.forEach((s) => s?.cancel());
     listViewPagingController2?.dispose();
 
-    activityCardHomeModels2.dispose();
+    activityCardModels2.dispose();
     listViewStreamSubscriptions3.forEach((s) => s?.cancel());
     listViewPagingController3?.dispose();
 
-    activityCardHomeModels3.dispose();
+    activityCardModels3.dispose();
   }
 
   /// Additional helper methods.

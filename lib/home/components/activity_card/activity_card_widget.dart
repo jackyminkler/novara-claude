@@ -1,15 +1,14 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'activity_card_home_model.dart';
-export 'activity_card_home_model.dart';
+import 'activity_card_model.dart';
+export 'activity_card_model.dart';
 
-class ActivityCardHomeWidget extends StatefulWidget {
-  const ActivityCardHomeWidget({
+class ActivityCardWidget extends StatefulWidget {
+  const ActivityCardWidget({
     super.key,
     required this.activityCard,
   });
@@ -17,11 +16,11 @@ class ActivityCardHomeWidget extends StatefulWidget {
   final ActivitiesRecord? activityCard;
 
   @override
-  State<ActivityCardHomeWidget> createState() => _ActivityCardHomeWidgetState();
+  State<ActivityCardWidget> createState() => _ActivityCardWidgetState();
 }
 
-class _ActivityCardHomeWidgetState extends State<ActivityCardHomeWidget> {
-  late ActivityCardHomeModel _model;
+class _ActivityCardWidgetState extends State<ActivityCardWidget> {
+  late ActivityCardModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -32,7 +31,7 @@ class _ActivityCardHomeWidgetState extends State<ActivityCardHomeWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ActivityCardHomeModel());
+    _model = createModel(context, () => ActivityCardModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -214,23 +213,6 @@ class _ActivityCardHomeWidgetState extends State<ActivityCardHomeWidget> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  ToggleIcon(
-                    onPressed: () async {
-                      safeSetState(
-                          () => FFAppState().updater = !FFAppState().updater);
-                    },
-                    value: FFAppState().updater,
-                    onIcon: Icon(
-                      FFIcons.kcheckCircle,
-                      color: FlutterFlowTheme.of(context).success,
-                      size: 28.0,
-                    ),
-                    offIcon: Icon(
-                      FFIcons.kcalendarPlus02,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 28.0,
                     ),
                   ),
                 ],

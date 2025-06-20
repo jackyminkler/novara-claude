@@ -2082,16 +2082,8 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         'ACTIVITY_DETAILS_EDIT_ACTIVITY_BTN_ON_TA');
                                     logFirebaseEvent('Button_navigate_to');
 
-                                    context.pushNamed(
-                                      CreateEditActivityWidget.routeName,
-                                      queryParameters: {
-                                        'activityRef': serializeParam(
-                                          activityDetailsActivitiesRecord
-                                              .reference,
-                                          ParamType.DocumentReference,
-                                        ),
-                                      }.withoutNulls,
-                                    );
+                                    context
+                                        .pushNamed(EditProfileWidget.routeName);
                                   },
                                   text: 'Edit Activity',
                                   options: FFButtonOptions(
