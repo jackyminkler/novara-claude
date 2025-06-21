@@ -140,7 +140,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     ),
-                                    'Saturday, June 14',
+                                    '--',
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -244,14 +244,11 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                               size: 16.0,
                             ),
                             Text(
-                              valueOrDefault<String>(
-                                dateTimeFormat(
-                                  "jm",
-                                  widget.activityCard?.startTime,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                ),
-                                '7:30 AM',
+                              dateTimeFormat(
+                                "jm",
+                                widget.activityCard!.date!,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
@@ -333,7 +330,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                 Text(
                                   valueOrDefault<String>(
                                     widget.activityCard?.pace,
-                                    '9:00',
+                                    'Any min',
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -408,32 +405,8 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                 Text(
                                   valueOrDefault<String>(
                                     widget.activityCard?.distance,
-                                    '3',
+                                    '--',
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.rubik(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
-                                        ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                                Text(
-                                  ' miles',
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(

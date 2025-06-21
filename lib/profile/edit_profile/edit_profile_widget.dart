@@ -895,6 +895,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           displayName: _model.textFieldNameTextController.text,
                           prefDistance:
                               _model.textFieldPrefDistanceTextController.text,
+                          photoUrl: currentUserPhoto,
                         ));
                       }),
                     ]);

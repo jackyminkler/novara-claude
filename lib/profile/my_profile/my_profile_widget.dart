@@ -223,7 +223,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                             ),
                           ],
                         ),
-                        Expanded(
+                        Flexible(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,

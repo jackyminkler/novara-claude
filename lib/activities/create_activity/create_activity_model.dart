@@ -8,8 +8,6 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
 
   DateTime? activityDate;
 
-  DateTime? startTime;
-
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField-Title widget.
@@ -17,11 +15,6 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
   TextEditingController? textFieldTitleTextController;
   String? Function(BuildContext, String?)?
       textFieldTitleTextControllerValidator;
-  // State field(s) for TextField-Details widget.
-  FocusNode? textFieldDetailsFocusNode;
-  TextEditingController? textFieldDetailsTextController;
-  String? Function(BuildContext, String?)?
-      textFieldDetailsTextControllerValidator;
   // State field(s) for DropDown-Location widget.
   String? dropDownLocationValue;
   FormFieldController<String>? dropDownLocationValueController;
@@ -48,6 +41,11 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
       choiceChipsRunTypeValueController?.value?.firstOrNull;
   set choiceChipsRunTypeValue(String? val) =>
       choiceChipsRunTypeValueController?.value = val != null ? [val] : [];
+  // State field(s) for TextField-Details widget.
+  FocusNode? textFieldDetailsFocusNode;
+  TextEditingController? textFieldDetailsTextController;
+  String? Function(BuildContext, String?)?
+      textFieldDetailsTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -57,13 +55,13 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
     textFieldTitleFocusNode?.dispose();
     textFieldTitleTextController?.dispose();
 
-    textFieldDetailsFocusNode?.dispose();
-    textFieldDetailsTextController?.dispose();
-
     textFieldDistanceFocusNode1?.dispose();
     textFieldDistanceTextController1?.dispose();
 
     textFieldDistanceFocusNode2?.dispose();
     textFieldDistanceTextController2?.dispose();
+
+    textFieldDetailsFocusNode?.dispose();
+    textFieldDetailsTextController?.dispose();
   }
 }

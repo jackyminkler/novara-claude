@@ -119,23 +119,137 @@ class _ProfileUserActivitiesWidgetState
                 controller: _model.tabBarController,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, -1.0),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          Flexible(
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 0.0),
+                              child: PagedListView<DocumentSnapshot<Object?>?,
+                                  ActivitiesRecord>.separated(
+                                pagingController: _model.setListViewController1(
+                                  ActivitiesRecord.collection
+                                      .where(
+                                        'date',
+                                        isGreaterThan: getCurrentTimestamp,
+                                      )
+                                      .where(
+                                        'participants',
+                                        arrayContains: widget.userRef,
+                                      )
+                                      .orderBy('date'),
+                                ),
+                                padding: EdgeInsets.zero,
+                                primary: false,
+                                shrinkWrap: true,
+                                reverse: false,
+                                scrollDirection: Axis.vertical,
+                                separatorBuilder: (_, __) =>
+                                    SizedBox(height: 16.0),
+                                builderDelegate:
+                                    PagedChildBuilderDelegate<ActivitiesRecord>(
+                                  // Customize what your widget looks like when it's loading the first page.
+                                  firstPageProgressIndicatorBuilder: (_) =>
+                                      Center(
+                                    child: SizedBox(
+                                      width: 25.0,
+                                      height: 25.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  // Customize what your widget looks like when it's loading another page.
+                                  newPageProgressIndicatorBuilder: (_) =>
+                                      Center(
+                                    child: SizedBox(
+                                      width: 25.0,
+                                      height: 25.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  itemBuilder: (context, _, listViewIndex) {
+                                    final listViewActivitiesRecord = _model
+                                        .listViewPagingController1!
+                                        .itemList![listViewIndex];
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'PROFILE_USER_ACTIVITIES_Container_j3rbe1');
+                                        logFirebaseEvent(
+                                            'ActivityCard_navigate_to');
+
+                                        context.pushNamed(
+                                          ActivityDetailsWidget.routeName,
+                                          queryParameters: {
+                                            'activityRef': serializeParam(
+                                              listViewActivitiesRecord
+                                                  .reference,
+                                              ParamType.DocumentReference,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: wrapWithModel(
+                                        model:
+                                            _model.activityCardModels1.getModel(
+                                          listViewActivitiesRecord.reference.id,
+                                          listViewIndex,
+                                        ),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: ActivityCardWidget(
+                                          key: Key(
+                                            'Keyj3r_${listViewActivitiesRecord.reference.id}',
+                                          ),
+                                          activityCard:
+                                              listViewActivitiesRecord,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(-1.0, -1.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 0.0),
+                                16.0, 16.0, 16.0, 0.0),
                             child: PagedListView<DocumentSnapshot<Object?>?,
                                 ActivitiesRecord>.separated(
-                              pagingController: _model.setListViewController1(
+                              pagingController: _model.setListViewController2(
                                 ActivitiesRecord.collection
                                     .where(
                                       'date',
-                                      isGreaterThan: getCurrentTimestamp,
+                                      isLessThan: getCurrentTimestamp,
                                     )
                                     .where(
                                       'participants',
@@ -144,6 +258,7 @@ class _ProfileUserActivitiesWidgetState
                                     .orderBy('date'),
                               ),
                               padding: EdgeInsets.zero,
+                              primary: false,
                               shrinkWrap: true,
                               reverse: false,
                               scrollDirection: Axis.vertical,
@@ -179,7 +294,7 @@ class _ProfileUserActivitiesWidgetState
 
                                 itemBuilder: (context, _, listViewIndex) {
                                   final listViewActivitiesRecord = _model
-                                      .listViewPagingController1!
+                                      .listViewPagingController2!
                                       .itemList![listViewIndex];
                                   return InkWell(
                                     splashColor: Colors.transparent,
@@ -188,7 +303,7 @@ class _ProfileUserActivitiesWidgetState
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'PROFILE_USER_ACTIVITIES_Container_j3rbe1');
+                                          'PROFILE_USER_ACTIVITIES_Container_s64dtd');
                                       logFirebaseEvent(
                                           'ActivityCard_navigate_to');
 
@@ -204,14 +319,14 @@ class _ProfileUserActivitiesWidgetState
                                     },
                                     child: wrapWithModel(
                                       model:
-                                          _model.activityCardModels1.getModel(
+                                          _model.activityCardModels2.getModel(
                                         listViewActivitiesRecord.reference.id,
                                         listViewIndex,
                                       ),
                                       updateCallback: () => safeSetState(() {}),
                                       child: ActivityCardWidget(
                                         key: Key(
-                                          'Keyj3r_${listViewActivitiesRecord.reference.id}',
+                                          'Keys64_${listViewActivitiesRecord.reference.id}',
                                         ),
                                         activityCard: listViewActivitiesRecord,
                                       ),
@@ -221,200 +336,106 @@ class _ProfileUserActivitiesWidgetState
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 16.0, 0.0),
-                          child: PagedListView<DocumentSnapshot<Object?>?,
-                              ActivitiesRecord>.separated(
-                            pagingController: _model.setListViewController2(
-                              ActivitiesRecord.collection
-                                  .where(
-                                    'date',
-                                    isLessThan: getCurrentTimestamp,
-                                  )
-                                  .where(
-                                    'participants',
-                                    arrayContains: widget.userRef,
-                                  )
-                                  .orderBy('date'),
-                            ),
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            reverse: false,
-                            scrollDirection: Axis.vertical,
-                            separatorBuilder: (_, __) => SizedBox(height: 16.0),
-                            builderDelegate:
-                                PagedChildBuilderDelegate<ActivitiesRecord>(
-                              // Customize what your widget looks like when it's loading the first page.
-                              firstPageProgressIndicatorBuilder: (_) => Center(
-                                child: SizedBox(
-                                  width: 25.0,
-                                  height: 25.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              // Customize what your widget looks like when it's loading another page.
-                              newPageProgressIndicatorBuilder: (_) => Center(
-                                child: SizedBox(
-                                  width: 25.0,
-                                  height: 25.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              itemBuilder: (context, _, listViewIndex) {
-                                final listViewActivitiesRecord = _model
-                                    .listViewPagingController2!
-                                    .itemList![listViewIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'PROFILE_USER_ACTIVITIES_Container_s64dtd');
-                                    logFirebaseEvent(
-                                        'ActivityCard_navigate_to');
-
-                                    context.pushNamed(
-                                      ActivityDetailsWidget.routeName,
-                                      queryParameters: {
-                                        'activityRef': serializeParam(
-                                          listViewActivitiesRecord.reference,
-                                          ParamType.DocumentReference,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: wrapWithModel(
-                                    model: _model.activityCardModels2.getModel(
-                                      listViewActivitiesRecord.reference.id,
-                                      listViewIndex,
-                                    ),
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ActivityCardWidget(
-                                      key: Key(
-                                        'Keys64_${listViewActivitiesRecord.reference.id}',
-                                      ),
-                                      activityCard: listViewActivitiesRecord,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
                         ),
                       ],
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, -1.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 16.0, 0.0),
-                          child: PagedListView<DocumentSnapshot<Object?>?,
-                              ActivitiesRecord>.separated(
-                            pagingController: _model.setListViewController3(
-                              ActivitiesRecord.collection
-                                  .where(
-                                    'creatorID',
-                                    isEqualTo: widget.userRef?.id,
-                                  )
-                                  .orderBy('date'),
-                            ),
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            reverse: false,
-                            scrollDirection: Axis.vertical,
-                            separatorBuilder: (_, __) => SizedBox(height: 16.0),
-                            builderDelegate:
-                                PagedChildBuilderDelegate<ActivitiesRecord>(
-                              // Customize what your widget looks like when it's loading the first page.
-                              firstPageProgressIndicatorBuilder: (_) => Center(
-                                child: SizedBox(
-                                  width: 25.0,
-                                  height: 25.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 16.0, 16.0, 0.0),
+                            child: PagedListView<DocumentSnapshot<Object?>?,
+                                ActivitiesRecord>.separated(
+                              pagingController: _model.setListViewController3(
+                                ActivitiesRecord.collection
+                                    .where(
+                                      'creatorID',
+                                      isEqualTo: widget.userRef?.id,
+                                    )
+                                    .orderBy('date'),
                               ),
-                              // Customize what your widget looks like when it's loading another page.
-                              newPageProgressIndicatorBuilder: (_) => Center(
-                                child: SizedBox(
-                                  width: 25.0,
-                                  height: 25.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              itemBuilder: (context, _, listViewIndex) {
-                                final listViewActivitiesRecord = _model
-                                    .listViewPagingController3!
-                                    .itemList![listViewIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'PROFILE_USER_ACTIVITIES_Container_8eg08e');
-                                    logFirebaseEvent(
-                                        'ActivityCard_navigate_to');
-
-                                    context.pushNamed(
-                                      ActivityDetailsWidget.routeName,
-                                      queryParameters: {
-                                        'activityRef': serializeParam(
-                                          listViewActivitiesRecord.reference,
-                                          ParamType.DocumentReference,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: wrapWithModel(
-                                    model: _model.activityCardModels3.getModel(
-                                      listViewActivitiesRecord.reference.id,
-                                      listViewIndex,
-                                    ),
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ActivityCardWidget(
-                                      key: Key(
-                                        'Key8eg_${listViewActivitiesRecord.reference.id}',
+                              padding: EdgeInsets.zero,
+                              primary: false,
+                              shrinkWrap: true,
+                              reverse: false,
+                              scrollDirection: Axis.vertical,
+                              separatorBuilder: (_, __) =>
+                                  SizedBox(height: 16.0),
+                              builderDelegate:
+                                  PagedChildBuilderDelegate<ActivitiesRecord>(
+                                // Customize what your widget looks like when it's loading the first page.
+                                firstPageProgressIndicatorBuilder: (_) =>
+                                    Center(
+                                  child: SizedBox(
+                                    width: 25.0,
+                                    height: 25.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
                                       ),
-                                      activityCard: listViewActivitiesRecord,
                                     ),
                                   ),
-                                );
-                              },
+                                ),
+                                // Customize what your widget looks like when it's loading another page.
+                                newPageProgressIndicatorBuilder: (_) => Center(
+                                  child: SizedBox(
+                                    width: 25.0,
+                                    height: 25.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                itemBuilder: (context, _, listViewIndex) {
+                                  final listViewActivitiesRecord = _model
+                                      .listViewPagingController3!
+                                      .itemList![listViewIndex];
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'PROFILE_USER_ACTIVITIES_Container_8eg08e');
+                                      logFirebaseEvent(
+                                          'ActivityCard_navigate_to');
+
+                                      context.pushNamed(
+                                        ActivityDetailsWidget.routeName,
+                                        queryParameters: {
+                                          'activityRef': serializeParam(
+                                            listViewActivitiesRecord.reference,
+                                            ParamType.DocumentReference,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                    child: wrapWithModel(
+                                      model:
+                                          _model.activityCardModels3.getModel(
+                                        listViewActivitiesRecord.reference.id,
+                                        listViewIndex,
+                                      ),
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: ActivityCardWidget(
+                                        key: Key(
+                                          'Key8eg_${listViewActivitiesRecord.reference.id}',
+                                        ),
+                                        activityCard: listViewActivitiesRecord,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
