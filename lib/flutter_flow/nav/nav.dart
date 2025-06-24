@@ -96,18 +96,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OnboardingWidget(),
         ),
         FFRoute(
-          name: MyProfileWidget.routeName,
-          path: MyProfileWidget.routePath,
-          builder: (context, params) => MyProfileWidget(
-            currentUserRef: params.getParam(
-              'currentUserRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['users'],
-            ),
-          ),
-        ),
-        FFRoute(
           name: WalkthroughWidget.routeName,
           path: WalkthroughWidget.routePath,
           builder: (context, params) => WalkthroughWidget(),
@@ -125,7 +113,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: HomeWidget.routeName,
           path: HomeWidget.routePath,
-          builder: (context, params) => HomeWidget(),
+          builder: (context, params) => HomeWidget(
+            selectedNavTab: params.getParam(
+              'selectedNavTab',
+              ParamType.int,
+            ),
+          ),
         ),
         FFRoute(
           name: UserProfileWidget.routeName,
@@ -140,9 +133,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: ActivityDetailsWidget.routeName,
-          path: ActivityDetailsWidget.routePath,
-          builder: (context, params) => ActivityDetailsWidget(
+          name: ActivityDetailsCombinedWidget.routeName,
+          path: ActivityDetailsCombinedWidget.routePath,
+          builder: (context, params) => ActivityDetailsCombinedWidget(
             activityRef: params.getParam(
               'activityRef',
               ParamType.DocumentReference,
@@ -166,7 +159,60 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: CreateActivityWidget.routeName,
           path: CreateActivityWidget.routePath,
-          builder: (context, params) => CreateActivityWidget(),
+          builder: (context, params) => CreateActivityWidget(
+            selectedNavTab: params.getParam(
+              'selectedNavTab',
+              ParamType.int,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MyProfileWidget.routeName,
+          path: MyProfileWidget.routePath,
+          builder: (context, params) => MyProfileWidget(
+            selectedUserRef: params.getParam(
+              'selectedUserRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MyActivitiesWidget.routeName,
+          path: MyActivitiesWidget.routePath,
+          builder: (context, params) => MyActivitiesWidget(
+            selectedUserRef: params.getParam(
+              'selectedUserRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ActivityDetailsWidget.routeName,
+          path: ActivityDetailsWidget.routePath,
+          builder: (context, params) => ActivityDetailsWidget(
+            activityRef: params.getParam(
+              'activityRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['activities'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MyActivityDetailsWidget.routeName,
+          path: MyActivityDetailsWidget.routePath,
+          builder: (context, params) => MyActivityDetailsWidget(
+            activityRef: params.getParam(
+              'activityRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['activities'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

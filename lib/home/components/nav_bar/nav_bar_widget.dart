@@ -91,6 +91,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
 
                         context.goNamed(
                           HomeWidget.routeName,
+                          queryParameters: {
+                            'selectedNavTab': serializeParam(
+                              0,
+                              ParamType.int,
+                            ),
+                          }.withoutNulls,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
@@ -164,6 +170,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
 
                         context.goNamed(
                           CreateActivityWidget.routeName,
+                          queryParameters: {
+                            'selectedNavTab': serializeParam(
+                              1,
+                              ParamType.int,
+                            ),
+                          }.withoutNulls,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
@@ -243,7 +255,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         context.goNamed(
                           MyProfileWidget.routeName,
                           queryParameters: {
-                            'currentUserRef': serializeParam(
+                            'selectedUserRef': serializeParam(
                               currentUserReference,
                               ParamType.DocumentReference,
                             ),
@@ -270,7 +282,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                   Icon(
                                     Icons.person_rounded,
                                     color: valueOrDefault<Color>(
-                                      widget.page == 4
+                                      widget.page == 2
                                           ? FlutterFlowTheme.of(context).primary
                                           : FlutterFlowTheme.of(context)
                                               .navbarColor,
@@ -296,7 +308,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                                   .fontStyle,
                                         ),
                                         color: valueOrDefault<Color>(
-                                          widget.page == 4
+                                          widget.page == 2
                                               ? FlutterFlowTheme.of(context)
                                                   .primary
                                               : FlutterFlowTheme.of(context)

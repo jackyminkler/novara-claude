@@ -13,7 +13,12 @@ import 'create_activity_model.dart';
 export 'create_activity_model.dart';
 
 class CreateActivityWidget extends StatefulWidget {
-  const CreateActivityWidget({super.key});
+  const CreateActivityWidget({
+    super.key,
+    this.selectedNavTab,
+  });
+
+  final int? selectedNavTab;
 
   static String routeName = 'CreateActivity';
   static String routePath = '/CreateActivity';
@@ -37,11 +42,11 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
     _model.textFieldTitleTextController ??= TextEditingController();
     _model.textFieldTitleFocusNode ??= FocusNode();
 
-    _model.textFieldDistanceTextController1 ??= TextEditingController();
-    _model.textFieldDistanceFocusNode1 ??= FocusNode();
+    _model.textFieldDistanceTextController ??= TextEditingController();
+    _model.textFieldDistanceFocusNode ??= FocusNode();
 
-    _model.textFieldDistanceTextController2 ??= TextEditingController();
-    _model.textFieldDistanceFocusNode2 ??= FocusNode();
+    _model.textFieldPaceTextController ??= TextEditingController();
+    _model.textFieldPaceFocusNode ??= FocusNode();
 
     _model.textFieldDetailsTextController ??= TextEditingController();
     _model.textFieldDetailsFocusNode ??= FocusNode();
@@ -386,8 +391,8 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                 width: double.infinity,
                                 child: TextFormField(
                                   controller:
-                                      _model.textFieldDistanceTextController1,
-                                  focusNode: _model.textFieldDistanceFocusNode1,
+                                      _model.textFieldDistanceTextController,
+                                  focusNode: _model.textFieldDistanceFocusNode,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -479,7 +484,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                   validator: _model
-                                      .textFieldDistanceTextController1Validator
+                                      .textFieldDistanceTextControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
@@ -520,8 +525,8 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                 width: double.infinity,
                                 child: TextFormField(
                                   controller:
-                                      _model.textFieldDistanceTextController2,
-                                  focusNode: _model.textFieldDistanceFocusNode2,
+                                      _model.textFieldPaceTextController,
+                                  focusNode: _model.textFieldPaceFocusNode,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -613,7 +618,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                   validator: _model
-                                      .textFieldDistanceTextController2Validator
+                                      .textFieldPaceTextControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
@@ -1299,7 +1304,11 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                         await ActivitiesRecord.collection
                             .doc()
                             .set(createActivitiesRecordData(
-                              title: _model.textFieldTitleTextController.text,
+                              title: _model.textFieldTitleTextController
+                                              .text !=
+                                          ''
+                                  ? _model.textFieldTitleTextController.text
+                                  : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
                               description:
                                   _model.textFieldDetailsTextController.text,
                               createdAt: getCurrentTimestamp,
@@ -1308,10 +1317,9 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                               location: _model.dropDownLocationValue,
                               runType: _model.choiceChipsRunTypeValue,
                               runTerrain: _model.choiceChipsRunTerrainValue,
-                              pace:
-                                  _model.textFieldDistanceTextController2.text,
+                              pace: _model.textFieldPaceTextController.text,
                               distance:
-                                  _model.textFieldDistanceTextController1.text,
+                                  _model.textFieldDistanceTextController.text,
                               creatorRef: currentUserReference,
                             ));
                       }),

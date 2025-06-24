@@ -15,7 +15,12 @@ import 'home_model.dart';
 export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({super.key});
+  const HomeWidget({
+    super.key,
+    this.selectedNavTab,
+  });
+
+  final int? selectedNavTab;
 
   static String routeName = 'Home';
   static String routePath = '/home';
@@ -721,7 +726,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     'ActivityCard_navigate_to');
 
                                                 context.pushNamed(
-                                                  ActivityDetailsWidget
+                                                  ActivityDetailsCombinedWidget
                                                       .routeName,
                                                   queryParameters: {
                                                     'activityRef':

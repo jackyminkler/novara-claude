@@ -19,15 +19,14 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
   String? dropDownLocationValue;
   FormFieldController<String>? dropDownLocationValueController;
   // State field(s) for TextField-Distance widget.
-  FocusNode? textFieldDistanceFocusNode1;
-  TextEditingController? textFieldDistanceTextController1;
+  FocusNode? textFieldDistanceFocusNode;
+  TextEditingController? textFieldDistanceTextController;
   String? Function(BuildContext, String?)?
-      textFieldDistanceTextController1Validator;
-  // State field(s) for TextField-Distance widget.
-  FocusNode? textFieldDistanceFocusNode2;
-  TextEditingController? textFieldDistanceTextController2;
-  String? Function(BuildContext, String?)?
-      textFieldDistanceTextController2Validator;
+      textFieldDistanceTextControllerValidator;
+  // State field(s) for TextField-Pace widget.
+  FocusNode? textFieldPaceFocusNode;
+  TextEditingController? textFieldPaceTextController;
+  String? Function(BuildContext, String?)? textFieldPaceTextControllerValidator;
   DateTime? datePicked;
   // State field(s) for ChoiceChips-RunTerrain widget.
   FormFieldController<List<String>>? choiceChipsRunTerrainValueController;
@@ -55,11 +54,11 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
     textFieldTitleFocusNode?.dispose();
     textFieldTitleTextController?.dispose();
 
-    textFieldDistanceFocusNode1?.dispose();
-    textFieldDistanceTextController1?.dispose();
+    textFieldDistanceFocusNode?.dispose();
+    textFieldDistanceTextController?.dispose();
 
-    textFieldDistanceFocusNode2?.dispose();
-    textFieldDistanceTextController2?.dispose();
+    textFieldPaceFocusNode?.dispose();
+    textFieldPaceTextController?.dispose();
 
     textFieldDetailsFocusNode?.dispose();
     textFieldDetailsTextController?.dispose();

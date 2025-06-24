@@ -1382,7 +1382,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                         await Future.wait([
                           Future(() async {
                             logFirebaseEvent('Button_navigate_back');
-                            context.safePop();
+                            context.pop();
                           }),
                           Future(() async {
                             logFirebaseEvent('Button_backend_call');

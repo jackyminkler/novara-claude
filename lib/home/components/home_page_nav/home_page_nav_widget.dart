@@ -67,6 +67,7 @@ class _HomePageNavWidgetState extends State<HomePageNavWidget> {
                               0.0, 2.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -102,6 +103,52 @@ class _HomePageNavWidgetState extends State<HomePageNavWidget> {
                                                   .headlineSmall
                                                   .fontStyle,
                                         ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 50.0,
+                                  height: 25.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.1, 0.1),
+                                    child: Text(
+                                      'BETA',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            font: GoogleFonts.rubik(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            fontSize: 11.0,
+                                            letterSpacing: 1.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),

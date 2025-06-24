@@ -149,8 +149,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                 .secondaryBackground,
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: Image.asset(
-                                'assets/images/ewewefweff2f_(1).jpg',
+                              image: Image.network(
+                                userProfileUsersRecord.photoUrl,
                               ).image,
                             ),
                             boxShadow: [
@@ -173,7 +173,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                       child: Text(
-                        'Jacky Minkler',
+                        userProfileUsersRecord.displayName,
                         style: FlutterFlowTheme.of(context).titleLarge.override(
                               font: GoogleFonts.rubik(
                                 fontWeight: FontWeight.w500,
@@ -196,7 +196,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
-                        'San Francisco, CA',
+                        userProfileUsersRecord.location,
                         style: FlutterFlowTheme.of(context).titleSmall.override(
                               font: GoogleFonts.rubik(
                                 fontWeight: FlutterFlowTheme.of(context)
@@ -229,7 +229,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                     model: _model.profileUserActivitiesModel,
                     updateCallback: () => safeSetState(() {}),
                     child: ProfileUserActivitiesWidget(
-                      userRef: widget.selectedUserRef!,
+                      userRef: widget.selectedUserRef,
                     ),
                   ),
                 ].addToEnd(SizedBox(height: 15.0)),

@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/profile/components/upload_image/upload_image_widget.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -140,66 +139,31 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         child: Stack(
                           alignment: AlignmentDirectional(1.0, 1.0),
                           children: [
-                            Container(
-                              width: 100.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).accent1,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: Image.asset(
-                                    'assets/images/24hg2w4gerf.jpg',
-                                  ).image,
-                                ),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'EDIT_PROFILE_Container-EditImgButton_ON_');
-                                logFirebaseEvent(
-                                    'Container-EditImgButton_bottom_sheet');
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).accent4,
-                                  barrierColor:
-                                      FlutterFlowTheme.of(context).barier,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        FocusScope.of(context).unfocus();
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                      },
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: UploadImageWidget(),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
-                              },
-                              child: Container(
-                                width: 35.0,
-                                height: 35.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).accent1,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Icon(
-                                    FFIcons.kcamera01,
-                                    color: FlutterFlowTheme.of(context).icon,
-                                    size: 16.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: AuthUserStreamWidget(
+                                builder: (context) => Container(
+                                  width: 90.0,
+                                  height: 90.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.network(
+                                        currentUserPhoto,
+                                      ).image,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        offset: Offset(0.0, 0.0),
+                                        spreadRadius: 3.0,
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
                                   ),
                                 ),
                               ),
@@ -877,7 +841,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         context.pushNamed(
                           MyProfileWidget.routeName,
                           queryParameters: {
-                            'currentUserRef': serializeParam(
+                            'selectedUserRef': serializeParam(
                               currentUserReference,
                               ParamType.DocumentReference,
                             ),

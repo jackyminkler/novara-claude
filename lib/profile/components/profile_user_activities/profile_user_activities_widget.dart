@@ -12,7 +12,7 @@ export 'profile_user_activities_model.dart';
 class ProfileUserActivitiesWidget extends StatefulWidget {
   const ProfileUserActivitiesWidget({
     super.key,
-    required this.userRef,
+    this.userRef,
   });
 
   final DocumentReference? userRef;
@@ -198,7 +198,8 @@ class _ProfileUserActivitiesWidgetState
                                             'ActivityCard_navigate_to');
 
                                         context.pushNamed(
-                                          ActivityDetailsWidget.routeName,
+                                          ActivityDetailsCombinedWidget
+                                              .routeName,
                                           queryParameters: {
                                             'activityRef': serializeParam(
                                               listViewActivitiesRecord
@@ -308,7 +309,7 @@ class _ProfileUserActivitiesWidgetState
                                           'ActivityCard_navigate_to');
 
                                       context.pushNamed(
-                                        ActivityDetailsWidget.routeName,
+                                        ActivityDetailsCombinedWidget.routeName,
                                         queryParameters: {
                                           'activityRef': serializeParam(
                                             listViewActivitiesRecord.reference,
@@ -410,7 +411,7 @@ class _ProfileUserActivitiesWidgetState
                                           'ActivityCard_navigate_to');
 
                                       context.pushNamed(
-                                        ActivityDetailsWidget.routeName,
+                                        ActivityDetailsCombinedWidget.routeName,
                                         queryParameters: {
                                           'activityRef': serializeParam(
                                             listViewActivitiesRecord.reference,
