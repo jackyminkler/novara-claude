@@ -1,6 +1,6 @@
-import '/components/profile_user_activities_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/profile/components/profile_highlights/profile_highlights_widget.dart';
+import '/profile/components/profile_user_activities/profile_user_activities_widget.dart';
 import 'user_profile_widget.dart' show UserProfileWidget;
 import 'package:flutter/material.dart';
 

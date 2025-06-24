@@ -3,10 +3,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/request_manager.dart';
 
 import '/index.dart';
-import 'my_activity_details_widget.dart' show MyActivityDetailsWidget;
+import 'activity_details_combined_widget.dart'
+    show ActivityDetailsCombinedWidget;
 import 'package:flutter/material.dart';
 
-class MyActivityDetailsModel extends FlutterFlowModel<MyActivityDetailsWidget> {
+class ActivityDetailsCombinedModel
+    extends FlutterFlowModel<ActivityDetailsCombinedWidget> {
   ///  Local state fields for this page.
 
   bool fullDescription = false;

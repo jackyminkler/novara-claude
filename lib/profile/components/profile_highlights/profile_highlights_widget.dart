@@ -59,7 +59,7 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
                 Text(
                   valueOrDefault<String>(
                     widget.userRef?.favRunTerrain,
-                    'Road',
+                    'n/a',
                   ).maybeHandleOverflow(
                     maxChars: 5,
                   ),
@@ -121,7 +121,7 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
                 Text(
                   valueOrDefault<String>(
                     widget.userRef?.avgPace,
-                    '9:00',
+                    'n/a',
                   ).maybeHandleOverflow(
                     maxChars: 5,
                   ),
@@ -182,7 +182,7 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
                 Text(
                   valueOrDefault<String>(
                     widget.userRef?.prefDistance,
-                    '3-5m',
+                    'n/a',
                   ).maybeHandleOverflow(
                     maxChars: 5,
                   ),
