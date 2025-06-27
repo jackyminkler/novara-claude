@@ -4,7 +4,7 @@ service cloud.firestore {
     match /activities/{document} {
       allow create: if request.auth != null;
       allow read: if true;
-      allow write: if resource.data.creatorRef == /databases/$(database)/documents/users/$(request.auth.uid);
+      allow write: if request.auth != null;
       allow delete: if resource.data.creatorRef == /databases/$(database)/documents/users/$(request.auth.uid);
     }
 
@@ -16,10 +16,15 @@ service cloud.firestore {
     }
 
     match /activities/{parent}/activity_comments/{document} {
-      allow create: if /databases/$(database)/documents/users/$(request.auth.uid) in get(/databases/$(database)/documents/activities/$(parent)).data.participants;
-      allow read: if /databases/$(database)/documents/users/$(request.auth.uid) in get(/databases/$(database)/documents/activities/$(parent)).data.participants;
-      allow write: if /databases/$(database)/documents/users/$(request.auth.uid) in get(/databases/$(database)/documents/activities/$(parent)).data.participants;
-      allow delete: if resource.data.commenterRef == /databases/$(database)/documents/users/$(request.auth.uid);
+      allow create: if request.auth != null;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
+
+    match /{path=**}/activity_comments/{document} {
+      allow read: if request.auth != null;
+    }
+
   }
 }

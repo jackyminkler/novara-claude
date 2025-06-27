@@ -12,17 +12,18 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
   ActivitiesRecord? activityDetailsPreviousSnapshot;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for Comment-TextField widget.
+  FocusNode? commentTextFieldFocusNode;
+  TextEditingController? commentTextFieldTextController;
+  String? Function(BuildContext, String?)?
+      commentTextFieldTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    commentTextFieldFocusNode?.dispose();
+    commentTextFieldTextController?.dispose();
   }
 }

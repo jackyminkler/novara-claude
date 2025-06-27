@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'activity_details_model.dart';
@@ -38,8 +39,8 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'ActivityDetails'});
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.commentTextFieldTextController ??= TextEditingController();
+    _model.commentTextFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -81,7 +82,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                 height: 25.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),
@@ -152,18 +153,18 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+                Flexible(
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 30.0, 15.0, 10.0),
                           child: Column(
-                            mainAxisSize: MainAxisSize.max,
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -191,6 +192,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .displaySmall
                                           .fontStyle,
+                                      lineHeight: 1.1,
                                     ),
                               ),
                               Padding(
@@ -233,7 +235,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                   ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryText,
+                                                      .primaryText,
                                                   letterSpacing: 0.0,
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
@@ -252,11 +254,13 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                             style: TextStyle(),
                                           ),
                                           TextSpan(
-                                            text: valueOrDefault<String>(
+                                            text: dateTimeFormat(
+                                              "jm",
                                               activityDetailsActivitiesRecord
-                                                  .startTime
-                                                  ?.toString(),
-                                              '9:00 AM',
+                                                  .date!,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
                                             ),
                                             style: TextStyle(),
                                           ),
@@ -268,35 +272,32 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                             text: valueOrDefault<String>(
                                               activityDetailsActivitiesRecord
                                                   .location,
-                                              'Golden Gate Park',
+                                              'Up for anywhere',
                                             ),
                                             style: TextStyle(),
                                           )
                                         ],
                                         style: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .labelLarge
                                             .override(
                                               font: GoogleFonts.rubik(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                        .labelLarge
                                                         .fontWeight,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                        .labelLarge
                                                         .fontStyle,
                                               ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
                                               letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                      .labelLarge
                                                       .fontWeight,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                      .labelLarge
                                                       .fontStyle,
                                             ),
                                       ),
@@ -311,11 +312,11 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               15.0, 15.0, 15.0, 0.0),
                           child: Column(
-                            mainAxisSize: MainAxisSize.max,
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisSize: MainAxisSize.max,
+                                mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -413,6 +414,37 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                 fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .headlineMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: ' miles',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .rubik(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
                                                                     .fontStyle,
                                                               ),
                                                     )
@@ -624,7 +656,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
@@ -908,7 +940,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                             ],
                           ),
                         ),
-                        Expanded(
+                        Flexible(
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 25.0, 15.0, 0.0),
@@ -1016,7 +1048,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                     height: 25.0,
                                     child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
+                                        FlutterFlowTheme.of(context).secondary,
                                       ),
                                     ),
                                   ),
@@ -1082,7 +1114,11 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                     image:
                                                         CachedNetworkImageProvider(
                                                       organizerCardUsersRecord
-                                                          .photoUrl,
+                                                                      .photoUrl !=
+                                                                  ''
+                                                          ? organizerCardUsersRecord
+                                                              .photoUrl
+                                                          : '${organizerCardUsersRecord.displayName}',
                                                     ),
                                                   ),
                                                   shape: BoxShape.circle,
@@ -1183,7 +1219,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                             },
                           ),
                         ),
-                        Expanded(
+                        Flexible(
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 15.0, 15.0, 0.0),
@@ -1247,7 +1283,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                             padding: EdgeInsets.zero,
                                             gridDelegate:
                                                 SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 5,
+                                              crossAxisCount: 6,
                                               crossAxisSpacing: 8.0,
                                               mainAxisSpacing: 8.0,
                                               childAspectRatio: 1.0,
@@ -1277,7 +1313,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                   Color>(
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primary,
+                                                                .secondary,
                                                           ),
                                                         ),
                                                       ),
@@ -1299,26 +1335,47 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                     onTap: () async {
                                                       logFirebaseEvent(
                                                           'ACTIVITY_DETAILS_AttendeeImgLink_ON_TAP');
-                                                      logFirebaseEvent(
-                                                          'AttendeeImgLink_navigate_to');
+                                                      if (attendeeImgLinkUsersRecord
+                                                              .uid ==
+                                                          currentUserReference
+                                                              ?.id) {
+                                                        logFirebaseEvent(
+                                                            'AttendeeImgLink_navigate_to');
 
-                                                      context.pushNamed(
-                                                        UserProfileWidget
-                                                            .routeName,
-                                                        queryParameters: {
-                                                          'selectedUserRef':
-                                                              serializeParam(
-                                                            attendeesListItem,
-                                                            ParamType
-                                                                .DocumentReference,
-                                                          ),
-                                                        }.withoutNulls,
-                                                      );
+                                                        context.pushNamed(
+                                                          MyProfileWidget
+                                                              .routeName,
+                                                          queryParameters: {
+                                                            'selectedUserRef':
+                                                                serializeParam(
+                                                              currentUserReference,
+                                                              ParamType
+                                                                  .DocumentReference,
+                                                            ),
+                                                          }.withoutNulls,
+                                                        );
+                                                      } else {
+                                                        logFirebaseEvent(
+                                                            'AttendeeImgLink_navigate_to');
+
+                                                        context.pushNamed(
+                                                          UserProfileWidget
+                                                              .routeName,
+                                                          queryParameters: {
+                                                            'selectedUserRef':
+                                                                serializeParam(
+                                                              attendeesListItem,
+                                                              ParamType
+                                                                  .DocumentReference,
+                                                            ),
+                                                          }.withoutNulls,
+                                                        );
+                                                      }
                                                     },
                                                     child: ClipOval(
                                                       child: Container(
-                                                        width: 20.0,
-                                                        height: 20.0,
+                                                        width: 50.0,
+                                                        height: 50.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1330,8 +1387,10 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                             alignment:
                                                                 AlignmentDirectional(
                                                                     0.0, 0.0),
-                                                            image: Image.asset(
-                                                              'assets/images/st,small,507x507-pad,600x600,f8f8f8.u2.jpg',
+                                                            image:
+                                                                Image.network(
+                                                              attendeeImgLinkUsersRecord
+                                                                  .photoUrl,
                                                             ).image,
                                                           ),
                                                           boxShadow: [
@@ -1348,19 +1407,6 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                           ],
                                                           shape:
                                                               BoxShape.circle,
-                                                        ),
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.network(
-                                                            attendeeImgLinkUsersRecord
-                                                                .photoUrl,
-                                                            width: 20.0,
-                                                            height: 20.0,
-                                                            fit: BoxFit.cover,
-                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -1382,11 +1428,11 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                 currentUserReference?.id) ||
                             activityDetailsActivitiesRecord.participants
                                 .contains(currentUserReference))
-                          Expanded(
+                          Flexible(
                             child: Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Container(
-                                width: 400.0,
+                                width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -1470,7 +1516,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -1483,7 +1529,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         return ListView.separated(
                                           padding: EdgeInsets.fromLTRB(
                                             0,
-                                            12.0,
+                                            8.0,
                                             0,
                                             0,
                                           ),
@@ -1494,7 +1540,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                               listViewActivityCommentsRecordList
                                                   .length,
                                           separatorBuilder: (_, __) =>
-                                              SizedBox(height: 12.0),
+                                              SizedBox(height: 8.0),
                                           itemBuilder:
                                               (context, listViewIndex) {
                                             final listViewActivityCommentsRecord =
@@ -1522,7 +1568,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                   Color>(
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primary,
+                                                                .secondary,
                                                           ),
                                                         ),
                                                       ),
@@ -1690,7 +1736,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                     48.0,
                                                                     0.0,
                                                                     0.0,
-                                                                    4.0),
+                                                                    8.0),
                                                         child: Text(
                                                           listViewActivityCommentsRecord
                                                               .comment,
@@ -1732,7 +1778,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                 .alternate,
                                                       ),
                                                     ].divide(
-                                                        SizedBox(height: 8.0)),
+                                                        SizedBox(height: 2.0)),
                                                   );
                                                 },
                                               ),
@@ -1762,11 +1808,17 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                             Container(
                                               width: double.infinity,
                                               child: TextFormField(
-                                                controller:
-                                                    _model.textController,
-                                                focusNode:
-                                                    _model.textFieldFocusNode,
-                                                autofocus: true,
+                                                controller: _model
+                                                    .commentTextFieldTextController,
+                                                focusNode: _model
+                                                    .commentTextFieldFocusNode,
+                                                onChanged: (_) =>
+                                                    EasyDebounce.debounce(
+                                                  '_model.commentTextFieldTextController',
+                                                  Duration(milliseconds: 2000),
+                                                  () => safeSetState(() {}),
+                                                ),
+                                                autofocus: false,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   labelText:
@@ -1875,7 +1927,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
                                                 validator: _model
-                                                    .textControllerValidator
+                                                    .commentTextFieldTextControllerValidator
                                                     .asValidator(context),
                                               ),
                                             ),
@@ -1887,30 +1939,39 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                     .fromSTEB(
                                                         0.0, 0.0, 12.0, 12.0),
                                                 child: FFButtonWidget(
-                                                  onPressed: (_model.textController
-                                                                  .text ==
-                                                              '')
-                                                      ? null
-                                                      : () async {
-                                                          logFirebaseEvent(
-                                                              'ACTIVITY_DETAILS_PAGE_SEND_BTN_ON_TAP');
-                                                          logFirebaseEvent(
-                                                              'Button_backend_call');
+                                                  onPressed:
+                                                      (_model.commentTextFieldTextController
+                                                                      .text ==
+                                                                  '')
+                                                          ? null
+                                                          : () async {
+                                                              logFirebaseEvent(
+                                                                  'ACTIVITY_DETAILS_PAGE_SEND_BTN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Button_backend_call');
 
-                                                          await ActivityCommentsRecord
-                                                                  .createDoc(widget
-                                                                      .activityRef!)
-                                                              .set(
-                                                                  createActivityCommentsRecordData(
-                                                            date:
-                                                                getCurrentTimestamp,
-                                                            comment: _model
-                                                                .textController
-                                                                .text,
-                                                            commenterRef:
-                                                                currentUserReference,
-                                                          ));
-                                                        },
+                                                              await ActivityCommentsRecord
+                                                                      .createDoc(
+                                                                          widget
+                                                                              .activityRef!)
+                                                                  .set(
+                                                                      createActivityCommentsRecordData(
+                                                                date:
+                                                                    getCurrentTimestamp,
+                                                                comment: _model
+                                                                    .commentTextFieldTextController
+                                                                    .text,
+                                                                commenterRef:
+                                                                    currentUserReference,
+                                                              ));
+                                                              logFirebaseEvent(
+                                                                  'Button_clear_text_fields_pin_codes');
+                                                              safeSetState(() {
+                                                                _model
+                                                                    .commentTextFieldTextController
+                                                                    ?.clear();
+                                                              });
+                                                            },
                                                   text: 'Send',
                                                   options: FFButtonOptions(
                                                     height: 36.0,
@@ -1978,12 +2039,6 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Divider(
-                                      height: 1.0,
-                                      thickness: 1.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
                                     ),
                                   ].divide(SizedBox(height: 4.0)),
                                 ),
@@ -2100,8 +2155,15 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         'ACTIVITY_DETAILS_EDIT_ACTIVITY_BTN_ON_TA');
                                     logFirebaseEvent('Button_navigate_to');
 
-                                    context
-                                        .pushNamed(EditProfileWidget.routeName);
+                                    context.pushNamed(
+                                      EditActivityWidget.routeName,
+                                      queryParameters: {
+                                        'activityRef': serializeParam(
+                                          widget.activityRef,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   },
                                   text: 'Edit Activity',
                                   options: FFButtonOptions(

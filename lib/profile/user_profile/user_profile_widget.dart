@@ -60,7 +60,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                 height: 25.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),

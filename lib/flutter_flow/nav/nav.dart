@@ -133,18 +133,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: ActivityDetailsCombinedWidget.routeName,
-          path: ActivityDetailsCombinedWidget.routePath,
-          builder: (context, params) => ActivityDetailsCombinedWidget(
-            activityRef: params.getParam(
-              'activityRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['activities'],
-            ),
-          ),
-        ),
-        FFRoute(
           name: EditActivityWidget.routeName,
           path: EditActivityWidget.routePath,
           builder: (context, params) => EditActivityWidget(
@@ -194,18 +182,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ActivityDetailsWidget.routeName,
           path: ActivityDetailsWidget.routePath,
           builder: (context, params) => ActivityDetailsWidget(
-            activityRef: params.getParam(
-              'activityRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['activities'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: MyActivityDetailsWidget.routeName,
-          path: MyActivityDetailsWidget.routePath,
-          builder: (context, params) => MyActivityDetailsWidget(
             activityRef: params.getParam(
               'activityRef',
               ParamType.DocumentReference,

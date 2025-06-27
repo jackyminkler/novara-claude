@@ -283,9 +283,9 @@ class _WalkthroughWidgetState extends State<WalkthroughWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 15.0, 20.0, 0.0),
+                                          30.0, 15.0, 30.0, 0.0),
                                       child: Text(
-                                        'Effortlessly RSVP to runs, manage your upcoming runs, and enjoy a sense of accountability with new friends or old.',
+                                        'Effortlessly RSVP or create your own runs to enjoy a sense of accountability with new friends or old.',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall

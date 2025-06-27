@@ -4,11 +4,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'activity_card_model.dart';
-export 'activity_card_model.dart';
+import 'activity_card_new_style_model.dart';
+export 'activity_card_new_style_model.dart';
 
-class ActivityCardWidget extends StatefulWidget {
-  const ActivityCardWidget({
+class ActivityCardNewStyleWidget extends StatefulWidget {
+  const ActivityCardNewStyleWidget({
     super.key,
     required this.activityCard,
   });
@@ -16,11 +16,13 @@ class ActivityCardWidget extends StatefulWidget {
   final ActivitiesRecord? activityCard;
 
   @override
-  State<ActivityCardWidget> createState() => _ActivityCardWidgetState();
+  State<ActivityCardNewStyleWidget> createState() =>
+      _ActivityCardNewStyleWidgetState();
 }
 
-class _ActivityCardWidgetState extends State<ActivityCardWidget> {
-  late ActivityCardModel _model;
+class _ActivityCardNewStyleWidgetState
+    extends State<ActivityCardNewStyleWidget> {
+  late ActivityCardNewStyleModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -31,7 +33,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ActivityCardModel());
+    _model = createModel(context, () => ActivityCardNewStyleModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -60,7 +62,6 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
           boxShadow: [
             BoxShadow(
               blurRadius: 6.0,
@@ -74,6 +75,12 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
               spreadRadius: 0.0,
             )
           ],
+          gradient: LinearGradient(
+            colors: [Color(0xFF5848EF), Color(0xFF5FBAB1)],
+            stops: [0.0, 0.9],
+            begin: AlignmentDirectional(1.0, 1.0),
+            end: AlignmentDirectional(-1.0, -1.0),
+          ),
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
@@ -94,7 +101,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                1.0, 0.0, 0.0, 2.0),
+                                1.0, 0.0, 0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
                                 widget.activityCard?.title,
@@ -111,8 +118,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                           .headlineSmall
                                           .fontStyle,
                                     ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: FlutterFlowTheme.of(context).info,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .headlineSmall
@@ -120,7 +126,6 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .fontStyle,
-                                    lineHeight: 1.1,
                                   ),
                             ),
                           ),
@@ -137,84 +142,9 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                         1.0, 0.0, 0.0, 0.0),
                                     child: Icon(
                                       FFIcons.kclockFilled,
-                                      color: FlutterFlowTheme.of(context)
-                                          .iconSecondary,
+                                      color: Color(0x804B39EF),
                                       size: 14.0,
                                     ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        dateTimeFormat(
-                                          "EEEE",
-                                          widget.activityCard?.date,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        ),
-                                        'Any Time',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.rubik(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    ', ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.rubik(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
-                                        ),
                                   ),
                                 ),
                                 Align(
@@ -246,7 +176,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                                       .fontStyle,
                                             ),
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                                .info,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
@@ -260,7 +190,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                     ),
                                   ),
                                 ),
-                              ],
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ),
                           Padding(
@@ -273,8 +203,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Icon(
                                     Icons.location_on,
-                                    color: FlutterFlowTheme.of(context)
-                                        .iconSecondary,
+                                    color: Color(0x7E4B39EF),
                                     size: 16.0,
                                   ),
                                 ),
@@ -296,8 +225,8 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelMedium
@@ -315,75 +244,72 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 1.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 1.0, 0.0),
                       child: Container(
                         width: 70.0,
                         height: 60.0,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: Color(0x33FFFFFF),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              dateTimeFormat(
-                                "MMM",
-                                widget.activityCard!.date!,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 8.0, 8.0, 8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                dateTimeFormat(
+                                  "MMM",
+                                  widget.activityCard!.date!,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      font: GoogleFonts.rubik(
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontStyle,
+                                      ),
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelSmall
+                                          .fontStyle,
+                                    ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.rubik(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
+                              Text(
+                                dateTimeFormat(
+                                  "d",
+                                  widget.activityCard!.date!,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      font: GoogleFonts.rubik(
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .fontStyle,
                                     ),
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                            ),
-                            Text(
-                              dateTimeFormat(
-                                "d",
-                                widget.activityCard!.date!,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                    lineHeight: 1.0,
-                                  ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -394,7 +320,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                 width: double.infinity,
                 height: 1.0,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).alternate,
+                  color: Color(0x7FFFFFFF),
                 ),
               ),
               Padding(
@@ -416,7 +342,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                   1.0, 0.0, 0.0, 0.0),
                               child: Icon(
                                 Icons.directions_run_rounded,
-                                color: FlutterFlowTheme.of(context).navbarColor,
+                                color: Color(0xA7FFFFFF),
                                 size: 16.0,
                               ),
                             ),
@@ -437,8 +363,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                           .labelMedium
                                           .fontStyle,
                                     ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: FlutterFlowTheme.of(context).info,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -458,7 +383,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                             children: [
                               Icon(
                                 Icons.terrain,
-                                color: FlutterFlowTheme.of(context).navbarColor,
+                                color: Color(0x9AFFFFFF),
                                 size: 16.0,
                               ),
                               Text(
@@ -477,8 +402,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                             .labelMedium
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                      color: FlutterFlowTheme.of(context).info,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -504,17 +428,17 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                             children: [
                               Icon(
                                 FFIcons.kdirections,
-                                color: FlutterFlowTheme.of(context).navbarColor,
+                                color: Color(0x9DFFFFFF),
                                 size: 16.0,
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    '${valueOrDefault<String>(
+                                    valueOrDefault<String>(
                                       widget.activityCard?.distance,
-                                      'Up for any',
-                                    )} miles',
+                                      '--',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -528,8 +452,8 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
@@ -554,7 +478,7 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                             children: [
                               Icon(
                                 Icons.speed_rounded,
-                                color: FlutterFlowTheme.of(context).navbarColor,
+                                color: Color(0xA5FFFFFF),
                                 size: 16.0,
                               ),
                               Row(
@@ -578,8 +502,8 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
@@ -606,8 +530,8 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                                                     .labelMedium
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)

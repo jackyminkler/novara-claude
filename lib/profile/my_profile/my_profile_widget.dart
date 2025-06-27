@@ -63,7 +63,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                 height: 25.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),
@@ -92,65 +92,34 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Stack(
-                          alignment: AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 0.65),
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 35.0),
-                              child: Container(
-                                width: double.infinity,
-                                height: 180.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.network(
-                                      '',
-                                    ).image,
-                                  ),
+                            Container(
+                              width: double.infinity,
+                              height: 180.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: Image.network(
+                                    '',
+                                  ).image,
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 45.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, -1.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 6.0, 16.0, 6.0),
-                                          child: FlutterFlowIconButton(
-                                            borderRadius: 50.0,
-                                            buttonSize: 42.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            icon: Icon(
-                                              Icons.arrow_back_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 22.0,
-                                            ),
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'MY_PROFILE_arrow_back_rounded_ICN_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'IconButton_navigate_back');
-                                              context.safePop();
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, -1.0),
+                                      child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            6.0, 6.0, 16.0, 6.0),
+                                            16.0, 6.0, 16.0, 6.0),
                                         child: FlutterFlowIconButton(
                                           borderRadius: 50.0,
                                           buttonSize: 42.0,
@@ -158,57 +127,82 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           icon: Icon(
-                                            FFIcons.kedit02,
+                                            Icons.arrow_back_rounded,
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                             size: 22.0,
                                           ),
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'MY_PROFILE_PAGE_edit02_ICN_ON_TAP');
+                                                'MY_PROFILE_arrow_back_rounded_ICN_ON_TAP');
                                             logFirebaseEvent(
-                                                'IconButton_navigate_to');
-
-                                            context.pushNamed(
-                                                EditProfileWidget.routeName);
+                                                'IconButton_navigate_back');
+                                            context.safePop();
                                           },
                                         ),
                                       ),
-                                    ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          6.0, 6.0, 16.0, 6.0),
+                                      child: FlutterFlowIconButton(
+                                        borderRadius: 50.0,
+                                        buttonSize: 42.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        icon: Icon(
+                                          FFIcons.kedit02,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 22.0,
+                                        ),
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'MY_PROFILE_PAGE_edit02_ICN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'IconButton_navigate_to');
+
+                                          context.pushNamed(
+                                              EditProfileWidget.routeName);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, -1.0),
+                              child: Container(
+                                width: 90.0,
+                                height: 90.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/24hg2w4gerf.jpg',
+                                    ).image,
                                   ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      offset: Offset(0.0, 0.0),
+                                      spreadRadius: 3.0,
+                                    )
+                                  ],
+                                  shape: BoxShape.circle,
                                 ),
                               ),
                             ),
-                            Container(
-                              width: 90.0,
-                              height: 90.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: Image.asset(
-                                    'assets/images/24hg2w4gerf.jpg',
-                                  ).image,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    offset: Offset(0.0, 0.0),
-                                    spreadRadius: 3.0,
-                                  )
-                                ],
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Stack(
-                              alignment: AlignmentDirectional(0.0, 1.0),
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: Container(
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Stack(
+                                alignment: AlignmentDirectional(0.0, -1.0),
+                                children: [
+                                  Container(
                                     width: 90.0,
                                     height: 90.0,
                                     decoration: BoxDecoration(
@@ -231,35 +225,31 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       shape: BoxShape.circle,
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 25.0, 0.0, 0.0),
-                            child: AuthUserStreamWidget(
-                              builder: (context) => Text(
-                                currentUserDisplayName,
-                                style: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      font: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Text(
+                              currentUserDisplayName,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    font: GoogleFonts.rubik(
                                       fontWeight: FontWeight.w500,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .fontStyle,
                                     ),
-                              ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
                             ),
                           ),
                         ),

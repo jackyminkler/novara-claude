@@ -116,7 +116,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               Icon(
                                 Icons.home_rounded,
                                 color: widget.page == 0
-                                    ? FlutterFlowTheme.of(context).primary
+                                    ? FlutterFlowTheme.of(context).tertiary
                                     : FlutterFlowTheme.of(context).navbarColor,
                                 size: 27.0,
                               ),
@@ -138,7 +138,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         color: valueOrDefault<Color>(
                                           widget.page == 0
                                               ? FlutterFlowTheme.of(context)
-                                                  .primary
+                                                  .tertiary
                                               : FlutterFlowTheme.of(context)
                                                   .navbarColor,
                                           FlutterFlowTheme.of(context).primary,
@@ -168,7 +168,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         logFirebaseEvent('NAV_BAR_COMP_CreateStack_ON_TAP');
                         logFirebaseEvent('CreateStack_navigate_to');
 
-                        context.goNamed(
+                        context.pushNamed(
                           CreateActivityWidget.routeName,
                           queryParameters: {
                             'selectedNavTab': serializeParam(
@@ -196,7 +196,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                 FFIcons.kplusCircle,
                                 color: valueOrDefault<Color>(
                                   widget.page == 1
-                                      ? FlutterFlowTheme.of(context).primary
+                                      ? FlutterFlowTheme.of(context).tertiary
                                       : FlutterFlowTheme.of(context)
                                           .navbarColor,
                                   FlutterFlowTheme.of(context).navbarColor,
@@ -221,7 +221,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         color: valueOrDefault<Color>(
                                           widget.page == 1
                                               ? FlutterFlowTheme.of(context)
-                                                  .primary
+                                                  .tertiary
                                               : FlutterFlowTheme.of(context)
                                                   .navbarColor,
                                           FlutterFlowTheme.of(context)
@@ -283,7 +283,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                     Icons.person_rounded,
                                     color: valueOrDefault<Color>(
                                       widget.page == 2
-                                          ? FlutterFlowTheme.of(context).primary
+                                          ? FlutterFlowTheme.of(context)
+                                              .tertiary
                                           : FlutterFlowTheme.of(context)
                                               .navbarColor,
                                       FlutterFlowTheme.of(context).navbarColor,
@@ -310,7 +311,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         color: valueOrDefault<Color>(
                                           widget.page == 2
                                               ? FlutterFlowTheme.of(context)
-                                                  .primary
+                                                  .tertiary
                                               : FlutterFlowTheme.of(context)
                                                   .navbarColor,
                                           FlutterFlowTheme.of(context)

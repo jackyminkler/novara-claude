@@ -32,13 +32,6 @@ class ActivitiesRecord extends FirestoreRecord {
   String get description => _description ?? '';
   bool hasDescription() => _description != null;
 
-  // "startTime" field.
-  DateTime? _startTime;
-
-  /// Scheduled start
-  DateTime? get startTime => _startTime;
-  bool hasStartTime() => _startTime != null;
-
   // "createdAt" field.
   DateTime? _createdAt;
 
@@ -99,7 +92,6 @@ class ActivitiesRecord extends FirestoreRecord {
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _description = snapshotData['description'] as String?;
-    _startTime = snapshotData['startTime'] as DateTime?;
     _createdAt = snapshotData['createdAt'] as DateTime?;
     _date = snapshotData['date'] as DateTime?;
     _creatorID = snapshotData['creatorID'] as String?;
@@ -150,7 +142,6 @@ class ActivitiesRecord extends FirestoreRecord {
 Map<String, dynamic> createActivitiesRecordData({
   String? title,
   String? description,
-  DateTime? startTime,
   DateTime? createdAt,
   DateTime? date,
   String? creatorID,
@@ -166,7 +157,6 @@ Map<String, dynamic> createActivitiesRecordData({
     <String, dynamic>{
       'title': title,
       'description': description,
-      'startTime': startTime,
       'createdAt': createdAt,
       'date': date,
       'creatorID': creatorID,
@@ -191,7 +181,6 @@ class ActivitiesRecordDocumentEquality implements Equality<ActivitiesRecord> {
     const listEquality = ListEquality();
     return e1?.title == e2?.title &&
         e1?.description == e2?.description &&
-        e1?.startTime == e2?.startTime &&
         e1?.createdAt == e2?.createdAt &&
         e1?.date == e2?.date &&
         e1?.creatorID == e2?.creatorID &&
@@ -209,7 +198,6 @@ class ActivitiesRecordDocumentEquality implements Equality<ActivitiesRecord> {
   int hash(ActivitiesRecord? e) => const ListEquality().hash([
         e?.title,
         e?.description,
-        e?.startTime,
         e?.createdAt,
         e?.date,
         e?.creatorID,

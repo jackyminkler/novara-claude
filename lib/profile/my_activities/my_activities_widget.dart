@@ -243,7 +243,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -259,7 +259,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -284,7 +284,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     'ActivityCard_navigate_to');
 
                                                 context.pushNamed(
-                                                  ActivityDetailsCombinedWidget
+                                                  ActivityDetailsWidget
                                                       .routeName,
                                                   queryParameters: {
                                                     'activityRef':
@@ -376,7 +376,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -392,7 +392,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -417,7 +417,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     'ActivityCard_navigate_to');
 
                                                 context.pushNamed(
-                                                  ActivityDetailsCombinedWidget
+                                                  ActivityDetailsWidget
                                                       .routeName,
                                                   queryParameters: {
                                                     'activityRef':
@@ -505,7 +505,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -521,7 +521,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -546,7 +546,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                     'ActivityCard_navigate_to');
 
                                                 context.pushNamed(
-                                                  ActivityDetailsCombinedWidget
+                                                  ActivityDetailsWidget
                                                       .routeName,
                                                   queryParameters: {
                                                     'activityRef':
