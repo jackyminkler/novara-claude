@@ -882,11 +882,24 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           }.withoutNulls,
                                                         );
                                                       },
-                                                      child: ActivityCardWidget(
-                                                        key: Key(
-                                                            'Key3oz_${activitiesListIndex}_of_${activitiesList.length}'),
-                                                        activityCard:
-                                                            activitiesListItem,
+                                                      child: wrapWithModel(
+                                                        model: _model
+                                                            .activityCardModels
+                                                            .getModel(
+                                                          activitiesListItem
+                                                              .reference.id,
+                                                          activitiesListIndex,
+                                                        ),
+                                                        updateCallback: () =>
+                                                            safeSetState(() {}),
+                                                        child:
+                                                            ActivityCardWidget(
+                                                          key: Key(
+                                                            'Key3oz_${activitiesListItem.reference.id}',
+                                                          ),
+                                                          activityCard:
+                                                              activitiesListItem,
+                                                        ),
                                                       ),
                                                     );
                                                   },

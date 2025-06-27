@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/home/components/activity_card/activity_card_widget.dart';
 import '/home/components/home_page_nav/home_page_nav_widget.dart';
 import '/home/components/nav_bar/nav_bar_widget.dart';
 import '/index.dart';
@@ -10,18 +11,22 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
 
   // Model for HomePageNav component.
   late HomePageNavModel homePageNavModel;
+  // Models for ActivityCard dynamic component.
+  late FlutterFlowDynamicModels<ActivityCardModel> activityCardModels;
   // Model for NavBar component.
   late NavBarModel navBarModel;
 
   @override
   void initState(BuildContext context) {
     homePageNavModel = createModel(context, () => HomePageNavModel());
+    activityCardModels = FlutterFlowDynamicModels(() => ActivityCardModel());
     navBarModel = createModel(context, () => NavBarModel());
   }
 
   @override
   void dispose() {
     homePageNavModel.dispose();
+    activityCardModels.dispose();
     navBarModel.dispose();
   }
 }

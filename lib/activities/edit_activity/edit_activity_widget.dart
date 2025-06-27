@@ -144,18 +144,19 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
             ),
             body: Align(
               alignment: AlignmentDirectional(0.0, -1.0),
-              child: SingleChildScrollView(
-                primary: false,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Padding(
+              child: Container(
+                decoration: BoxDecoration(),
+                child: SingleChildScrollView(
+                  primary: false,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Column(
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
@@ -316,6 +317,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -555,6 +557,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -637,6 +640,54 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                       options: FFAppConstants.LocationOptions,
                                       onChanged: (val) => safeSetState(() =>
                                           _model.dropDownLocationValue = val),
+                                      searchHintTextStyle: FlutterFlowTheme.of(
+                                              context)
+                                          .labelMedium
+                                          .override(
+                                            font: GoogleFonts.rubik(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                      searchTextStyle: FlutterFlowTheme.of(
+                                              context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.rubik(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -661,6 +712,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                                     .fontStyle,
                                           ),
                                       hintText: 'Select a location',
+                                      searchHintText: 'Search...',
                                       icon: Icon(
                                         FFIcons.kchevronDown,
                                         color: FlutterFlowTheme.of(context)
@@ -677,7 +729,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                           16.0, 0.0, 12.0, 0.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
-                                      isSearchable: false,
+                                      isSearchable: true,
                                       isMultiSelect: false,
                                     ),
                                   ),
@@ -686,6 +738,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -877,6 +930,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1369,6 +1423,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
@@ -1542,80 +1597,82 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                           ],
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          15.0, 35.0, 15.0, 25.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'EDIT_ACTIVITY_SAVE_CHANGES_BTN_ON_TAP');
-                          await Future.wait([
-                            Future(() async {
-                              logFirebaseEvent('Button_navigate_to');
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 35.0, 15.0, 25.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'EDIT_ACTIVITY_SAVE_CHANGES_BTN_ON_TAP');
+                            await Future.wait([
+                              Future(() async {
+                                logFirebaseEvent('Button_navigate_to');
 
-                              context.goNamed(
-                                ActivityDetailsWidget.routeName,
-                                queryParameters: {
-                                  'activityRef': serializeParam(
-                                    widget.activityRef,
-                                    ParamType.DocumentReference,
-                                  ),
-                                }.withoutNulls,
-                              );
-                            }),
-                            Future(() async {
-                              logFirebaseEvent('Button_backend_call');
-
-                              await widget.activityRef!
-                                  .update(createActivitiesRecordData(
-                                title: _model.textFieldTitleTextController.text,
-                                description:
-                                    _model.textFieldDetailsTextController.text,
-                                location: _model.dropDownLocationValue,
-                                runType: _model.choiceChipsRunTypeValue,
-                                runTerrain: _model.choiceChipsRunTerrainValue,
-                                pace: _model
-                                    .textFieldDistanceTextController2.text,
-                                distance: _model
-                                    .textFieldDistanceTextController1.text,
-                                date: _model.datePicked,
-                              ));
-                            }),
-                          ]);
-                        },
-                        text: 'Save Changes',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 52.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
+                                context.goNamed(
+                                  ActivityDetailsWidget.routeName,
+                                  queryParameters: {
+                                    'activityRef': serializeParam(
+                                      widget.activityRef,
+                                      ParamType.DocumentReference,
                                     ),
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
+                                  }.withoutNulls,
+                                );
+                              }),
+                              Future(() async {
+                                logFirebaseEvent('Button_backend_call');
+
+                                await widget.activityRef!
+                                    .update(createActivitiesRecordData(
+                                  title:
+                                      _model.textFieldTitleTextController.text,
+                                  description: _model
+                                      .textFieldDetailsTextController.text,
+                                  location: _model.dropDownLocationValue,
+                                  runType: _model.choiceChipsRunTypeValue,
+                                  runTerrain: _model.choiceChipsRunTerrainValue,
+                                  pace: _model
+                                      .textFieldDistanceTextController2.text,
+                                  distance: _model
+                                      .textFieldDistanceTextController1.text,
+                                  date: _model.datePicked,
+                                ));
+                              }),
+                            ]);
+                          },
+                          text: 'Save Changes',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 52.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  font: GoogleFonts.rubik(
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                          elevation: 0.0,
-                          borderRadius: BorderRadius.circular(12.0),
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          showLoadingIndicator: false,
                         ),
-                        showLoadingIndicator: false,
                       ),
-                    ),
-                  ].addToEnd(SizedBox(height: 0.0)),
+                    ].addToEnd(SizedBox(height: 0.0)),
+                  ),
                 ),
               ),
             ),

@@ -20,6 +20,7 @@ abstract class FFAppConstants {
     'Golden Gate Park',
     'Presidio',
     'Dolores Park',
-    'Embarcadero'
+    'Embarcadero',
+    'Williamsburg'
   ];
 }
