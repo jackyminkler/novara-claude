@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'nav_bar_model.dart';
@@ -58,10 +58,10 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0.0, 1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: Container(
               width: double.infinity,
-              height: 70.0,
+              height: 80.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 boxShadow: [
@@ -109,50 +109,57 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       child: Stack(
                         alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.home_rounded,
-                                color: widget.page == 0
-                                    ? FlutterFlowTheme.of(context).tertiary
-                                    : FlutterFlowTheme.of(context).navbarColor,
-                                size: 27.0,
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 0.0, 0.0),
-                                child: Text(
-                                  'Home',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        font: GoogleFonts.rubik(
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.home_rounded,
+                                  color: widget.page == 0
+                                      ? FlutterFlowTheme.of(context).tertiary
+                                      : FlutterFlowTheme.of(context)
+                                          .navbarColor,
+                                  size: 27.0,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 2.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Home',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          font: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: valueOrDefault<Color>(
+                                            widget.page == 0
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : FlutterFlowTheme.of(context)
+                                                    .navbarColor,
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                          fontSize: 11.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyLarge
                                                   .fontStyle,
                                         ),
-                                        color: valueOrDefault<Color>(
-                                          widget.page == 0
-                                              ? FlutterFlowTheme.of(context)
-                                                  .tertiary
-                                              : FlutterFlowTheme.of(context)
-                                                  .navbarColor,
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                        fontSize: 11.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -188,55 +195,60 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       child: Stack(
                         alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                FFIcons.kplusCircle,
-                                color: valueOrDefault<Color>(
-                                  widget.page == 1
-                                      ? FlutterFlowTheme.of(context).tertiary
-                                      : FlutterFlowTheme.of(context)
-                                          .navbarColor,
-                                  FlutterFlowTheme.of(context).navbarColor,
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  FFIcons.kplusCircle,
+                                  color: valueOrDefault<Color>(
+                                    widget.page == 1
+                                        ? FlutterFlowTheme.of(context).tertiary
+                                        : FlutterFlowTheme.of(context)
+                                            .navbarColor,
+                                    FlutterFlowTheme.of(context).navbarColor,
+                                  ),
+                                  size: 27.0,
                                 ),
-                                size: 27.0,
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 0.0, 0.0),
-                                child: Text(
-                                  'Create',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        font: GoogleFonts.rubik(
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 2.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Create',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          font: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: valueOrDefault<Color>(
+                                            widget.page == 1
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : FlutterFlowTheme.of(context)
+                                                    .navbarColor,
+                                            FlutterFlowTheme.of(context)
+                                                .navbarColor,
+                                          ),
+                                          fontSize: 11.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyLarge
                                                   .fontStyle,
                                         ),
-                                        color: valueOrDefault<Color>(
-                                          widget.page == 1
-                                              ? FlutterFlowTheme.of(context)
-                                                  .tertiary
-                                              : FlutterFlowTheme.of(context)
-                                                  .navbarColor,
-                                          FlutterFlowTheme.of(context)
-                                              .navbarColor,
-                                        ),
-                                        fontSize: 11.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -272,61 +284,67 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       child: Stack(
                         alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Stack(
-                                alignment: AlignmentDirectional(1.0, -1.0),
-                                children: [
-                                  Icon(
-                                    Icons.person_rounded,
-                                    color: valueOrDefault<Color>(
-                                      widget.page == 2
-                                          ? FlutterFlowTheme.of(context)
-                                              .tertiary
-                                          : FlutterFlowTheme.of(context)
-                                              .navbarColor,
-                                      FlutterFlowTheme.of(context).navbarColor,
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Stack(
+                                  alignment: AlignmentDirectional(1.0, -1.0),
+                                  children: [
+                                    Icon(
+                                      Icons.person_rounded,
+                                      color: valueOrDefault<Color>(
+                                        widget.page == 2
+                                            ? FlutterFlowTheme.of(context)
+                                                .tertiary
+                                            : FlutterFlowTheme.of(context)
+                                                .navbarColor,
+                                        FlutterFlowTheme.of(context)
+                                            .navbarColor,
+                                      ),
+                                      size: 27.0,
                                     ),
-                                    size: 27.0,
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 0.0, 0.0),
-                                child: Text(
-                                  'Profile',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        font: GoogleFonts.rubik(
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 2.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Profile',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          font: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: valueOrDefault<Color>(
+                                            widget.page == 2
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : FlutterFlowTheme.of(context)
+                                                    .navbarColor,
+                                            FlutterFlowTheme.of(context)
+                                                .navbarColor,
+                                          ),
+                                          fontSize: 11.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyLarge
                                                   .fontStyle,
                                         ),
-                                        color: valueOrDefault<Color>(
-                                          widget.page == 2
-                                              ? FlutterFlowTheme.of(context)
-                                                  .tertiary
-                                              : FlutterFlowTheme.of(context)
-                                                  .navbarColor,
-                                          FlutterFlowTheme.of(context)
-                                              .navbarColor,
-                                        ),
-                                        fontSize: 11.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),

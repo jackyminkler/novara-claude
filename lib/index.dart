@@ -17,3 +17,11 @@ export '/profile/my_activities/my_activities_widget.dart'
     show MyActivitiesWidget;
 export '/activities/activity_details/activity_details_widget.dart'
     show ActivityDetailsWidget;
+export '/profile/notification_settings/notification_settings_widget.dart'
+    show NotificationSettingsWidget;
+export '/profile/about/about_widget.dart' show AboutWidget;
+export '/profile/help_center/help_center_widget.dart' show HelpCenterWidget;
+export '/profile/privacy_policy/privacy_policy_widget.dart'
+    show PrivacyPolicyWidget;
+export '/profile/terms_conditions/terms_conditions_widget.dart'
+    show TermsConditionsWidget;

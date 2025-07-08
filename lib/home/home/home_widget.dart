@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/home/components/activity_card/activity_card_widget.dart';
 import '/home/components/filter_by_location/filter_by_location_widget.dart';
@@ -8,6 +7,7 @@ import '/home/components/filter_by_run_type/filter_by_run_type_widget.dart';
 import '/home/components/home_page_nav/home_page_nav_widget.dart';
 import '/home/components/nav_bar/nav_bar_widget.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +23,7 @@ class HomeWidget extends StatefulWidget {
   final int? selectedNavTab;
 
   static String routeName = 'Home';
-  static String routePath = '/home';
+  static String routePath = 'home';
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
@@ -776,33 +776,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Text(
-                                            'Upcoming Events',
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  font: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
                                         Flexible(
                                           child: Padding(
                                             padding:

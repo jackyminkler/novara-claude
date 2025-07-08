@@ -1,5 +1,5 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_page_nav_model.dart';
@@ -74,25 +74,15 @@ class _HomePageNavWidgetState extends State<HomePageNavWidget> {
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 0.0, 0.0),
-                                        child: Icon(
-                                          Icons.auto_graph_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          size: 24.0,
-                                        ),
-                                      ),
                                       Align(
                                         alignment:
                                             AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 0.0, 0.0, 0.0),
+                                                  16.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'NOVARA',
+                                            'Upcoming Events',
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineSmall
@@ -105,7 +95,7 @@ class _HomePageNavWidgetState extends State<HomePageNavWidget> {
                                                             .headlineSmall
                                                             .fontStyle,
                                                   ),
-                                                  letterSpacing: 1.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(

@@ -2,11 +2,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'edit_activity_model.dart';
@@ -21,7 +21,7 @@ class EditActivityWidget extends StatefulWidget {
   final DocumentReference? activityRef;
 
   static String routeName = 'EditActivity';
-  static String routePath = '/editActivity';
+  static String routePath = 'editActivity';
 
   @override
   State<EditActivityWidget> createState() => _EditActivityWidgetState();

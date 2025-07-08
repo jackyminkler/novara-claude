@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
@@ -15,12 +16,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _Token = prefs.getString('ff_Token') ?? _Token;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   bool _updater = false;
   bool get updater => _updater;
@@ -205,4 +213,23 @@ class FFAppState extends ChangeNotifier {
       int index, DocumentReference value) {
     FilteredActivitiesOrganized.insert(index, value);
   }
+
+  String _Token = '';
+  String get Token => _Token;
+  set Token(String value) {
+    _Token = value;
+    prefs.setString('ff_Token', value);
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

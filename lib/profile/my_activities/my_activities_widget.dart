@@ -1,10 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/home/components/activity_card/activity_card_widget.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -20,7 +20,7 @@ class MyActivitiesWidget extends StatefulWidget {
   final DocumentReference? selectedUserRef;
 
   static String routeName = 'MyActivities';
-  static String routePath = '/myActivities';
+  static String routePath = 'myActivities';
 
   @override
   State<MyActivitiesWidget> createState() => _MyActivitiesWidgetState();
@@ -215,7 +215,8 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                 arrayContains:
                                                     currentUserReference,
                                               )
-                                              .orderBy('date'),
+                                              .orderBy('date',
+                                                  descending: true),
                                         ),
                                         padding: EdgeInsets.fromLTRB(
                                           0,
@@ -348,7 +349,8 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                 arrayContains:
                                                     currentUserReference,
                                               )
-                                              .orderBy('date'),
+                                              .orderBy('date',
+                                                  descending: true),
                                         ),
                                         padding: EdgeInsets.fromLTRB(
                                           0,
@@ -477,7 +479,8 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                                 isEqualTo:
                                                     currentUserReference?.id,
                                               )
-                                              .orderBy('date'),
+                                              .orderBy('date',
+                                                  descending: true),
                                         ),
                                         padding: EdgeInsets.fromLTRB(
                                           0,
