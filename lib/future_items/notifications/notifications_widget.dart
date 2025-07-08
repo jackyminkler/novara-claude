@@ -1,7 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/future_items/notifications_options/notifications_options_widget.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'notifications_model.dart';
@@ -11,7 +11,7 @@ class NotificationsWidget extends StatefulWidget {
   const NotificationsWidget({super.key});
 
   static String routeName = 'Notifications';
-  static String routePath = '/notifications';
+  static String routePath = 'notifications';
 
   @override
   State<NotificationsWidget> createState() => _NotificationsWidgetState();

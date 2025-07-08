@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'create_activity_widget.dart' show CreateActivityWidget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
   ///  Local state fields for this page.
@@ -10,24 +11,16 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final formKey = GlobalKey<FormState>();
   // State field(s) for TextField-Title widget.
   FocusNode? textFieldTitleFocusNode;
   TextEditingController? textFieldTitleTextController;
   String? Function(BuildContext, String?)?
       textFieldTitleTextControllerValidator;
+  DateTime? datePicked;
   // State field(s) for DropDown-Location widget.
   String? dropDownLocationValue;
   FormFieldController<String>? dropDownLocationValueController;
-  // State field(s) for TextField-Distance widget.
-  FocusNode? textFieldDistanceFocusNode;
-  TextEditingController? textFieldDistanceTextController;
-  String? Function(BuildContext, String?)?
-      textFieldDistanceTextControllerValidator;
-  // State field(s) for TextField-Pace widget.
-  FocusNode? textFieldPaceFocusNode;
-  TextEditingController? textFieldPaceTextController;
-  String? Function(BuildContext, String?)? textFieldPaceTextControllerValidator;
-  DateTime? datePicked;
   // State field(s) for ChoiceChips-RunTerrain widget.
   FormFieldController<List<String>>? choiceChipsRunTerrainValueController;
   String? get choiceChipsRunTerrainValue =>
@@ -40,6 +33,16 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
       choiceChipsRunTypeValueController?.value?.firstOrNull;
   set choiceChipsRunTypeValue(String? val) =>
       choiceChipsRunTypeValueController?.value = val != null ? [val] : [];
+  // State field(s) for TextField-Distance widget.
+  FocusNode? textFieldDistanceFocusNode;
+  TextEditingController? textFieldDistanceTextController;
+  String? Function(BuildContext, String?)?
+      textFieldDistanceTextControllerValidator;
+  // State field(s) for TextField-Pace widget.
+  FocusNode? textFieldPaceFocusNode;
+  TextEditingController? textFieldPaceTextController;
+  late MaskTextInputFormatter textFieldPaceMask;
+  String? Function(BuildContext, String?)? textFieldPaceTextControllerValidator;
   // State field(s) for TextField-Details widget.
   FocusNode? textFieldDetailsFocusNode;
   TextEditingController? textFieldDetailsTextController;

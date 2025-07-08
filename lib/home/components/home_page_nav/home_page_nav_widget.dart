@@ -1,7 +1,5 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_page_nav_model.dart';
@@ -54,129 +52,125 @@ class _HomePageNavWidgetState extends State<HomePageNavWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 2.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
-                                child: Icon(
-                                  Icons.auto_graph_rounded,
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  size: 24.0,
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'NOVARA',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          font: GoogleFonts.rubik(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineSmall
-                                                    .fontStyle,
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 2.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Upcoming Events',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineSmall
+                                                .override(
+                                                  font: GoogleFonts.rubik(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .headlineSmall
+                                                            .fontStyle,
+                                                  ),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineSmall
+                                                          .fontStyle,
+                                                ),
                                           ),
-                                          letterSpacing: 1.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall
-                                                  .fontStyle,
                                         ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 50.0,
-                                  height: 25.0,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.1, 0.1),
-                                    child: Text(
-                                      'BETA',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            font: GoogleFonts.rubik(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            fontSize: 11.0,
-                                            letterSpacing: 1.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontStyle,
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 16.0, 0.0),
+                                      child: Container(
+                                        width: 50.0,
+                                        height: 25.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(0.1, 0.1),
+                                          child: Text(
+                                            'BETA',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .override(
+                                                  font: GoogleFonts.rubik(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  fontSize: 11.0,
+                                                  letterSpacing: 1.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(6.0, 6.0, 10.0, 6.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 50.0,
-                    buttonSize: 42.0,
-                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                    icon: Icon(
-                      FFIcons.kbell01,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 22.0,
-                    ),
-                    onPressed: () async {
-                      logFirebaseEvent('HOME_PAGE_NAV_COMP_bell01_ICN_ON_TAP');
-                      logFirebaseEvent('IconButton_navigate_to');
-
-                      context.pushNamed(NotificationsWidget.routeName);
-                    },
+                      ),
+                    ],
                   ),
                 ),
               ],

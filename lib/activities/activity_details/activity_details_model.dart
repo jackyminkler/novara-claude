@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -12,17 +13,20 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
   ActivitiesRecord? activityDetailsPreviousSnapshot;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for Comment-TextField widget.
+  FocusNode? commentTextFieldFocusNode;
+  TextEditingController? commentTextFieldTextController;
+  String? Function(BuildContext, String?)?
+      commentTextFieldTextControllerValidator;
+  // Stores action output result for [Backend Call - API (Create Event)] action in IconButton widget.
+  ApiCallResponse? eventCreation;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    commentTextFieldFocusNode?.dispose();
+    commentTextFieldTextController?.dispose();
   }
 }

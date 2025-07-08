@@ -1,8 +1,8 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/home/components/activity_card/activity_card_widget.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -145,7 +145,6 @@ class _ProfileUserActivitiesWidgetState
                                       .orderBy('date'),
                                 ),
                                 padding: EdgeInsets.zero,
-                                primary: false,
                                 shrinkWrap: true,
                                 reverse: false,
                                 scrollDirection: Axis.vertical,
@@ -162,7 +161,8 @@ class _ProfileUserActivitiesWidgetState
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                         ),
                                       ),
                                     ),
@@ -176,7 +176,8 @@ class _ProfileUserActivitiesWidgetState
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                         ),
                                       ),
                                     ),
@@ -198,8 +199,7 @@ class _ProfileUserActivitiesWidgetState
                                             'ActivityCard_navigate_to');
 
                                         context.pushNamed(
-                                          ActivityDetailsCombinedWidget
-                                              .routeName,
+                                          ActivityDetailsWidget.routeName,
                                           queryParameters: {
                                             'activityRef': serializeParam(
                                               listViewActivitiesRecord
@@ -259,7 +259,6 @@ class _ProfileUserActivitiesWidgetState
                                     .orderBy('date'),
                               ),
                               padding: EdgeInsets.zero,
-                              primary: false,
                               shrinkWrap: true,
                               reverse: false,
                               scrollDirection: Axis.vertical,
@@ -275,7 +274,7 @@ class _ProfileUserActivitiesWidgetState
                                     height: 25.0,
                                     child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
+                                        FlutterFlowTheme.of(context).secondary,
                                       ),
                                     ),
                                   ),
@@ -287,7 +286,7 @@ class _ProfileUserActivitiesWidgetState
                                     height: 25.0,
                                     child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
+                                        FlutterFlowTheme.of(context).secondary,
                                       ),
                                     ),
                                   ),
@@ -309,7 +308,7 @@ class _ProfileUserActivitiesWidgetState
                                           'ActivityCard_navigate_to');
 
                                       context.pushNamed(
-                                        ActivityDetailsCombinedWidget.routeName,
+                                        ActivityDetailsWidget.routeName,
                                         queryParameters: {
                                           'activityRef': serializeParam(
                                             listViewActivitiesRecord.reference,
@@ -361,7 +360,6 @@ class _ProfileUserActivitiesWidgetState
                                     .orderBy('date'),
                               ),
                               padding: EdgeInsets.zero,
-                              primary: false,
                               shrinkWrap: true,
                               reverse: false,
                               scrollDirection: Axis.vertical,
@@ -377,7 +375,7 @@ class _ProfileUserActivitiesWidgetState
                                     height: 25.0,
                                     child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
+                                        FlutterFlowTheme.of(context).secondary,
                                       ),
                                     ),
                                   ),
@@ -389,7 +387,7 @@ class _ProfileUserActivitiesWidgetState
                                     height: 25.0,
                                     child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
+                                        FlutterFlowTheme.of(context).secondary,
                                       ),
                                     ),
                                   ),
@@ -411,7 +409,7 @@ class _ProfileUserActivitiesWidgetState
                                           'ActivityCard_navigate_to');
 
                                       context.pushNamed(
-                                        ActivityDetailsCombinedWidget.routeName,
+                                        ActivityDetailsWidget.routeName,
                                         queryParameters: {
                                           'activityRef': serializeParam(
                                             listViewActivitiesRecord.reference,

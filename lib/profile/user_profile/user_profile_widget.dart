@@ -1,9 +1,9 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/profile/components/profile_highlights/profile_highlights_widget.dart';
 import '/profile/components/profile_user_activities/profile_user_activities_widget.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user_profile_model.dart';
@@ -18,7 +18,7 @@ class UserProfileWidget extends StatefulWidget {
   final DocumentReference? selectedUserRef;
 
   static String routeName = 'UserProfile';
-  static String routePath = '/userProfile';
+  static String routePath = 'userProfile';
 
   @override
   State<UserProfileWidget> createState() => _UserProfileWidgetState();
@@ -60,7 +60,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                 height: 25.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),

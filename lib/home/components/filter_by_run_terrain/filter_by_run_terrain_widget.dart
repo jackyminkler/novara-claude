@@ -1,5 +1,5 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -91,78 +91,65 @@ class _FilterByRunTerrainWidgetState extends State<FilterByRunTerrainWidget> {
                     ),
               ),
             ),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    height: 200.0,
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Builder(
-                        builder: (context) {
-                          final listRunTerrain =
-                              FFAppConstants.RunTerrainOptions.toList();
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 0.0),
+                    child: Builder(
+                      builder: (context) {
+                        final listRunTerrain =
+                            FFAppConstants.RunTerrainOptions.toList();
 
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: listRunTerrain.length,
-                            itemBuilder: (context, listRunTerrainIndex) {
-                              final listRunTerrainItem =
-                                  listRunTerrain[listRunTerrainIndex];
-                              return InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'FILTER_BY_RUN_TERRAIN_Row_8d81tve4_ON_TA');
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listRunTerrain.length,
+                          itemBuilder: (context, listRunTerrainIndex) {
+                            final listRunTerrainItem =
+                                listRunTerrain[listRunTerrainIndex];
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'FILTER_BY_RUN_TERRAIN_Row_8d81tve4_ON_TA');
+                                logFirebaseEvent('Row_update_app_state');
+                                FFAppState().SelectedRunTerrainHomeFilter =
+                                    listRunTerrainItem;
+                                FFAppState().update(() {});
+                                if (FFAppState().updater) {
                                   logFirebaseEvent('Row_update_app_state');
-                                  FFAppState().SelectedRunTerrainHomeFilter =
-                                      listRunTerrainItem;
+                                  FFAppState().updater = false;
                                   FFAppState().update(() {});
-                                  if (FFAppState().updater) {
-                                    logFirebaseEvent('Row_update_app_state');
-                                    FFAppState().updater = false;
-                                    safeSetState(() {});
-                                  } else {
-                                    logFirebaseEvent('Row_update_app_state');
-                                    FFAppState().updater = true;
-                                    safeSetState(() {});
-                                  }
+                                } else {
+                                  logFirebaseEvent('Row_update_app_state');
+                                  FFAppState().updater = true;
+                                  FFAppState().update(() {});
+                                }
 
-                                  logFirebaseEvent(
-                                      'Row_close_dialog_drawer_etc');
-                                  Navigator.pop(context);
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 14.0, 0.0, 14.0),
-                                      child: Text(
-                                        listRunTerrainItem,
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              font: GoogleFonts.rubik(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontStyle,
-                                              ),
-                                              letterSpacing: 0.0,
+                                logFirebaseEvent('Row_close_dialog_drawer_etc');
+                                Navigator.pop(context);
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 14.0, 0.0, 14.0),
+                                    child: Text(
+                                      listRunTerrainItem,
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            font: GoogleFonts.rubik(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -172,28 +159,40 @@ class _FilterByRunTerrainWidgetState extends State<FilterByRunTerrainWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
-                                      ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
                                     ),
-                                    if (listRunTerrainItem ==
-                                        FFAppState()
-                                            .SelectedRunTerrainHomeFilter)
-                                      Icon(
-                                        FFIcons.kcheck,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
+                                  ),
+                                  if ((listRunTerrainItem ==
+                                          FFAppState()
+                                              .SelectedRunTerrainHomeFilter) ||
+                                      (FFAppState()
+                                                  .SelectedRunTerrainHomeFilter ==
+                                              ''))
+                                    Icon(
+                                      FFIcons.kcheck,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
-                ].addToEnd(SizedBox(height: 15.0)),
-              ),
+                ),
+              ].addToEnd(SizedBox(height: 15.0)),
             ),
           ],
         ),

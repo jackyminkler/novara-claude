@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '/backend/backend.dart';
+import "package:utility_functions_library_8g4bud/backend/schema/structs/index.dart"
+    as utility_functions_library_8g4bud_data_schema;
 
-import '../../flutter_flow/place.dart';
-import '../../flutter_flow/uploaded_file.dart';
+import 'package:ff_commons/flutter_flow/place.dart';
+import 'package:ff_commons/flutter_flow/uploaded_file.dart';
 
 /// SERIALIZATION HELPERS
 

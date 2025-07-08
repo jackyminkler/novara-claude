@@ -37,7 +37,7 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>novara.com</string>
+        <string>novara.social</string>
         <key>CFBundleURLSchemes</key>
         <array>
         <string>novara</string>
@@ -57,7 +57,15 @@
     <string>In order to take a picture or video, this app requires permission to access the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+	<key>PermissionGroupNotification</key>
+    <string>In order to get updates to your events, this app requires permission to send notifications.</string>
+	<key>NSCalendarsUsageDescription</key>
+    <string>In order to add events to your calendar, this app requires permission to access your calendar.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 

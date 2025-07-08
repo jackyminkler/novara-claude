@@ -1,8 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login_google_s_s_o_model.dart';
@@ -12,7 +12,7 @@ class LoginGoogleSSOWidget extends StatefulWidget {
   const LoginGoogleSSOWidget({super.key});
 
   static String routeName = 'Login-GoogleSSO';
-  static String routePath = '/loginGoogleSSO';
+  static String routePath = 'loginGoogleSSO';
 
   @override
   State<LoginGoogleSSOWidget> createState() => _LoginGoogleSSOWidgetState();
@@ -146,6 +146,9 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
                   if (user == null) {
                     return;
                   }
+                  logFirebaseEvent('Container_update_app_state');
+                  FFAppState().Token = currentJwtToken;
+                  FFAppState().update(() {});
                   logFirebaseEvent('Container_backend_call');
                   _model.existingUserDoc =
                       await UsersRecord.getDocumentOnce(currentUserReference!);

@@ -1,9 +1,9 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'walkthrough_model.dart';
@@ -13,7 +13,7 @@ class WalkthroughWidget extends StatefulWidget {
   const WalkthroughWidget({super.key});
 
   static String routeName = 'Walkthrough';
-  static String routePath = '/walkthrough';
+  static String routePath = 'walkthrough';
 
   @override
   State<WalkthroughWidget> createState() => _WalkthroughWidgetState();
@@ -283,9 +283,9 @@ class _WalkthroughWidgetState extends State<WalkthroughWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 15.0, 20.0, 0.0),
+                                          30.0, 15.0, 30.0, 0.0),
                                       child: Text(
-                                        'Effortlessly RSVP to runs, manage your upcoming runs, and enjoy a sense of accountability with new friends or old.',
+                                        'Effortlessly RSVP or create your own runs to enjoy a sense of accountability with new friends or old.',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
