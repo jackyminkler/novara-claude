@@ -65,6 +65,7 @@ abstract class FlutterFlowTheme {
   late Color gradientTeal;
   late Color gradientPurple;
   late Color iconSecondary;
+  late Color coreYellow;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -152,9 +153,9 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF00A1E7);
+  late Color primary = const Color(0xFFF72585);
   late Color secondary = const Color(0x2300A1E7);
-  late Color tertiary = const Color(0xFF6572F2);
+  late Color tertiary = const Color(0xFF7900FF);
   late Color alternate = const Color(0x196572F2);
   late Color primaryText = const Color(0xFF222C31);
   late Color secondaryText = const Color(0xFF868686);
@@ -177,7 +178,8 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color white2 = const Color(0xFFFFFFFF);
   late Color gradientTeal = const Color(0xFF5FBAB1);
   late Color gradientPurple = const Color(0xFF5848EF);
-  late Color iconSecondary = const Color(0x7E4B39EF);
+  late Color iconSecondary = const Color(0xFF9683F6);
+  late Color coreYellow = const Color(0xFFFFC23C);
 }
 
 abstract class Typography {
@@ -348,9 +350,9 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF00A1E7);
+  late Color primary = const Color(0xFFF72585);
   late Color secondary = const Color(0x2700A1E7);
-  late Color tertiary = const Color(0xFF6572F2);
+  late Color tertiary = const Color(0xFF7900FF);
   late Color alternate = const Color(0x216572F2);
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFF889BAF);
@@ -373,7 +375,8 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color white2 = const Color(0xFF29333D);
   late Color gradientTeal = const Color(0xFF5FBAB1);
   late Color gradientPurple = const Color(0xFF5848EF);
-  late Color iconSecondary = const Color(0xFF26BBEF);
+  late Color iconSecondary = const Color(0xFF9683F6);
+  late Color coreYellow = const Color(0xFF936B7E);
 }
 
 extension TextStyleHelper on TextStyle {

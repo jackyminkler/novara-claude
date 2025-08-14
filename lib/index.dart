@@ -12,7 +12,6 @@ export '/activities/edit_activity/edit_activity_widget.dart'
     show EditActivityWidget;
 export '/activities/create_activity/create_activity_widget.dart'
     show CreateActivityWidget;
-export '/profile/my_profile/my_profile_widget.dart' show MyProfileWidget;
 export '/profile/my_activities/my_activities_widget.dart'
     show MyActivitiesWidget;
 export '/activities/activity_details/activity_details_widget.dart'
@@ -25,3 +24,4 @@ export '/profile/privacy_policy/privacy_policy_widget.dart'
     show PrivacyPolicyWidget;
 export '/profile/terms_conditions/terms_conditions_widget.dart'
     show TermsConditionsWidget;
+export '/profile/my_profile/my_profile_widget.dart' show MyProfileWidget;

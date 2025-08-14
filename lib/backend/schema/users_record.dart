@@ -66,6 +66,11 @@ class UsersRecord extends FirestoreRecord {
   String get prefDistance => _prefDistance ?? '';
   bool hasPrefDistance() => _prefDistance != null;
 
+  // "userTimezone" field.
+  String? _userTimezone;
+  String get userTimezone => _userTimezone ?? '';
+  bool hasUserTimezone() => _userTimezone != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _location = snapshotData['location'] as String?;
@@ -77,6 +82,7 @@ class UsersRecord extends FirestoreRecord {
     _email = snapshotData['email'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _prefDistance = snapshotData['pref_distance'] as String?;
+    _userTimezone = snapshotData['userTimezone'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -123,6 +129,7 @@ Map<String, dynamic> createUsersRecordData({
   String? email,
   String? phoneNumber,
   String? prefDistance,
+  String? userTimezone,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +143,7 @@ Map<String, dynamic> createUsersRecordData({
       'email': email,
       'phone_number': phoneNumber,
       'pref_distance': prefDistance,
+      'userTimezone': userTimezone,
     }.withoutNulls,
   );
 
@@ -156,7 +164,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.uid == e2?.uid &&
         e1?.email == e2?.email &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.prefDistance == e2?.prefDistance;
+        e1?.prefDistance == e2?.prefDistance &&
+        e1?.userTimezone == e2?.userTimezone;
   }
 
   @override
@@ -170,7 +179,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.uid,
         e?.email,
         e?.phoneNumber,
-        e?.prefDistance
+        e?.prefDistance,
+        e?.userTimezone
       ]);
 
   @override

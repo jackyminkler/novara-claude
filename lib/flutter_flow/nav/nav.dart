@@ -165,18 +165,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
             ),
           ),
           FFRoute(
-            name: MyProfileWidget.routeName,
-            path: MyProfileWidget.routePath,
-            builder: (context, params) => MyProfileWidget(
-              selectedUserRef: params.getParam(
-                'selectedUserRef',
-                ParamType.DocumentReference,
-                isList: false,
-                collectionNamePath: ['users'],
-              ),
-            ),
-          ),
-          FFRoute(
             name: MyActivitiesWidget.routeName,
             path: MyActivitiesWidget.routePath,
             builder: (context, params) => MyActivitiesWidget(
@@ -224,6 +212,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
             name: TermsConditionsWidget.routeName,
             path: TermsConditionsWidget.routePath,
             builder: (context, params) => TermsConditionsWidget(),
+          ),
+          FFRoute(
+            name: MyProfileWidget.routeName,
+            path: MyProfileWidget.routePath,
+            builder: (context, params) => MyProfileWidget(
+              selectedUserRef: params.getParam(
+                'selectedUserRef',
+                ParamType.DocumentReference,
+                isList: false,
+                collectionNamePath: ['users'],
+              ),
+              selectedNavTab: params.getParam(
+                'selectedNavTab',
+                ParamType.int,
+              ),
+            ),
           ),
           FFRoute(
             name: $utility_functions_library_8g4bud.HomePageWidget.routeName,

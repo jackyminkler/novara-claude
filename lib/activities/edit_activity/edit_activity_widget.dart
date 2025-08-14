@@ -8,6 +8,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'edit_activity_model.dart';
 export 'edit_activity_model.dart';
@@ -303,6 +304,14 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
+                                        maxLength: 60,
+                                        maxLengthEnforcement:
+                                            MaxLengthEnforcement.enforced,
+                                        buildCounter: (context,
+                                                {required currentLength,
+                                                required isFocused,
+                                                maxLength}) =>
+                                            null,
                                         cursorColor:
                                             FlutterFlowTheme.of(context)
                                                 .primaryText,
@@ -824,7 +833,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                           selectedChipStyle: ChipStyle(
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .tertiary,
+                                                    .primary,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelSmall
@@ -1016,7 +1025,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                           selectedChipStyle: ChipStyle(
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .tertiary,
+                                                    .primary,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelSmall
@@ -1128,7 +1137,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Text(
-                                    'Distance',
+                                    'Distance (miles)',
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -1167,7 +1176,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         isDense: true,
-                                        hintText: '(i.e. 3-5 miles)',
+                                        hintText: 'Number or range',
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -1282,7 +1291,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Text(
-                                    'Average Pace',
+                                    'Average Pace (per mile)',
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -1320,7 +1329,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         isDense: true,
-                                        hintText: '(i.e. 9-9:30/mi)',
+                                        hintText: 'XX:XX',
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -1411,6 +1420,14 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                                     .titleSmall
                                                     .fontStyle,
                                           ),
+                                      maxLength: 5,
+                                      maxLengthEnforcement:
+                                          MaxLengthEnforcement.enforced,
+                                      buildCounter: (context,
+                                              {required currentLength,
+                                              required isFocused,
+                                              maxLength}) =>
+                                          null,
                                       cursorColor: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       validator: _model
@@ -1431,7 +1448,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 30.0, 0.0, 0.0),
                                     child: Text(
-                                      'Details',
+                                      'More Details',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -1580,6 +1597,14 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                                           .fontStyle,
                                                 ),
                                             maxLines: null,
+                                            maxLength: 1000,
+                                            maxLengthEnforcement:
+                                                MaxLengthEnforcement.enforced,
+                                            buildCounter: (context,
+                                                    {required currentLength,
+                                                    required isFocused,
+                                                    maxLength}) =>
+                                                null,
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
@@ -1647,7 +1672,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                 16.0, 0.0, 16.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(

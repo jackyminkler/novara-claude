@@ -139,12 +139,6 @@ final parametersBuilderMap =
           'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
         },
       ),
-  'MyProfile': (data) async => ParameterData(
-        allParams: {
-          'selectedUserRef':
-              getParameter<DocumentReference>(data, 'selectedUserRef'),
-        },
-      ),
   'MyActivities': (data) async => ParameterData(
         allParams: {
           'selectedUserRef':
@@ -161,6 +155,13 @@ final parametersBuilderMap =
   'HelpCenter': ParameterData.none(),
   'PrivacyPolicy': ParameterData.none(),
   'TermsConditions': ParameterData.none(),
+  'MyProfile': (data) async => ParameterData(
+        allParams: {
+          'selectedUserRef':
+              getParameter<DocumentReference>(data, 'selectedUserRef'),
+          'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

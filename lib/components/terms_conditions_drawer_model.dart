@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'activity_card_copy_widget.dart' show ActivityCardCopyWidget;
+import 'terms_conditions_drawer_widget.dart' show TermsConditionsDrawerWidget;
 import 'package:flutter/material.dart';
 
-class ActivityCardCopyModel extends FlutterFlowModel<ActivityCardCopyWidget> {
+class TermsConditionsDrawerModel
+    extends FlutterFlowModel<TermsConditionsDrawerWidget> {
   @override
   void initState(BuildContext context) {}
 

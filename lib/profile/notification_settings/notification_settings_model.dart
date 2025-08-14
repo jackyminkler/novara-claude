@@ -6,20 +6,20 @@ class NotificationSettingsModel
     extends FlutterFlowModel<NotificationSettingsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
-  // State field(s) for Switch widget.
-  bool? switchValue3;
-  // State field(s) for Switch widget.
-  bool? switchValue4;
-  // State field(s) for Switch widget.
-  bool? switchValue5;
-  // State field(s) for Switch widget.
-  bool? switchValue6;
-  // State field(s) for Switch widget.
-  bool? switchValue7;
+  // State field(s) for Switch-all widget.
+  bool? switchAllValue;
+  // State field(s) for Switch-joins widget.
+  bool? switchJoinsValue;
+  // State field(s) for Switch-leaves widget.
+  bool? switchLeavesValue;
+  // State field(s) for Switch-commentHosting widget.
+  bool? switchCommentHostingValue;
+  // State field(s) for Switch-commentAttending widget.
+  bool? switchCommentAttendingValue;
+  // State field(s) for Switch-cancelled widget.
+  bool? switchCancelledValue;
+  // State field(s) for Switch-reminders widget.
+  bool? switchRemindersValue;
 
   @override
   void initState(BuildContext context) {}
