@@ -16,7 +16,7 @@ class CreateEventCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Create Event',
       apiUrl:
-          'https://www.googleapis.com/calendar/v3/calendars/calendarId/events',
+          'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/quickAdd',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer ${authToken}',

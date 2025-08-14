@@ -88,8 +88,8 @@ class _HomeWidgetState extends State<HomeWidget> {
             FocusScope.of(context).unfocus();
             FocusManager.instance.primaryFocus?.unfocus();
           },
-          child: WillPopScope(
-            onWillPop: () async => false,
+          child: PopScope(
+            canPop: false,
             child: Scaffold(
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -133,6 +133,213 @@ class _HomeWidgetState extends State<HomeWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 10.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_LcationButton_ON_TAP');
+                                      logFirebaseEvent(
+                                          'LcationButton_bottom_sheet');
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        barrierColor:
+                                            FlutterFlowTheme.of(context).barier,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              FocusScope.of(context).unfocus();
+                                              FocusManager.instance.primaryFocus
+                                                  ?.unfocus();
+                                            },
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: FilterByLocationWidget(),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
+                                    child: Container(
+                                      height: 40.0,
+                                      decoration: BoxDecoration(
+                                        color: valueOrDefault<Color>(
+                                          FFAppState()
+                                                          .SelectedLocation ==
+                                                      ''
+                                              ? (Theme.of(context).brightness ==
+                                                      Brightness.light
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .white2
+                                                  : FlutterFlowTheme.of(context)
+                                                      .accent1)
+                                              : FlutterFlowTheme.of(context)
+                                                  .tertiary,
+                                          FlutterFlowTheme.of(context).accent1,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 3.0,
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.light
+                                                    ? Color(0x386572F2)
+                                                    : Color(0x00000000),
+                                            offset: Offset(
+                                              0.0,
+                                              1.0,
+                                            ),
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 10.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      12.0, 0.0, 0.0, 0.0),
+                                              child: Icon(
+                                                Icons.location_pin,
+                                                color: valueOrDefault<Color>(
+                                                  FFAppState()
+                                                                  .SelectedLocation !=
+                                                              ''
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .info
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                                ),
+                                                size: 18.0,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 7.0, 5.0, 7.0),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  FFAppState()
+                                                                  .SelectedLocation !=
+                                                              ''
+                                                      ? FFAppState()
+                                                          .SelectedLocation
+                                                      : 'Location',
+                                                  'Location',
+                                                ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      font: GoogleFonts.rubik(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color:
+                                                          valueOrDefault<Color>(
+                                                        FFAppState()
+                                                                        .SelectedLocation !=
+                                                                    ''
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .info
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryText,
+                                                      ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                            if (FFAppState().SelectedLocation !=
+                                                    '')
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 5.0, 0.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'HOME_PAGE_Icon_bisitn3k_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Icon_update_app_state');
+                                                    FFAppState()
+                                                        .SelectedLocation = '';
+                                                    safeSetState(() {});
+                                                  },
+                                                  child: Icon(
+                                                    FFIcons.kxClose,
+                                                    color:
+                                                        valueOrDefault<Color>(
+                                                      FFAppState()
+                                                                      .SelectedLocation !=
+                                                                  ''
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                    ),
+                                                    size: 18.0,
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 10.0),
@@ -528,213 +735,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         valueOrDefault<Color>(
                                                       FFAppState()
                                                                       .SelectedRunTerrainHomeFilter !=
-                                                                  ''
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .info
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                    ),
-                                                    size: 18.0,
-                                                  ),
-                                                ),
-                                              ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 10.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'HOME_PAGE_LcationButton_ON_TAP');
-                                      logFirebaseEvent(
-                                          'LcationButton_bottom_sheet');
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        barrierColor:
-                                            FlutterFlowTheme.of(context).barier,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              FocusScope.of(context).unfocus();
-                                              FocusManager.instance.primaryFocus
-                                                  ?.unfocus();
-                                            },
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: FilterByLocationWidget(),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                    child: Container(
-                                      height: 40.0,
-                                      decoration: BoxDecoration(
-                                        color: valueOrDefault<Color>(
-                                          FFAppState()
-                                                          .SelectedLocation ==
-                                                      ''
-                                              ? (Theme.of(context).brightness ==
-                                                      Brightness.light
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .white2
-                                                  : FlutterFlowTheme.of(context)
-                                                      .accent1)
-                                              : FlutterFlowTheme.of(context)
-                                                  .tertiary,
-                                          FlutterFlowTheme.of(context).accent1,
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 3.0,
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.light
-                                                    ? Color(0x386572F2)
-                                                    : Color(0x00000000),
-                                            offset: Offset(
-                                              0.0,
-                                              1.0,
-                                            ),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 10.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 0.0, 0.0, 0.0),
-                                              child: Icon(
-                                                Icons.location_pin,
-                                                color: valueOrDefault<Color>(
-                                                  FFAppState()
-                                                                  .SelectedLocation !=
-                                                              ''
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .info
-                                                      : FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                                ),
-                                                size: 18.0,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 7.0, 5.0, 7.0),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  FFAppState()
-                                                                  .SelectedLocation !=
-                                                              ''
-                                                      ? FFAppState()
-                                                          .SelectedLocation
-                                                      : 'Location',
-                                                  'Location',
-                                                ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font: GoogleFonts.rubik(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          valueOrDefault<Color>(
-                                                        FFAppState()
-                                                                        .SelectedLocation !=
-                                                                    ''
-                                                            ? FlutterFlowTheme
-                                                                    .of(context)
-                                                                .info
-                                                            : FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                            ),
-                                            if (FFAppState().SelectedLocation !=
-                                                    '')
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        5.0, 0.0, 5.0, 0.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    logFirebaseEvent(
-                                                        'HOME_PAGE_Icon_bisitn3k_ON_TAP');
-                                                    logFirebaseEvent(
-                                                        'Icon_update_app_state');
-                                                    FFAppState()
-                                                        .SelectedLocation = '';
-                                                    safeSetState(() {});
-                                                  },
-                                                  child: Icon(
-                                                    FFIcons.kxClose,
-                                                    color:
-                                                        valueOrDefault<Color>(
-                                                      FFAppState()
-                                                                      .SelectedLocation !=
                                                                   ''
                                                           ? FlutterFlowTheme.of(
                                                                   context)

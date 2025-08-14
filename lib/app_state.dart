@@ -19,7 +19,42 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
+      _SelectedLocation =
+          prefs.getString('ff_SelectedLocation') ?? _SelectedLocation;
+    });
+    _safeInit(() {
       _Token = prefs.getString('ff_Token') ?? _Token;
+    });
+    _safeInit(() {
+      _PNparticipantJoins =
+          prefs.getBool('ff_PNparticipantJoins') ?? _PNparticipantJoins;
+    });
+    _safeInit(() {
+      _PNparticipantLeaves =
+          prefs.getBool('ff_PNparticipantLeaves') ?? _PNparticipantLeaves;
+    });
+    _safeInit(() {
+      _PNnewCommentsHosting =
+          prefs.getBool('ff_PNnewCommentsHosting') ?? _PNnewCommentsHosting;
+    });
+    _safeInit(() {
+      _PNnewCommentAttending =
+          prefs.getBool('ff_PNnewCommentAttending') ?? _PNnewCommentAttending;
+    });
+    _safeInit(() {
+      _PNeventCancelled =
+          prefs.getBool('ff_PNeventCancelled') ?? _PNeventCancelled;
+    });
+    _safeInit(() {
+      _PNeventReminders =
+          prefs.getBool('ff_PNeventReminders') ?? _PNeventReminders;
+    });
+    _safeInit(() {
+      _PNappUpdates = prefs.getBool('ff_PNappUpdates') ?? _PNappUpdates;
+    });
+    _safeInit(() {
+      _NotificationsOn =
+          prefs.getBool('ff_NotificationsOn') ?? _NotificationsOn;
     });
   }
 
@@ -88,6 +123,7 @@ class FFAppState extends ChangeNotifier {
   String get SelectedLocation => _SelectedLocation;
   set SelectedLocation(String value) {
     _SelectedLocation = value;
+    prefs.setString('ff_SelectedLocation', value);
   }
 
   String _SelectedRunTypeHomeFilter = '';
@@ -219,6 +255,66 @@ class FFAppState extends ChangeNotifier {
   set Token(String value) {
     _Token = value;
     prefs.setString('ff_Token', value);
+  }
+
+  /// New participant joins your event
+  bool _PNparticipantJoins = true;
+  bool get PNparticipantJoins => _PNparticipantJoins;
+  set PNparticipantJoins(bool value) {
+    _PNparticipantJoins = value;
+    prefs.setBool('ff_PNparticipantJoins', value);
+  }
+
+  /// Participant leaves your event
+  bool _PNparticipantLeaves = true;
+  bool get PNparticipantLeaves => _PNparticipantLeaves;
+  set PNparticipantLeaves(bool value) {
+    _PNparticipantLeaves = value;
+    prefs.setBool('ff_PNparticipantLeaves', value);
+  }
+
+  bool _PNnewCommentsHosting = true;
+  bool get PNnewCommentsHosting => _PNnewCommentsHosting;
+  set PNnewCommentsHosting(bool value) {
+    _PNnewCommentsHosting = value;
+    prefs.setBool('ff_PNnewCommentsHosting', value);
+  }
+
+  /// New comments on events you're attending
+  bool _PNnewCommentAttending = true;
+  bool get PNnewCommentAttending => _PNnewCommentAttending;
+  set PNnewCommentAttending(bool value) {
+    _PNnewCommentAttending = value;
+    prefs.setBool('ff_PNnewCommentAttending', value);
+  }
+
+  /// Upcoming event is cancelled
+  bool _PNeventCancelled = true;
+  bool get PNeventCancelled => _PNeventCancelled;
+  set PNeventCancelled(bool value) {
+    _PNeventCancelled = value;
+    prefs.setBool('ff_PNeventCancelled', value);
+  }
+
+  bool _PNeventReminders = true;
+  bool get PNeventReminders => _PNeventReminders;
+  set PNeventReminders(bool value) {
+    _PNeventReminders = value;
+    prefs.setBool('ff_PNeventReminders', value);
+  }
+
+  bool _PNappUpdates = true;
+  bool get PNappUpdates => _PNappUpdates;
+  set PNappUpdates(bool value) {
+    _PNappUpdates = value;
+    prefs.setBool('ff_PNappUpdates', value);
+  }
+
+  bool _NotificationsOn = false;
+  bool get NotificationsOn => _NotificationsOn;
+  set NotificationsOn(bool value) {
+    _NotificationsOn = value;
+    prefs.setBool('ff_NotificationsOn', value);
   }
 }
 

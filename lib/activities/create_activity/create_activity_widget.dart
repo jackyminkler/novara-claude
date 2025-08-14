@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'create_activity_model.dart';
@@ -291,6 +292,14 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                         .titleSmall
                                                         .fontStyle,
                                               ),
+                                          maxLength: 60,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
+                                          buildCounter: (context,
+                                                  {required currentLength,
+                                                  required isFocused,
+                                                  maxLength}) =>
+                                              null,
                                           cursorColor:
                                               FlutterFlowTheme.of(context)
                                                   .primaryText,
@@ -831,7 +840,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                             selectedChipStyle: ChipStyle(
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .primary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelSmall
@@ -1021,7 +1030,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                             selectedChipStyle: ChipStyle(
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .primary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelSmall
@@ -1419,6 +1428,14 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
+                                        maxLength: 5,
+                                        maxLengthEnforcement:
+                                            MaxLengthEnforcement.enforced,
+                                        buildCounter: (context,
+                                                {required currentLength,
+                                                required isFocused,
+                                                maxLength}) =>
+                                            null,
                                         cursorColor:
                                             FlutterFlowTheme.of(context)
                                                 .primaryText,
@@ -1595,6 +1612,14 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                                 .fontStyle,
                                                       ),
                                               maxLines: null,
+                                              maxLength: 1000,
+                                              maxLengthEnforcement:
+                                                  MaxLengthEnforcement.enforced,
+                                              buildCounter: (context,
+                                                      {required currentLength,
+                                                      required isFocused,
+                                                      maxLength}) =>
+                                                  null,
                                               cursorColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
@@ -1706,7 +1731,8 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(

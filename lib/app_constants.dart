@@ -22,6 +22,11 @@ abstract class FFAppConstants {
     'Dolores Park',
     'Embarcadero',
     'Williamsburg',
-    'Menlo Park'
+    'Menlo Park',
+    'Palo Alto',
+    'Oakland',
+    'Marin',
+    'Sunset District',
+    'Other (see details)'
   ];
 }

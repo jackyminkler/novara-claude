@@ -168,7 +168,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget>
                                         .titleMedium
                                         .fontStyle,
                                   ),
-                          indicatorColor: FlutterFlowTheme.of(context).primary,
+                          indicatorColor: FlutterFlowTheme.of(context).tertiary,
                           tabs: [
                             Tab(
                               text: 'Upcoming',

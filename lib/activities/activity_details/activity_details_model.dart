@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -18,8 +17,6 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   TextEditingController? commentTextFieldTextController;
   String? Function(BuildContext, String?)?
       commentTextFieldTextControllerValidator;
-  // Stores action output result for [Backend Call - API (Create Event)] action in IconButton widget.
-  ApiCallResponse? eventCreation;
 
   @override
   void initState(BuildContext context) {}

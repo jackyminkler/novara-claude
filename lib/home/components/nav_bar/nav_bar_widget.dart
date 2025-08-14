@@ -186,8 +186,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
+                              transitionType: PageTransitionType.bottomToTop,
                             ),
                           },
                         );

@@ -144,7 +144,7 @@ class _AboutWidgetState extends State<AboutWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  'Novara helps people do more of what they love—starting with running—by matching them to nearby activities and trusted micro-networks, then seamlessly planning every interest into their social calendar.',
+                  'Novara helps people do more of what they love, starting with running, by matching them to nearby activities and trusted micro-networks, then seamlessly planning every interest into their social calendar.',
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).titleSmall.override(
                         font: GoogleFonts.rubik(
@@ -222,7 +222,7 @@ class _AboutWidgetState extends State<AboutWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  'Hi, I’m Jacky—runner, long-time product manager, and recent San Francisco transplant. After countless “We should hang out sometime” messages that never turned into real plans, I set out to close the gap between intention and action. I also struggled to find partners for adventures I loved but didn’t feel safe tackling alone, such as sunrise hikes or mountain biking off the beaten path. Novara is the tool I wished existed: one place to find motivated partners, lock in a time that actually works, and build genuine friendships through shared activities. I can’t wait to see where it takes you, too.',
+                  'Hi, I’m Jacky! I\'m a runner, long-time product manager, and recent San Francisco transplant. After countless “We should hang out sometime” messages that never turned into real plans, I set out to close the gap between intention and action. I also struggled to find partners for adventures I loved but didn’t feel safe tackling alone, such as sunrise hikes or mountain biking off the beaten path. Novara is the tool I wished existed: one place to find motivated partners, lock in a time that actually works, and build genuine friendships through shared activities. I can’t wait to see where it takes you, too.',
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).titleSmall.override(
                         font: GoogleFonts.rubik(
@@ -290,7 +290,7 @@ class _AboutWidgetState extends State<AboutWidget> {
               ),
             ]
                 .divide(SizedBox(height: 15.0))
-                .addToStart(SizedBox(height: 40.0))
+                .addToStart(SizedBox(height: 20.0))
                 .addToEnd(SizedBox(height: 40.0)),
           ),
         ),

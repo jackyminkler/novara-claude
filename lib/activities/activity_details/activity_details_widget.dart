@@ -1,18 +1,18 @@
-import '/activities/share_activity/share_activity_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'activity_details_model.dart';
 export 'activity_details_model.dart';
 
@@ -946,32 +946,48 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                             ],
                           ),
                         ),
-                        Flexible(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                15.0, 25.0, 15.0, 0.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 15.0, 15.0, 16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: Text(
-                                        'Details',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              font: GoogleFonts.rubik(
+                        if (activityDetailsActivitiesRecord.description != '')
+                          Flexible(
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 25.0, 15.0, 0.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 15.0, 15.0, 16.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Text(
+                                          'Details',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                font: GoogleFonts.rubik(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -981,34 +997,34 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                         .labelMedium
                                                         .fontStyle,
                                               ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontStyle,
-                                            ),
+                                        ),
                                       ),
-                                    ),
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Text(
-                                          activityDetailsActivitiesRecord
-                                              .description,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleSmall
-                                              .override(
-                                                font: GoogleFonts.rubik(
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            activityDetailsActivitiesRecord
+                                                .description,
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  font: GoogleFonts.rubik(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontStyle,
+                                                  ),
+                                                  letterSpacing: 0.0,
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -1020,25 +1036,15 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                           .titleSmall
                                                           .fontStyle,
                                                 ),
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontStyle,
-                                              ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               15.0, 15.0, 15.0, 0.0),
@@ -1457,7 +1463,8 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                 .contains(currentUserReference))
                           Flexible(
                             child: Padding(
-                              padding: EdgeInsets.all(15.0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 15.0, 15.0, 0.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -1954,6 +1961,15 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                       ),
                                                   maxLines: 8,
                                                   minLines: 4,
+                                                  maxLength: 300,
+                                                  maxLengthEnforcement:
+                                                      MaxLengthEnforcement
+                                                          .enforced,
+                                                  buildCounter: (context,
+                                                          {required currentLength,
+                                                          required isFocused,
+                                                          maxLength}) =>
+                                                      null,
                                                   cursorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -2003,6 +2019,51 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                       .commentTextFieldTextController
                                                                       ?.clear();
                                                                 });
+                                                                if (FFAppState()
+                                                                        .PNnewCommentsHosting ==
+                                                                    true) {
+                                                                  logFirebaseEvent(
+                                                                      'Button_trigger_push_notification');
+                                                                  triggerPushNotification(
+                                                                    notificationTitle:
+                                                                        'You have a new comment',
+                                                                    notificationText:
+                                                                        '',
+                                                                    userRefs: [
+                                                                      activityDetailsActivitiesRecord
+                                                                          .creatorRef!
+                                                                    ],
+                                                                    initialPageName:
+                                                                        'ActivityDetails',
+                                                                    parameterData: {
+                                                                      'activityRef':
+                                                                          widget
+                                                                              .activityRef,
+                                                                    },
+                                                                  );
+                                                                }
+                                                                if (FFAppState()
+                                                                        .PNnewCommentAttending ==
+                                                                    true) {
+                                                                  logFirebaseEvent(
+                                                                      'Button_trigger_push_notification');
+                                                                  triggerPushNotification(
+                                                                    notificationTitle:
+                                                                        'There\'s a new comment on an upcoming event',
+                                                                    notificationText:
+                                                                        '',
+                                                                    userRefs: activityDetailsActivitiesRecord
+                                                                        .participants
+                                                                        .toList(),
+                                                                    initialPageName:
+                                                                        'ActivityDetails',
+                                                                    parameterData: {
+                                                                      'activityRef':
+                                                                          widget
+                                                                              .activityRef,
+                                                                    },
+                                                                  );
+                                                                }
                                                               },
                                                     text: 'Send',
                                                     options: FFButtonOptions(
@@ -2088,7 +2149,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                           ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 0.0, 15.0, 0.0),
+                              15.0, 15.0, 15.0, 0.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
@@ -2147,37 +2208,40 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         onPressed: () async {
                                           logFirebaseEvent(
                                               'ACTIVITY_DETAILS_PAGE_SHARE_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    FocusScope.of(dialogContext)
-                                                        .unfocus();
-                                                    FocusManager
-                                                        .instance.primaryFocus
-                                                        ?.unfocus();
-                                                  },
-                                                  child: ShareActivityWidget(
-                                                    activityRef:
-                                                        activityDetailsActivitiesRecord
-                                                            .reference,
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
+                                          if (isiOS || isAndroid) {
+                                            logFirebaseEvent('Button_share');
+                                            await Share.share(
+                                              'https://app.novara.social${getCurrentRoute(context)}',
+                                              sharePositionOrigin:
+                                                  getWidgetBoundingBox(context),
+                                            );
+                                          } else {
+                                            logFirebaseEvent(
+                                                'Button_copy_to_clipboard');
+                                            await Clipboard.setData(ClipboardData(
+                                                text:
+                                                    'https://app.novara.social${getCurrentRoute(context)}'));
+                                            logFirebaseEvent(
+                                                'Button_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Link Copied!'),
+                                                  content: Text(
+                                                      'https://app.novara.social${getCurrentRoute(context)}'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
                                         },
                                         text: 'Share ',
                                         icon: Icon(
@@ -2240,141 +2304,6 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 0.0, 15.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 14.0, 14.0, 14.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 2.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Add to Calendar',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleSmall
-                                                .override(
-                                                  font: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      fillColor:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      icon: Icon(
-                                        FFIcons.kcalendarPlus01,
-                                        color: Colors.white,
-                                        size: 20.0,
-                                      ),
-                                      onPressed: () async {
-                                        logFirebaseEvent(
-                                            'ACTIVITY_DETAILS_calendarPlus01_ICN_ON_T');
-                                        logFirebaseEvent(
-                                            'IconButton_backend_call');
-                                        unawaited(
-                                          () async {
-                                            _model.eventCreation =
-                                                await CreateEventCall.call(
-                                              authToken: FFAppState().Token,
-                                            );
-                                          }(),
-                                        );
-                                        if ((_model.eventCreation?.succeeded ??
-                                            true)) {
-                                          logFirebaseEvent(
-                                              'IconButton_show_snack_bar');
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Event was added to your calendar.',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-                                        } else {
-                                          logFirebaseEvent(
-                                              'IconButton_show_snack_bar');
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Adding to your calendar was unsuccessful.',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-                                        }
-
-                                        safeSetState(() {});
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
                       ].addToEnd(SizedBox(height: 20.0)),
                     ),
                   ),
@@ -2399,7 +2328,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 15.0, 15.0, 15.0),
+                              15.0, 15.0, 15.0, 30.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -2442,6 +2371,25 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                     if (confirmDialogResponse) {
                                       logFirebaseEvent('Button_backend_call');
                                       await widget.activityRef!.delete();
+                                      if (FFAppState().PNeventCancelled ==
+                                          true) {
+                                        logFirebaseEvent(
+                                            'Button_trigger_push_notification');
+                                        triggerPushNotification(
+                                          notificationTitle:
+                                              'Your upcoming event has been cancelled',
+                                          notificationText: '',
+                                          notificationSound: 'default',
+                                          userRefs:
+                                              activityDetailsActivitiesRecord
+                                                  .participants
+                                                  .toList(),
+                                          initialPageName: 'ActivityDetails',
+                                          parameterData: {
+                                            'activityRef': widget.activityRef,
+                                          },
+                                        );
+                                      }
                                     }
                                   },
                                   text: 'Cancel Activity',
@@ -2452,7 +2400,8 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).error,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -2503,7 +2452,8 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -2548,7 +2498,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                 .contains(currentUserReference))
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 15.0, 15.0, 15.0),
+                                    15.0, 15.0, 15.0, 30.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -2575,6 +2525,27 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                               'Button_update_page_state');
 
                                           safeSetState(() {});
+                                          if (FFAppState().PNparticipantJoins ==
+                                              true) {
+                                            logFirebaseEvent(
+                                                'Button_trigger_push_notification');
+                                            triggerPushNotification(
+                                              notificationTitle:
+                                                  'Someone new joined your event!',
+                                              notificationText: '',
+                                              notificationSound: 'default',
+                                              userRefs: [
+                                                activityDetailsActivitiesRecord
+                                                    .creatorRef!
+                                              ],
+                                              initialPageName:
+                                                  'ActivityDetails',
+                                              parameterData: {
+                                                'activityRef':
+                                                    widget.activityRef,
+                                              },
+                                            );
+                                          }
                                         },
                                         text: 'I\'m Joining!',
                                         options: FFButtonOptions(
@@ -2623,7 +2594,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                 .contains(currentUserReference))
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 15.0, 15.0, 15.0),
+                                    15.0, 15.0, 15.0, 30.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -2650,6 +2621,28 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                               'Button_update_page_state');
 
                                           safeSetState(() {});
+                                          if (FFAppState()
+                                                  .PNparticipantLeaves ==
+                                              true) {
+                                            logFirebaseEvent(
+                                                'Button_trigger_push_notification');
+                                            triggerPushNotification(
+                                              notificationTitle:
+                                                  'A participant left your event',
+                                              notificationText: '',
+                                              notificationSound: 'default',
+                                              userRefs: [
+                                                activityDetailsActivitiesRecord
+                                                    .creatorRef!
+                                              ],
+                                              initialPageName:
+                                                  'ActivityDetails',
+                                              parameterData: {
+                                                'activityRef':
+                                                    widget.activityRef,
+                                              },
+                                            );
+                                          }
                                         },
                                         text: 'Can\'t make it anymore :(',
                                         options: FFButtonOptions(

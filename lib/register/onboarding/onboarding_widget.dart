@@ -3,9 +3,12 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
+import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -34,6 +37,17 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
     _model = createModel(context, () => OnboardingModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Onboarding'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('ONBOARDING_PAGE_Onboarding_ON_INIT_STATE');
+      logFirebaseEvent('Onboarding_request_permissions');
+      unawaited(
+        () async {
+          await requestPermission(notificationsPermission);
+        }(),
+      );
+    });
+
     _model.inputLocationTextController ??= TextEditingController();
     _model.inputLocationFocusNode ??= FocusNode();
 
@@ -47,12 +61,26 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
           _model.inputLocationTextController?.text = 'San Francisco, CA';
           _model.inputAvgPaceTextController?.text = '9:00';
-          _model.inputPrefDistanceTextController?.text = '3-5m';
+          _model.inputPrefDistanceTextController?.text = '3-5';
         }));
   }
 
   @override
   void dispose() {
+    // On page dispose action.
+    () async {
+      logFirebaseEvent('ONBOARDING_PAGE_Onboarding_ON_DISPOSE');
+      if (await getPermissionStatus(notificationsPermission)) {
+        logFirebaseEvent('Onboarding_update_app_state');
+        FFAppState().NotificationsOn = true;
+        FFAppState().update(() {});
+      } else {
+        logFirebaseEvent('Onboarding_update_app_state');
+        FFAppState().NotificationsOn = false;
+        FFAppState().update(() {});
+      }
+    }();
+
     _model.dispose();
 
     super.dispose();
@@ -316,7 +344,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                        20.0, 0.0, 20.0, 0.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   child: TextFormField(
@@ -473,6 +501,15 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                                   .titleSmall
                                                                   .fontStyle,
                                                         ),
+                                                    maxLength: 50,
+                                                    maxLengthEnforcement:
+                                                        MaxLengthEnforcement
+                                                            .enforced,
+                                                    buildCounter: (context,
+                                                            {required currentLength,
+                                                            required isFocused,
+                                                            maxLength}) =>
+                                                        null,
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -493,6 +530,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 SingleChildScrollView(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
                                         child: Padding(
@@ -1031,7 +1070,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Preferred Distance',
+                                                      'Preferred Distance (miles)',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1230,6 +1269,100 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                   ),
                                                 ].addToEnd(
                                                     SizedBox(height: 15.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SingleChildScrollView(
+                                      primary: false,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      20.0, 15.0, 20.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Stay Updated!',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineLarge
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .interTight(
+                                                            fontWeight:
+                                                                FontWeight.w800,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineLarge
+                                                                    .fontStyle,
+                                                          ),
+                                                          fontSize: 30.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineLarge
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 30.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Notifications will keep you up to date on critical event changes, who\'s joining, and new comments.',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .rubik(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),

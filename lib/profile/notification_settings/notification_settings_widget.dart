@@ -1,8 +1,11 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/permissions_util.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'notification_settings_model.dart';
 export 'notification_settings_model.dart';
 
@@ -30,13 +33,50 @@ class _NotificationSettingsWidgetState
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'NotificationSettings'});
-    _model.switchValue1 = true;
-    _model.switchValue2 = true;
-    _model.switchValue3 = true;
-    _model.switchValue4 = true;
-    _model.switchValue5 = true;
-    _model.switchValue6 = true;
-    _model.switchValue7 = true;
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('NOTIFICATION_SETTINGS_NotificationSettin');
+      if (await getPermissionStatus(notificationsPermission)) {
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchAllValue = true;
+        });
+      }
+      if (_model.switchAllValue!) {
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchJoinsValue = true;
+        });
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchLeavesValue = true;
+        });
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchCommentHostingValue = true;
+        });
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchCommentAttendingValue = true;
+        });
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchCancelledValue = true;
+        });
+        logFirebaseEvent('NotificationSettings_set_form_field');
+        safeSetState(() {
+          _model.switchRemindersValue = true;
+        });
+      }
+    });
+
+    _model.switchAllValue = false;
+    _model.switchJoinsValue = false;
+    _model.switchLeavesValue = false;
+    _model.switchCommentHostingValue = false;
+    _model.switchCommentAttendingValue = false;
+    _model.switchCancelledValue = false;
+    _model.switchRemindersValue = false;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -49,6 +89,8 @@ class _NotificationSettingsWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -114,7 +156,82 @@ class _NotificationSettingsWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
+                  child: Text(
+                    'Enable Notifications',
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          font: GoogleFonts.rubik(
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                  child: Switch.adaptive(
+                    value: _model.switchAllValue!,
+                    onChanged: (newValue) async {
+                      safeSetState(() => _model.switchAllValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-all_ON_TOGG');
+                        if (FFAppState().NotificationsOn == false) {
+                          logFirebaseEvent('Switch-all_request_permissions');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(notificationsPermission)
+                              ? _model.switchAllValue!
+                              : !_model.switchAllValue!) {
+                            logFirebaseEvent('Switch-all_update_app_state');
+                            FFAppState().PNparticipantJoins = true;
+                            FFAppState().PNnewCommentsHosting = true;
+                            FFAppState().PNnewCommentAttending = true;
+                            FFAppState().PNeventCancelled = true;
+                            FFAppState().PNeventReminders = true;
+                            FFAppState().PNparticipantLeaves = true;
+                            FFAppState().PNappUpdates = true;
+                            FFAppState().update(() {});
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-all_ON_TOGG');
+                        logFirebaseEvent('Switch-all_update_app_state');
+                        FFAppState().PNparticipantJoins = false;
+                        FFAppState().PNnewCommentsHosting = false;
+                        FFAppState().PNnewCommentAttending = false;
+                        FFAppState().PNeventCancelled = false;
+                        FFAppState().PNeventReminders = false;
+                        FFAppState().PNparticipantLeaves = false;
+                        FFAppState().PNappUpdates = false;
+                        FFAppState().update(() {});
+                      }
+                    },
+                    activeColor: FlutterFlowTheme.of(context).info,
+                    activeTrackColor: FlutterFlowTheme.of(context).primary,
+                    inactiveTrackColor: FlutterFlowTheme.of(context).accent2,
+                    inactiveThumbColor: FlutterFlowTheme.of(context).info,
+                  ),
+                ),
+              ],
+            ),
+            Divider(
+              thickness: 2.0,
+              color: FlutterFlowTheme.of(context).alternate,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
                   child: Text(
                     'New participant joins your event',
                     style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -138,9 +255,34 @@ class _NotificationSettingsWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                   child: Switch.adaptive(
-                    value: _model.switchValue1!,
+                    value: _model.switchJoinsValue!,
                     onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue1 = newValue);
+                      safeSetState(() => _model.switchJoinsValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-joins_ON_TO');
+                        if (await getPermissionStatus(
+                            notificationsPermission)) {
+                          logFirebaseEvent('Switch-joins_update_app_state');
+                          FFAppState().PNparticipantJoins = true;
+                        } else {
+                          logFirebaseEvent('Switch-joins_request_permissions');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(
+                              notificationsPermission)) {
+                            logFirebaseEvent('Switch-joins_update_app_state');
+                            FFAppState().PNparticipantJoins = true;
+                          } else {
+                            logFirebaseEvent('Switch-joins_update_app_state');
+                            FFAppState().PNparticipantJoins = false;
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-joins_ON_TO');
+                        logFirebaseEvent('Switch-joins_update_app_state');
+                        FFAppState().PNparticipantJoins = false;
+                      }
                     },
                     activeColor: FlutterFlowTheme.of(context).info,
                     activeTrackColor: FlutterFlowTheme.of(context).primary,
@@ -156,7 +298,7 @@ class _NotificationSettingsWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
                   child: Text(
                     'Participant leaves your event',
                     style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -180,9 +322,34 @@ class _NotificationSettingsWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                   child: Switch.adaptive(
-                    value: _model.switchValue2!,
+                    value: _model.switchLeavesValue!,
                     onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue2 = newValue);
+                      safeSetState(() => _model.switchLeavesValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-leaves_ON_T');
+                        if (await getPermissionStatus(
+                            notificationsPermission)) {
+                          logFirebaseEvent('Switch-leaves_update_app_state');
+                          FFAppState().PNparticipantLeaves = true;
+                        } else {
+                          logFirebaseEvent('Switch-leaves_request_permissions');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(
+                              notificationsPermission)) {
+                            logFirebaseEvent('Switch-leaves_update_app_state');
+                            FFAppState().PNparticipantLeaves = true;
+                          } else {
+                            logFirebaseEvent('Switch-leaves_update_app_state');
+                            FFAppState().PNparticipantLeaves = false;
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-leaves_ON_T');
+                        logFirebaseEvent('Switch-leaves_update_app_state');
+                        FFAppState().PNparticipantLeaves = false;
+                      }
                     },
                     activeColor: FlutterFlowTheme.of(context).info,
                     activeTrackColor: FlutterFlowTheme.of(context).primary,
@@ -198,7 +365,7 @@ class _NotificationSettingsWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
                   child: Text(
                     'New comments on events hosting',
                     style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -222,9 +389,40 @@ class _NotificationSettingsWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                   child: Switch.adaptive(
-                    value: _model.switchValue3!,
+                    value: _model.switchCommentHostingValue!,
                     onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue3 = newValue);
+                      safeSetState(
+                          () => _model.switchCommentHostingValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-commentHost');
+                        if (await getPermissionStatus(
+                            notificationsPermission)) {
+                          logFirebaseEvent(
+                              'Switch-commentHosting_update_app_state');
+                          FFAppState().PNnewCommentsHosting = true;
+                        } else {
+                          logFirebaseEvent(
+                              'Switch-commentHosting_request_permission');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(
+                              notificationsPermission)) {
+                            logFirebaseEvent(
+                                'Switch-commentHosting_update_app_state');
+                            FFAppState().PNnewCommentsHosting = true;
+                          } else {
+                            logFirebaseEvent(
+                                'Switch-commentHosting_update_app_state');
+                            FFAppState().PNnewCommentsHosting = false;
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-commentHost');
+                        logFirebaseEvent(
+                            'Switch-commentHosting_update_app_state');
+                        FFAppState().PNnewCommentsHosting = false;
+                      }
                     },
                     activeColor: FlutterFlowTheme.of(context).info,
                     activeTrackColor: FlutterFlowTheme.of(context).primary,
@@ -240,7 +438,7 @@ class _NotificationSettingsWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
                   child: Text(
                     'New comments on events attending',
                     style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -264,9 +462,40 @@ class _NotificationSettingsWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                   child: Switch.adaptive(
-                    value: _model.switchValue4!,
+                    value: _model.switchCommentAttendingValue!,
                     onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue4 = newValue);
+                      safeSetState(
+                          () => _model.switchCommentAttendingValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-commentAtte');
+                        if (await getPermissionStatus(
+                            notificationsPermission)) {
+                          logFirebaseEvent(
+                              'Switch-commentAttending_update_app_state');
+                          FFAppState().PNnewCommentAttending = true;
+                        } else {
+                          logFirebaseEvent(
+                              'Switch-commentAttending_request_permissi');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(
+                              notificationsPermission)) {
+                            logFirebaseEvent(
+                                'Switch-commentAttending_update_app_state');
+                            FFAppState().PNnewCommentAttending = true;
+                          } else {
+                            logFirebaseEvent(
+                                'Switch-commentAttending_update_app_state');
+                            FFAppState().PNnewCommentAttending = false;
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-commentAtte');
+                        logFirebaseEvent(
+                            'Switch-commentAttending_update_app_state');
+                        FFAppState().PNnewCommentAttending = false;
+                      }
                     },
                     activeColor: FlutterFlowTheme.of(context).info,
                     activeTrackColor: FlutterFlowTheme.of(context).primary,
@@ -282,7 +511,7 @@ class _NotificationSettingsWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
                   child: Text(
                     'Upcoming event cancellation',
                     style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -306,9 +535,38 @@ class _NotificationSettingsWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                   child: Switch.adaptive(
-                    value: _model.switchValue5!,
+                    value: _model.switchCancelledValue!,
                     onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue5 = newValue);
+                      safeSetState(
+                          () => _model.switchCancelledValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-cancelled_O');
+                        if (await getPermissionStatus(
+                            notificationsPermission)) {
+                          logFirebaseEvent('Switch-cancelled_update_app_state');
+                          FFAppState().PNeventCancelled = true;
+                        } else {
+                          logFirebaseEvent(
+                              'Switch-cancelled_request_permissions');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(
+                              notificationsPermission)) {
+                            logFirebaseEvent(
+                                'Switch-cancelled_update_app_state');
+                            FFAppState().PNeventCancelled = true;
+                          } else {
+                            logFirebaseEvent(
+                                'Switch-cancelled_update_app_state');
+                            FFAppState().PNeventCancelled = false;
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-cancelled_O');
+                        logFirebaseEvent('Switch-cancelled_update_app_state');
+                        FFAppState().PNeventCancelled = false;
+                      }
                     },
                     activeColor: FlutterFlowTheme.of(context).info,
                     activeTrackColor: FlutterFlowTheme.of(context).primary,
@@ -324,7 +582,7 @@ class _NotificationSettingsWidgetState
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
                   child: Text(
                     'Upcoming event reminders',
                     style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -348,51 +606,38 @@ class _NotificationSettingsWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                   child: Switch.adaptive(
-                    value: _model.switchValue6!,
+                    value: _model.switchRemindersValue!,
                     onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue6 = newValue);
-                    },
-                    activeColor: FlutterFlowTheme.of(context).info,
-                    activeTrackColor: FlutterFlowTheme.of(context).primary,
-                    inactiveTrackColor: FlutterFlowTheme.of(context).accent2,
-                    inactiveThumbColor: FlutterFlowTheme.of(context).info,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 14.0, 0.0, 14.0),
-                  child: Text(
-                    'App Updates',
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.rubik(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontStyle,
-                          ),
-                          letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                        ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                  child: Switch.adaptive(
-                    value: _model.switchValue7!,
-                    onChanged: (newValue) async {
-                      safeSetState(() => _model.switchValue7 = newValue);
+                      safeSetState(
+                          () => _model.switchRemindersValue = newValue);
+                      if (newValue) {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-reminders_O');
+                        if (await getPermissionStatus(
+                            notificationsPermission)) {
+                          logFirebaseEvent('Switch-reminders_update_app_state');
+                          FFAppState().PNeventReminders = true;
+                        } else {
+                          logFirebaseEvent(
+                              'Switch-reminders_request_permissions');
+                          await requestPermission(notificationsPermission);
+                          if (await getPermissionStatus(
+                              notificationsPermission)) {
+                            logFirebaseEvent(
+                                'Switch-reminders_update_app_state');
+                            FFAppState().PNeventReminders = true;
+                          } else {
+                            logFirebaseEvent(
+                                'Switch-reminders_update_app_state');
+                            FFAppState().PNeventReminders = false;
+                          }
+                        }
+                      } else {
+                        logFirebaseEvent(
+                            'NOTIFICATION_SETTINGS_Switch-reminders_O');
+                        logFirebaseEvent('Switch-reminders_update_app_state');
+                        FFAppState().PNeventReminders = false;
+                      }
                     },
                     activeColor: FlutterFlowTheme.of(context).info,
                     activeTrackColor: FlutterFlowTheme.of(context).primary,
