@@ -1,9 +1,12 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'login_google_s_s_o_widget.dart' show LoginGoogleSSOWidget;
+import 'app_widget.dart' show AppWidget;
 import 'package:flutter/material.dart';
 
-class LoginGoogleSSOModel extends FlutterFlowModel<LoginGoogleSSOWidget> {
+class AppModel extends FlutterFlowModel<AppWidget> {
+  ///  Local state fields for this page.
+
+  DocumentReference? userRef;
+
   @override
   void initState(BuildContext context) {}
 

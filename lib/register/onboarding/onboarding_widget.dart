@@ -3,12 +3,9 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
-import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -37,17 +34,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
     _model = createModel(context, () => OnboardingModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Onboarding'});
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('ONBOARDING_PAGE_Onboarding_ON_INIT_STATE');
-      logFirebaseEvent('Onboarding_request_permissions');
-      unawaited(
-        () async {
-          await requestPermission(notificationsPermission);
-        }(),
-      );
-    });
-
     _model.inputLocationTextController ??= TextEditingController();
     _model.inputLocationFocusNode ??= FocusNode();
 
@@ -67,20 +53,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
 
   @override
   void dispose() {
-    // On page dispose action.
-    () async {
-      logFirebaseEvent('ONBOARDING_PAGE_Onboarding_ON_DISPOSE');
-      if (await getPermissionStatus(notificationsPermission)) {
-        logFirebaseEvent('Onboarding_update_app_state');
-        FFAppState().NotificationsOn = true;
-        FFAppState().update(() {});
-      } else {
-        logFirebaseEvent('Onboarding_update_app_state');
-        FFAppState().NotificationsOn = false;
-        FFAppState().update(() {});
-      }
-    }();
-
     _model.dispose();
 
     super.dispose();
@@ -229,21 +201,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             child: PageView(
                               controller: _model.pageViewGroupController ??=
                                   PageController(initialPage: 0),
-                              onPageChanged: (_) async {
-                                logFirebaseEvent(
-                                    'ONBOARDING_PageView-Group_ON_WIDGET_SWIP');
-                                if (FFAppState().updater) {
-                                  logFirebaseEvent(
-                                      'PageView-Group_update_app_state');
-                                  FFAppState().updater = false;
-                                  safeSetState(() {});
-                                } else {
-                                  logFirebaseEvent(
-                                      'PageView-Group_update_app_state');
-                                  FFAppState().updater = true;
-                                  safeSetState(() {});
-                                }
-                              },
                               scrollDirection: Axis.horizontal,
                               children: [
                                 SingleChildScrollView(
@@ -1428,11 +1385,9 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   prefDistance: _model
                                       .inputPrefDistanceTextController.text,
                                 ));
-                            logFirebaseEvent('Button_page_view');
-                            await _model.pageViewGroupController?.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
+                            logFirebaseEvent('Button_navigate_to');
+
+                            context.goNamed(AllowNotificationsWidget.routeName);
                           }
                         } finally {
                           await firestoreBatch.commit();

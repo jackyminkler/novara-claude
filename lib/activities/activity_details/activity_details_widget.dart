@@ -4,6 +4,8 @@ import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/future_items/add_to_calendar/add_to_calendar_widget.dart';
+import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -946,11 +948,168 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 15.0, 15.0, 0.0),
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 14.0, 14.0, 14.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 2.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Want a friend to join?',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  font: GoogleFonts.rubik(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontStyle,
+                                                  ),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    child: Builder(
+                                      builder: (context) => FFButtonWidget(
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'ACTIVITY_DETAILS_PAGE_SHARE_BTN_ON_TAP');
+                                          if (isiOS || isAndroid) {
+                                            logFirebaseEvent('Button_share');
+                                            await Share.share(
+                                              'https://app.novara.social${getCurrentRoute(context)}',
+                                              sharePositionOrigin:
+                                                  getWidgetBoundingBox(context),
+                                            );
+                                          } else {
+                                            logFirebaseEvent(
+                                                'Button_copy_to_clipboard');
+                                            await Clipboard.setData(ClipboardData(
+                                                text:
+                                                    'https://app.novara.social${getCurrentRoute(context)}'));
+                                            logFirebaseEvent(
+                                                'Button_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Link Copied!'),
+                                                  content: Text(
+                                                      'https://app.novara.social${getCurrentRoute(context)}'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        },
+                                        text: 'Share ',
+                                        icon: Icon(
+                                          FFIcons.ksend03,
+                                          size: 15.0,
+                                        ),
+                                        options: FFButtonOptions(
+                                          height: 36.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 12.0, 0.0),
+                                          iconAlignment: IconAlignment.end,
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                font: GoogleFonts.rubik(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontStyle,
+                                                ),
+                                                color: Colors.white,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                          elevation: 0.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                         if (activityDetailsActivitiesRecord.description != '')
                           Flexible(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 25.0, 15.0, 0.0),
+                                  15.0, 15.0, 15.0, 0.0),
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -1319,6 +1478,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                 mainAxisSpacing: 8.0,
                                                 childAspectRatio: 1.0,
                                               ),
+                                              primary: false,
                                               shrinkWrap: true,
                                               scrollDirection: Axis.vertical,
                                               itemCount: attendeesList.length,
@@ -2149,159 +2309,11 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                           ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 15.0, 15.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 14.0, 14.0, 14.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 2.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Want a friend to join?',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleSmall
-                                                .override(
-                                                  font: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
-                                    child: Builder(
-                                      builder: (context) => FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'ACTIVITY_DETAILS_PAGE_SHARE_BTN_ON_TAP');
-                                          if (isiOS || isAndroid) {
-                                            logFirebaseEvent('Button_share');
-                                            await Share.share(
-                                              'https://app.novara.social${getCurrentRoute(context)}',
-                                              sharePositionOrigin:
-                                                  getWidgetBoundingBox(context),
-                                            );
-                                          } else {
-                                            logFirebaseEvent(
-                                                'Button_copy_to_clipboard');
-                                            await Clipboard.setData(ClipboardData(
-                                                text:
-                                                    'https://app.novara.social${getCurrentRoute(context)}'));
-                                            logFirebaseEvent(
-                                                'Button_alert_dialog');
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text('Link Copied!'),
-                                                  content: Text(
-                                                      'https://app.novara.social${getCurrentRoute(context)}'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          }
-                                        },
-                                        text: 'Share ',
-                                        icon: Icon(
-                                          FFIcons.ksend03,
-                                          size: 15.0,
-                                        ),
-                                        options: FFButtonOptions(
-                                          height: 36.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
-                                          iconAlignment: IconAlignment.end,
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context).info,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                font: GoogleFonts.rubik(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
-                                                color: Colors.white,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontStyle,
-                                              ),
-                                          elevation: 0.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                              0.0, 15.0, 0.0, 0.0),
+                          child: wrapWithModel(
+                            model: _model.addToCalendarModel,
+                            updateCallback: () => safeSetState(() {}),
+                            child: AddToCalendarWidget(),
                           ),
                         ),
                       ].addToEnd(SizedBox(height: 20.0)),
@@ -2369,6 +2381,8 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                             ) ??
                                             false;
                                     if (confirmDialogResponse) {
+                                      logFirebaseEvent('Button_navigate_back');
+                                      context.safePop();
                                       logFirebaseEvent('Button_backend_call');
                                       await widget.activityRef!.delete();
                                       if (FFAppState().PNeventCancelled ==
@@ -2509,42 +2523,68 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         onPressed: () async {
                                           logFirebaseEvent(
                                               'ACTIVITY_DETAILS_IM_JOINING_BTN_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Button_backend_call');
+                                          if (loggedIn) {
+                                            await Future.wait([
+                                              Future(() async {
+                                                logFirebaseEvent(
+                                                    'Button_backend_call');
 
-                                          await widget.activityRef!.update({
-                                            ...mapToFirestore(
-                                              {
-                                                'participants':
-                                                    FieldValue.arrayUnion(
-                                                        [currentUserReference]),
-                                              },
-                                            ),
-                                          });
-                                          logFirebaseEvent(
-                                              'Button_update_page_state');
+                                                await widget.activityRef!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'participants': FieldValue
+                                                          .arrayUnion([
+                                                        currentUserReference
+                                                      ]),
+                                                    },
+                                                  ),
+                                                });
+                                                logFirebaseEvent(
+                                                    'Button_update_page_state');
 
-                                          safeSetState(() {});
-                                          if (FFAppState().PNparticipantJoins ==
-                                              true) {
+                                                safeSetState(() {});
+                                                if (FFAppState()
+                                                        .PNparticipantJoins ==
+                                                    true) {
+                                                  logFirebaseEvent(
+                                                      'Button_trigger_push_notification');
+                                                  triggerPushNotification(
+                                                    notificationTitle:
+                                                        'Someone new joined your event!',
+                                                    notificationText: '',
+                                                    notificationSound:
+                                                        'default',
+                                                    userRefs: [
+                                                      activityDetailsActivitiesRecord
+                                                          .creatorRef!
+                                                    ],
+                                                    initialPageName:
+                                                        'ActivityDetails',
+                                                    parameterData: {
+                                                      'activityRef':
+                                                          widget.activityRef,
+                                                    },
+                                                  );
+                                                }
+                                              }),
+                                              Future(() async {
+                                                if (FFAppState()
+                                                        .NotificationsOn ==
+                                                    false) {
+                                                  logFirebaseEvent(
+                                                      'Button_request_permissions');
+                                                  await requestPermission(
+                                                      notificationsPermission);
+                                                }
+                                              }),
+                                            ]);
+                                          } else {
                                             logFirebaseEvent(
-                                                'Button_trigger_push_notification');
-                                            triggerPushNotification(
-                                              notificationTitle:
-                                                  'Someone new joined your event!',
-                                              notificationText: '',
-                                              notificationSound: 'default',
-                                              userRefs: [
-                                                activityDetailsActivitiesRecord
-                                                    .creatorRef!
-                                              ],
-                                              initialPageName:
-                                                  'ActivityDetails',
-                                              parameterData: {
-                                                'activityRef':
-                                                    widget.activityRef,
-                                              },
-                                            );
+                                                'Button_navigate_to');
+
+                                            context.pushNamed(
+                                                LoginGoogleSSOWidget.routeName);
                                           }
                                         },
                                         text: 'I\'m Joining!',

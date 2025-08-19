@@ -6,8 +6,6 @@ class NotificationSettingsModel
     extends FlutterFlowModel<NotificationSettingsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for Switch-all widget.
-  bool? switchAllValue;
   // State field(s) for Switch-joins widget.
   bool? switchJoinsValue;
   // State field(s) for Switch-leaves widget.
