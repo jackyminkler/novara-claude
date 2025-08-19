@@ -5,7 +5,6 @@ import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'notification_settings_model.dart';
 export 'notification_settings_model.dart';
 
@@ -39,12 +38,6 @@ class _NotificationSettingsWidgetState
       if (await getPermissionStatus(notificationsPermission)) {
         logFirebaseEvent('NotificationSettings_set_form_field');
         safeSetState(() {
-          _model.switchAllValue = true;
-        });
-      }
-      if (_model.switchAllValue!) {
-        logFirebaseEvent('NotificationSettings_set_form_field');
-        safeSetState(() {
           _model.switchJoinsValue = true;
         });
         logFirebaseEvent('NotificationSettings_set_form_field');
@@ -70,7 +63,6 @@ class _NotificationSettingsWidgetState
       }
     });
 
-    _model.switchAllValue = false;
     _model.switchJoinsValue = false;
     _model.switchLeavesValue = false;
     _model.switchCommentHostingValue = false;
@@ -89,8 +81,6 @@ class _NotificationSettingsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -150,81 +140,6 @@ class _NotificationSettingsWidgetState
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
-                  child: Text(
-                    'Enable Notifications',
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.rubik(
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontStyle,
-                          ),
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                        ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                  child: Switch.adaptive(
-                    value: _model.switchAllValue!,
-                    onChanged: (newValue) async {
-                      safeSetState(() => _model.switchAllValue = newValue);
-                      if (newValue) {
-                        logFirebaseEvent(
-                            'NOTIFICATION_SETTINGS_Switch-all_ON_TOGG');
-                        if (FFAppState().NotificationsOn == false) {
-                          logFirebaseEvent('Switch-all_request_permissions');
-                          await requestPermission(notificationsPermission);
-                          if (await getPermissionStatus(notificationsPermission)
-                              ? _model.switchAllValue!
-                              : !_model.switchAllValue!) {
-                            logFirebaseEvent('Switch-all_update_app_state');
-                            FFAppState().PNparticipantJoins = true;
-                            FFAppState().PNnewCommentsHosting = true;
-                            FFAppState().PNnewCommentAttending = true;
-                            FFAppState().PNeventCancelled = true;
-                            FFAppState().PNeventReminders = true;
-                            FFAppState().PNparticipantLeaves = true;
-                            FFAppState().PNappUpdates = true;
-                            FFAppState().update(() {});
-                          }
-                        }
-                      } else {
-                        logFirebaseEvent(
-                            'NOTIFICATION_SETTINGS_Switch-all_ON_TOGG');
-                        logFirebaseEvent('Switch-all_update_app_state');
-                        FFAppState().PNparticipantJoins = false;
-                        FFAppState().PNnewCommentsHosting = false;
-                        FFAppState().PNnewCommentAttending = false;
-                        FFAppState().PNeventCancelled = false;
-                        FFAppState().PNeventReminders = false;
-                        FFAppState().PNparticipantLeaves = false;
-                        FFAppState().PNappUpdates = false;
-                        FFAppState().update(() {});
-                      }
-                    },
-                    activeColor: FlutterFlowTheme.of(context).info,
-                    activeTrackColor: FlutterFlowTheme.of(context).primary,
-                    inactiveTrackColor: FlutterFlowTheme.of(context).accent2,
-                    inactiveThumbColor: FlutterFlowTheme.of(context).info,
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 2.0,
-              color: FlutterFlowTheme.of(context).alternate,
-            ),
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -66,6 +66,7 @@ abstract class FlutterFlowTheme {
   late Color gradientPurple;
   late Color iconSecondary;
   late Color coreYellow;
+  late Color coreDarkestPurple;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -180,6 +181,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color gradientPurple = const Color(0xFF5848EF);
   late Color iconSecondary = const Color(0xFF9683F6);
   late Color coreYellow = const Color(0xFFFFC23C);
+  late Color coreDarkestPurple = const Color(0xFF100720);
 }
 
 abstract class Typography {
@@ -352,7 +354,7 @@ class DarkModeTheme extends FlutterFlowTheme {
 
   late Color primary = const Color(0xFFF72585);
   late Color secondary = const Color(0x2700A1E7);
-  late Color tertiary = const Color(0xFF7900FF);
+  late Color tertiary = const Color(0xFFAE88FD);
   late Color alternate = const Color(0x216572F2);
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFF889BAF);
@@ -376,7 +378,8 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color gradientTeal = const Color(0xFF5FBAB1);
   late Color gradientPurple = const Color(0xFF5848EF);
   late Color iconSecondary = const Color(0xFF9683F6);
-  late Color coreYellow = const Color(0xFF936B7E);
+  late Color coreYellow = const Color(0xFFFFC23C);
+  late Color coreDarkestPurple = const Color(0xFF100720);
 }
 
 extension TextStyleHelper on TextStyle {

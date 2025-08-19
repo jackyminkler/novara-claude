@@ -1,9 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'login_google_s_s_o_widget.dart' show LoginGoogleSSOWidget;
+import 'allow_notifications_widget.dart' show AllowNotificationsWidget;
 import 'package:flutter/material.dart';
 
-class LoginGoogleSSOModel extends FlutterFlowModel<LoginGoogleSSOWidget> {
+class AllowNotificationsModel
+    extends FlutterFlowModel<AllowNotificationsWidget> {
   @override
   void initState(BuildContext context) {}
 

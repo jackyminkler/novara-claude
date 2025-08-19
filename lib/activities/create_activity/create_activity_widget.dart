@@ -84,12 +84,12 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
               buttonSize: 42.0,
               fillColor: FlutterFlowTheme.of(context).accent4,
               icon: Icon(
-                FFIcons.karrowLeft,
+                FFIcons.kxClose,
                 color: FlutterFlowTheme.of(context).primaryText,
                 size: 24.0,
               ),
               onPressed: () async {
-                logFirebaseEvent('CREATE_ACTIVITY_arrowLeft_ICN_ON_TAP');
+                logFirebaseEvent('CREATE_ACTIVITY_PAGE_xClose_ICN_ON_TAP');
                 logFirebaseEvent('IconButton_navigate_back');
                 context.safePop();
               },

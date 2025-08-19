@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/home/components/nav_bar/nav_bar_widget.dart';
+import '/profile/components/invite_friends/invite_friends_widget.dart';
 import '/profile/components/profile_highlights/profile_highlights_widget.dart';
 import '/profile/components/share_profile/share_profile_widget.dart';
 import 'dart:async';
@@ -100,6 +101,49 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            appBar: AppBar(
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              automaticallyImplyLeading: false,
+              actions: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(6.0, 6.0, 16.0, 6.0),
+                      child: FlutterFlowIconButton(
+                        borderRadius: 50.0,
+                        buttonSize: 42.0,
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        icon: Icon(
+                          FFIcons.kedit02,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 22.0,
+                        ),
+                        onPressed: () async {
+                          logFirebaseEvent('MY_PROFILE_PAGE_edit02_ICN_ON_TAP');
+                          logFirebaseEvent('IconButton_navigate_to');
+
+                          context.pushNamed(EditProfileWidget.routeName);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                ),
+              ),
+              centerTitle: true,
+              elevation: 0.0,
+            ),
             body: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -112,142 +156,59 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Stack(
-                              alignment: AlignmentDirectional(0.0, 0.65),
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  height: 180.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        '',
-                                      ).image,
-                                    ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 0.0),
+                              child: Container(
+                                width: 90.0,
+                                height: 90.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.network(
+                                      myProfileUsersRecord.photoUrl,
+                                    ).image,
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  6.0, 6.0, 16.0, 6.0),
-                                          child: FlutterFlowIconButton(
-                                            borderRadius: 50.0,
-                                            buttonSize: 42.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            icon: Icon(
-                                              FFIcons.kedit02,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 22.0,
-                                            ),
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'MY_PROFILE_PAGE_edit02_ICN_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'IconButton_navigate_to');
-
-                                              context.pushNamed(
-                                                  EditProfileWidget.routeName);
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, -1.0),
-                                  child: Container(
-                                    width: 90.0,
-                                    height: 90.0,
-                                    decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.asset(
-                                          'assets/images/24hg2w4gerf.jpg',
-                                        ).image,
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          offset: Offset(0.0, 0.0),
-                                          spreadRadius: 3.0,
-                                        )
-                                      ],
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
+                                      offset: Offset(0.0, 0.0),
+                                      spreadRadius: 3.0,
+                                    )
+                                  ],
+                                  shape: BoxShape.circle,
                                 ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Stack(
-                                    alignment: AlignmentDirectional(0.0, -1.0),
-                                    children: [
-                                      Container(
-                                        width: 90.0,
-                                        height: 90.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: Image.network(
-                                              myProfileUsersRecord.photoUrl,
-                                            ).image,
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              offset: Offset(0.0, 0.0),
-                                              spreadRadius: 3.0,
-                                            )
-                                          ],
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                             Align(
                               alignment: AlignmentDirectional(0.0, -1.0),
-                              child: AuthUserStreamWidget(
-                                builder: (context) => Text(
-                                  currentUserDisplayName,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        font: GoogleFonts.rubik(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 12.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => Text(
+                                    currentUserDisplayName,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          font: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleLarge
                                                   .fontStyle,
                                         ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -359,9 +320,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MY_PROFILE_PAGE_Row_vs53cwsv_ON_TAP');
+                                                  'MY_PROFILE_PAGE_Activities_ON_TAP');
                                               logFirebaseEvent(
-                                                  'Row_navigate_to');
+                                                  'Activities_navigate_to');
 
                                               context.pushNamed(
                                                 MyActivitiesWidget.routeName,
@@ -561,7 +522,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                                                     15.0,
                                                                     0.0),
                                                         child: Icon(
-                                                          FFIcons.kusersPlus,
+                                                          Icons.share_outlined,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -676,9 +637,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'MY_PROFILE_PAGE_Row_2mghxalw_ON_TAP');
+                                                    'MY_PROFILE_PAGE_Noitifications_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'Row_navigate_to');
+                                                    'Noitifications_navigate_to');
 
                                                 context.pushNamed(
                                                     NotificationSettingsWidget
@@ -808,6 +769,174 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                                 ],
                                               ),
                                             ),
+                                          Builder(
+                                            builder: (context) => InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'MY_PROFILE_PAGE_ShareProfile_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'ShareProfile_alert_dialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus();
+                                                          FocusManager.instance
+                                                              .primaryFocus
+                                                              ?.unfocus();
+                                                        },
+                                                        child:
+                                                            InviteFriendsWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    15.0,
+                                                                    0.0),
+                                                        child: Icon(
+                                                          FFIcons.kusersPlus,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 27.0,
+                                                        ),
+                                                      ),
+                                                      Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Invite Friends',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .titleMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .rubik(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        3.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Share Novara with your friends',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .rubik(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Icon(
+                                                    FFIcons.kchevronRight,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .icon,
+                                                    size: 24.0,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ].divide(SizedBox(height: 20.0)),
                                       ),
                                     ),

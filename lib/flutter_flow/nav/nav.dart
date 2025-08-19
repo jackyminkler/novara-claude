@@ -96,16 +96,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
             appStateNotifier.loggedIn ? HomeWidget() : WalkthroughWidget(),
         routes: [
           FFRoute(
-            name: LoginGoogleSSOWidget.routeName,
-            path: LoginGoogleSSOWidget.routePath,
-            builder: (context, params) => LoginGoogleSSOWidget(),
-          ),
-          FFRoute(
-            name: OnboardingWidget.routeName,
-            path: OnboardingWidget.routePath,
-            builder: (context, params) => OnboardingWidget(),
-          ),
-          FFRoute(
             name: WalkthroughWidget.routeName,
             path: WalkthroughWidget.routePath,
             builder: (context, params) => WalkthroughWidget(),
@@ -141,6 +131,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
                 collectionNamePath: ['users'],
               ),
             ),
+          ),
+          FFRoute(
+            name: AboutWidget.routeName,
+            path: AboutWidget.routePath,
+            builder: (context, params) => AboutWidget(),
+          ),
+          FFRoute(
+            name: HelpCenterWidget.routeName,
+            path: HelpCenterWidget.routePath,
+            builder: (context, params) => HelpCenterWidget(),
+          ),
+          FFRoute(
+            name: PrivacyPolicyWidget.routeName,
+            path: PrivacyPolicyWidget.routePath,
+            builder: (context, params) => PrivacyPolicyWidget(),
+          ),
+          FFRoute(
+            name: TermsConditionsWidget.routeName,
+            path: TermsConditionsWidget.routePath,
+            builder: (context, params) => TermsConditionsWidget(),
           ),
           FFRoute(
             name: EditActivityWidget.routeName,
@@ -194,24 +204,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
             builder: (context, params) => NotificationSettingsWidget(),
           ),
           FFRoute(
-            name: AboutWidget.routeName,
-            path: AboutWidget.routePath,
-            builder: (context, params) => AboutWidget(),
-          ),
-          FFRoute(
-            name: HelpCenterWidget.routeName,
-            path: HelpCenterWidget.routePath,
-            builder: (context, params) => HelpCenterWidget(),
-          ),
-          FFRoute(
-            name: PrivacyPolicyWidget.routeName,
-            path: PrivacyPolicyWidget.routePath,
-            builder: (context, params) => PrivacyPolicyWidget(),
-          ),
-          FFRoute(
-            name: TermsConditionsWidget.routeName,
-            path: TermsConditionsWidget.routePath,
-            builder: (context, params) => TermsConditionsWidget(),
+            name: AppWidget.routeName,
+            path: AppWidget.routePath,
+            builder: (context, params) => AppWidget(),
           ),
           FFRoute(
             name: MyProfileWidget.routeName,
@@ -228,6 +223,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
                 ParamType.int,
               ),
             ),
+          ),
+          FFRoute(
+            name: OnboardingWidget.routeName,
+            path: OnboardingWidget.routePath,
+            builder: (context, params) => OnboardingWidget(),
+          ),
+          FFRoute(
+            name: AllowNotificationsWidget.routeName,
+            path: AllowNotificationsWidget.routePath,
+            builder: (context, params) => AllowNotificationsWidget(),
+          ),
+          FFRoute(
+            name: LoginGoogleSSOWidget.routeName,
+            path: LoginGoogleSSOWidget.routePath,
+            builder: (context, params) => LoginGoogleSSOWidget(),
           ),
           FFRoute(
             name: $utility_functions_library_8g4bud.HomePageWidget.routeName,

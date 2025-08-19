@@ -1,5 +1,4 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
@@ -149,10 +148,7 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
                   logFirebaseEvent('Container_update_app_state');
                   FFAppState().Token = currentJwtToken;
                   FFAppState().update(() {});
-                  logFirebaseEvent('Container_backend_call');
-                  _model.existingUserDoc =
-                      await UsersRecord.getDocumentOnce(currentUserReference!);
-                  if (_model.existingUserDoc?.reference != null) {
+                  if (valueOrDefault(currentUserDocument?.location, '') != '') {
                     logFirebaseEvent('Container_navigate_to');
 
                     context.goNamedAuth(HomeWidget.routeName, context.mounted);
@@ -162,8 +158,6 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
                     context.pushNamedAuth(
                         OnboardingWidget.routeName, context.mounted);
                   }
-
-                  safeSetState(() {});
                 },
                 child: Container(
                   width: double.infinity,
