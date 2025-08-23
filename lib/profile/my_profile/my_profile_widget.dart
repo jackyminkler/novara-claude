@@ -47,14 +47,26 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('MY_PROFILE_PAGE_MyProfile_ON_INIT_STATE');
-      if (currentUserReference != null) {
-        logFirebaseEvent('MyProfile_update_page_state');
-        _model.userRef = currentUserReference;
-        safeSetState(() {});
+      if (loggedIn) {
+        if (currentUserReference != null) {
+          logFirebaseEvent('MyProfile_update_page_state');
+          _model.userRef = currentUserReference;
+          safeSetState(() {});
+        } else {
+          logFirebaseEvent('MyProfile_auth');
+          GoRouter.of(context).prepareAuthEvent();
+          await authManager.signOut();
+          GoRouter.of(context).clearRedirectLocation();
+
+          logFirebaseEvent('MyProfile_navigate_to');
+
+          context.pushNamedAuth(
+              LoginGoogleSSOWidget.routeName, context.mounted);
+        }
       } else {
         logFirebaseEvent('MyProfile_navigate_to');
 
-        context.pushNamed(LoginGoogleSSOWidget.routeName);
+        context.pushNamedAuth(LoginGoogleSSOWidget.routeName, context.mounted);
       }
     });
 
@@ -628,80 +640,69 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                               ),
                                             ),
                                           ),
-                                          if (!isWeb)
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                logFirebaseEvent(
-                                                    'MY_PROFILE_PAGE_Noitifications_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Noitifications_navigate_to');
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MY_PROFILE_PAGE_Noitifications_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Noitifications_navigate_to');
 
-                                                context.pushNamed(
-                                                    NotificationSettingsWidget
-                                                        .routeName);
-                                              },
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    15.0,
-                                                                    0.0),
-                                                        child: Icon(
-                                                          FFIcons.kbell01,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 27.0,
-                                                        ),
+                                              context.pushNamed(
+                                                  NotificationSettingsWidget
+                                                      .routeName);
+                                            },
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  15.0,
+                                                                  0.0),
+                                                      child: Icon(
+                                                        FFIcons.kbell01,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 27.0,
                                                       ),
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Notifications',
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .rubik(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                    ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Notifications',
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .titleMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .rubik(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -710,40 +711,36 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                                                       .titleMedium
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        3.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'Push Notifications',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .rubik(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    letterSpacing:
-                                                                        0.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      3.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Push Notifications',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .rubik(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelMedium
@@ -753,22 +750,36 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                                                         .labelMedium
                                                                         .fontStyle,
                                                                   ),
-                                                            ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontStyle,
+                                                                ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Icon(
-                                                    FFIcons.kchevronRight,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .icon,
-                                                    size: 24.0,
-                                                  ),
-                                                ],
-                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                                Icon(
+                                                  FFIcons.kchevronRight,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .icon,
+                                                  size: 24.0,
+                                                ),
+                                              ],
                                             ),
+                                          ),
                                           Builder(
                                             builder: (context) => InkWell(
                                               splashColor: Colors.transparent,
@@ -1514,11 +1525,31 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       ) ??
                                       false;
                               if (confirmDialogResponse) {
-                                logFirebaseEvent('Text_backend_call');
-                                await myProfileUsersRecord.reference.delete();
-                                logFirebaseEvent('Text_navigate_to');
+                                await Future.wait([
+                                  Future(() async {
+                                    logFirebaseEvent('Text_navigate_to');
 
-                                context.goNamed(LoginGoogleSSOWidget.routeName);
+                                    context.goNamedAuth(
+                                      LoginGoogleSSOWidget.routeName,
+                                      context.mounted,
+                                      ignoreRedirect: true,
+                                    );
+                                  }),
+                                  Future(() async {
+                                    logFirebaseEvent('Text_auth');
+                                    await authManager.deleteUser(context);
+                                    logFirebaseEvent('Text_auth');
+                                    GoRouter.of(context).prepareAuthEvent(true);
+                                    await authManager.signOut();
+                                    GoRouter.of(context)
+                                        .clearRedirectLocation();
+                                  }),
+                                  Future(() async {
+                                    logFirebaseEvent('Text_backend_call');
+                                    await myProfileUsersRecord.reference
+                                        .delete();
+                                  }),
+                                ]);
                               } else {
                                 logFirebaseEvent(
                                     'Text_close_dialog_drawer_etc');

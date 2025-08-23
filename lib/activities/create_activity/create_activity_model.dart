@@ -1,8 +1,8 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'create_activity_widget.dart' show CreateActivityWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
   ///  Local state fields for this page.
@@ -41,13 +41,14 @@ class CreateActivityModel extends FlutterFlowModel<CreateActivityWidget> {
   // State field(s) for TextField-Pace widget.
   FocusNode? textFieldPaceFocusNode;
   TextEditingController? textFieldPaceTextController;
-  late MaskTextInputFormatter textFieldPaceMask;
   String? Function(BuildContext, String?)? textFieldPaceTextControllerValidator;
   // State field(s) for TextField-Details widget.
   FocusNode? textFieldDetailsFocusNode;
   TextEditingController? textFieldDetailsTextController;
   String? Function(BuildContext, String?)?
       textFieldDetailsTextControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  ActivitiesRecord? newActivity;
 
   @override
   void initState(BuildContext context) {}

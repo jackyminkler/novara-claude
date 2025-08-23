@@ -3,7 +3,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
@@ -23,7 +22,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   // State field(s) for TextField-avgPace widget.
   FocusNode? textFieldAvgPaceFocusNode;
   TextEditingController? textFieldAvgPaceTextController;
-  late MaskTextInputFormatter textFieldAvgPaceMask;
   String? Function(BuildContext, String?)?
       textFieldAvgPaceTextControllerValidator;
   // State field(s) for TextField-prefDistance widget.

@@ -7,7 +7,7 @@ class AddToCalendarModel extends FlutterFlowModel<AddToCalendarWidget> {
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Backend Call - API (Create Event)] action in IconButton widget.
-  ApiCallResponse? eventCreation;
+  ApiCallResponse? eventCreationCopy;
 
   @override
   void initState(BuildContext context) {}

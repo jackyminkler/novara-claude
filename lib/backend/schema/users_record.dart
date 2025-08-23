@@ -76,6 +76,11 @@ class UsersRecord extends FirestoreRecord {
   bool get onboarded => _onboarded ?? false;
   bool hasOnboarded() => _onboarded != null;
 
+  // "notifications_on" field.
+  bool? _notificationsOn;
+  bool get notificationsOn => _notificationsOn ?? false;
+  bool hasNotificationsOn() => _notificationsOn != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _location = snapshotData['location'] as String?;
@@ -89,6 +94,7 @@ class UsersRecord extends FirestoreRecord {
     _prefDistance = snapshotData['pref_distance'] as String?;
     _userTimezone = snapshotData['userTimezone'] as String?;
     _onboarded = snapshotData['onboarded'] as bool?;
+    _notificationsOn = snapshotData['notifications_on'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -137,6 +143,7 @@ Map<String, dynamic> createUsersRecordData({
   String? prefDistance,
   String? userTimezone,
   bool? onboarded,
+  bool? notificationsOn,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -152,6 +159,7 @@ Map<String, dynamic> createUsersRecordData({
       'pref_distance': prefDistance,
       'userTimezone': userTimezone,
       'onboarded': onboarded,
+      'notifications_on': notificationsOn,
     }.withoutNulls,
   );
 
@@ -174,7 +182,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.prefDistance == e2?.prefDistance &&
         e1?.userTimezone == e2?.userTimezone &&
-        e1?.onboarded == e2?.onboarded;
+        e1?.onboarded == e2?.onboarded &&
+        e1?.notificationsOn == e2?.notificationsOn;
   }
 
   @override
@@ -190,7 +199,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.phoneNumber,
         e?.prefDistance,
         e?.userTimezone,
-        e?.onboarded
+        e?.onboarded,
+        e?.notificationsOn
       ]);
 
   @override
