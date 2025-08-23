@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'onboarding_widget.dart' show OnboardingWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class OnboardingModel extends FlutterFlowModel<OnboardingWidget> {
   ///  State fields for stateful widgets in this page.
@@ -19,10 +19,16 @@ class OnboardingModel extends FlutterFlowModel<OnboardingWidget> {
   FocusNode? inputLocationFocusNode;
   TextEditingController? inputLocationTextController;
   String? Function(BuildContext, String?)? inputLocationTextControllerValidator;
+  // State field(s) for User-ChoiceChips-RunTerrain widget.
+  FormFieldController<List<String>>? userChoiceChipsRunTerrainValueController;
+  String? get userChoiceChipsRunTerrainValue =>
+      userChoiceChipsRunTerrainValueController?.value?.firstOrNull;
+  set userChoiceChipsRunTerrainValue(String? val) =>
+      userChoiceChipsRunTerrainValueController?.value =
+          val != null ? [val] : [];
   // State field(s) for Input_AvgPace widget.
   FocusNode? inputAvgPaceFocusNode;
   TextEditingController? inputAvgPaceTextController;
-  late MaskTextInputFormatter inputAvgPaceMask;
   String? Function(BuildContext, String?)? inputAvgPaceTextControllerValidator;
   // State field(s) for Input_PrefDistance widget.
   FocusNode? inputPrefDistanceFocusNode;

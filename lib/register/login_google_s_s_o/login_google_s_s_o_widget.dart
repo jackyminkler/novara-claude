@@ -167,6 +167,7 @@ class _LoginGoogleSSOWidgetState extends State<LoginGoogleSSOWidget> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: Row(
+                    key: ValueKey('Row_riwk'),
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(

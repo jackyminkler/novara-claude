@@ -10,7 +10,6 @@ import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'create_activity_model.dart';
 export 'create_activity_model.dart';
 
@@ -50,7 +49,6 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
     _model.textFieldPaceTextController ??= TextEditingController();
     _model.textFieldPaceFocusNode ??= FocusNode();
 
-    _model.textFieldPaceMask = MaskTextInputFormatter(mask: '##:##');
     _model.textFieldDetailsTextController ??= TextEditingController();
     _model.textFieldDetailsFocusNode ??= FocusNode();
 
@@ -1442,9 +1440,6 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                         validator: _model
                                             .textFieldPaceTextControllerValidator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          _model.textFieldPaceMask
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1665,41 +1660,77 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                               logFirebaseEvent(
                                                   'Button_backend_call');
 
-                                              await ActivitiesRecord.collection
-                                                  .doc()
+                                              var activitiesRecordReference =
+                                                  ActivitiesRecord.collection
+                                                      .doc();
+                                              await activitiesRecordReference
                                                   .set(
                                                       createActivitiesRecordData(
-                                                    title: _model.textFieldTitleTextController
-                                                                    .text !=
-                                                                ''
-                                                        ? _model
-                                                            .textFieldTitleTextController
-                                                            .text
-                                                        : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
-                                                    description: _model
-                                                        .textFieldDetailsTextController
-                                                        .text,
-                                                    createdAt:
-                                                        getCurrentTimestamp,
-                                                    date: _model.activityDate,
-                                                    creatorID:
-                                                        currentUserReference
-                                                            ?.id,
-                                                    location: _model
-                                                        .dropDownLocationValue,
-                                                    runType: _model
-                                                        .choiceChipsRunTypeValue,
-                                                    runTerrain: _model
-                                                        .choiceChipsRunTerrainValue,
-                                                    pace: _model
-                                                        .textFieldPaceTextController
-                                                        .text,
-                                                    distance: _model
-                                                        .textFieldDistanceTextController
-                                                        .text,
-                                                    creatorRef:
-                                                        currentUserReference,
-                                                  ));
+                                                title: _model.textFieldTitleTextController
+                                                                .text !=
+                                                            ''
+                                                    ? _model
+                                                        .textFieldTitleTextController
+                                                        .text
+                                                    : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
+                                                description: _model
+                                                    .textFieldDetailsTextController
+                                                    .text,
+                                                createdAt: getCurrentTimestamp,
+                                                date: _model.activityDate,
+                                                creatorID:
+                                                    currentUserReference?.id,
+                                                location: _model
+                                                    .dropDownLocationValue,
+                                                runType: _model
+                                                    .choiceChipsRunTypeValue,
+                                                runTerrain: _model
+                                                    .choiceChipsRunTerrainValue,
+                                                pace: _model
+                                                    .textFieldPaceTextController
+                                                    .text,
+                                                distance: _model
+                                                    .textFieldDistanceTextController
+                                                    .text,
+                                                creatorRef:
+                                                    currentUserReference,
+                                              ));
+                                              _model.newActivity = ActivitiesRecord
+                                                  .getDocumentFromData(
+                                                      createActivitiesRecordData(
+                                                        title: _model.textFieldTitleTextController
+                                                                        .text !=
+                                                                    ''
+                                                            ? _model
+                                                                .textFieldTitleTextController
+                                                                .text
+                                                            : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
+                                                        description: _model
+                                                            .textFieldDetailsTextController
+                                                            .text,
+                                                        createdAt:
+                                                            getCurrentTimestamp,
+                                                        date:
+                                                            _model.activityDate,
+                                                        creatorID:
+                                                            currentUserReference
+                                                                ?.id,
+                                                        location: _model
+                                                            .dropDownLocationValue,
+                                                        runType: _model
+                                                            .choiceChipsRunTypeValue,
+                                                        runTerrain: _model
+                                                            .choiceChipsRunTerrainValue,
+                                                        pace: _model
+                                                            .textFieldPaceTextController
+                                                            .text,
+                                                        distance: _model
+                                                            .textFieldDistanceTextController
+                                                            .text,
+                                                        creatorRef:
+                                                            currentUserReference,
+                                                      ),
+                                                      activitiesRecordReference);
                                             }),
                                           ]);
                                           logFirebaseEvent(
@@ -1722,6 +1753,8 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                       .secondary,
                                             ),
                                           );
+
+                                          safeSetState(() {});
                                         },
                                   text: 'Save Activity',
                                   options: FFButtonOptions(

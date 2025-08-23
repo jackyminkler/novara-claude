@@ -113,7 +113,6 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'Walkthrough': ParameterData.none(),
   'EditProfile': ParameterData.none(),
   'Notifications': ParameterData.none(),
   'Home': (data) async => ParameterData(
@@ -147,13 +146,9 @@ final parametersBuilderMap =
               getParameter<DocumentReference>(data, 'selectedUserRef'),
         },
       ),
-  'ActivityDetails': (data) async => ParameterData(
-        allParams: {
-          'activityRef': getParameter<DocumentReference>(data, 'activityRef'),
-        },
-      ),
-  'NotificationSettings': ParameterData.none(),
   'App': ParameterData.none(),
+  'Login-GoogleSSO': ParameterData.none(),
+  'Walkthrough': ParameterData.none(),
   'MyProfile': (data) async => ParameterData(
         allParams: {
           'selectedUserRef':
@@ -161,9 +156,13 @@ final parametersBuilderMap =
           'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
         },
       ),
+  'ActivityDetails': (data) async => ParameterData(
+        allParams: {
+          'activityRef': getParameter<DocumentReference>(data, 'activityRef'),
+        },
+      ),
   'Onboarding': ParameterData.none(),
-  'AllowNotifications': ParameterData.none(),
-  'Login-GoogleSSO': ParameterData.none(),
+  'NotificationSettings': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

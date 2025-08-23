@@ -75,7 +75,7 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) {
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) {
   $utility_functions_library_8g4bud.initializeRoutes(
     homePageWidgetName: 'utility_functions_library_8g4bud.HomePage',
     homePageWidgetPath: 'homePage',
@@ -86,20 +86,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
     debugLogDiagnostics: true,
     refreshListenable: appStateNotifier,
     navigatorKey: appNavigatorKey,
-    errorBuilder: (context, state) =>
-        appStateNotifier.loggedIn ? HomeWidget() : WalkthroughWidget(),
+    errorBuilder: (context, state) => appStateNotifier.loggedIn
+        ? entryPage ?? HomeWidget()
+        : WalkthroughWidget(),
     routes: [
       FFRoute(
         name: '_initialize',
         path: '/',
-        builder: (context, _) =>
-            appStateNotifier.loggedIn ? HomeWidget() : WalkthroughWidget(),
+        builder: (context, _) => appStateNotifier.loggedIn
+            ? entryPage ?? HomeWidget()
+            : WalkthroughWidget(),
         routes: [
-          FFRoute(
-            name: WalkthroughWidget.routeName,
-            path: WalkthroughWidget.routePath,
-            builder: (context, params) => WalkthroughWidget(),
-          ),
           FFRoute(
             name: EditProfileWidget.routeName,
             path: EditProfileWidget.routePath,
@@ -187,26 +184,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
             ),
           ),
           FFRoute(
-            name: ActivityDetailsWidget.routeName,
-            path: ActivityDetailsWidget.routePath,
-            builder: (context, params) => ActivityDetailsWidget(
-              activityRef: params.getParam(
-                'activityRef',
-                ParamType.DocumentReference,
-                isList: false,
-                collectionNamePath: ['activities'],
-              ),
-            ),
-          ),
-          FFRoute(
-            name: NotificationSettingsWidget.routeName,
-            path: NotificationSettingsWidget.routePath,
-            builder: (context, params) => NotificationSettingsWidget(),
-          ),
-          FFRoute(
             name: AppWidget.routeName,
             path: AppWidget.routePath,
             builder: (context, params) => AppWidget(),
+          ),
+          FFRoute(
+            name: LoginGoogleSSOWidget.routeName,
+            path: LoginGoogleSSOWidget.routePath,
+            builder: (context, params) => LoginGoogleSSOWidget(),
+          ),
+          FFRoute(
+            name: WalkthroughWidget.routeName,
+            path: WalkthroughWidget.routePath,
+            builder: (context, params) => WalkthroughWidget(),
           ),
           FFRoute(
             name: MyProfileWidget.routeName,
@@ -225,19 +215,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
             ),
           ),
           FFRoute(
+            name: ActivityDetailsWidget.routeName,
+            path: ActivityDetailsWidget.routePath,
+            builder: (context, params) => ActivityDetailsWidget(
+              activityRef: params.getParam(
+                'activityRef',
+                ParamType.DocumentReference,
+                isList: false,
+                collectionNamePath: ['activities'],
+              ),
+            ),
+          ),
+          FFRoute(
             name: OnboardingWidget.routeName,
             path: OnboardingWidget.routePath,
             builder: (context, params) => OnboardingWidget(),
           ),
           FFRoute(
-            name: AllowNotificationsWidget.routeName,
-            path: AllowNotificationsWidget.routePath,
-            builder: (context, params) => AllowNotificationsWidget(),
-          ),
-          FFRoute(
-            name: LoginGoogleSSOWidget.routeName,
-            path: LoginGoogleSSOWidget.routePath,
-            builder: (context, params) => LoginGoogleSSOWidget(),
+            name: NotificationSettingsWidget.routeName,
+            path: NotificationSettingsWidget.routePath,
+            builder: (context, params) => NotificationSettingsWidget(),
           ),
           FFRoute(
             name: $utility_functions_library_8g4bud.HomePageWidget.routeName,

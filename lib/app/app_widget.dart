@@ -230,7 +230,7 @@ class _AppWidgetState extends State<AppWidget> {
                     onTap: () async {
                       logFirebaseEvent('APP_PAGE_Android_ON_TAP');
                       logFirebaseEvent('Android_launch_u_r_l');
-                      await launchURL('app.novara.social');
+                      await launchURL('https://app.novara.social');
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -321,7 +321,7 @@ class _AppWidgetState extends State<AppWidget> {
                     onTap: () async {
                       logFirebaseEvent('APP_PAGE_Web_ON_TAP');
                       logFirebaseEvent('Web_launch_u_r_l');
-                      await launchURL('app.novara.social');
+                      await launchURL('https://app.novara.social');
                     },
                     child: Container(
                       decoration: BoxDecoration(

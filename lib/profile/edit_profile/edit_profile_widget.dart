@@ -10,7 +10,6 @@ import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 
@@ -47,7 +46,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         text: valueOrDefault(currentUserDocument?.avgPace, ''));
     _model.textFieldAvgPaceFocusNode ??= FocusNode();
 
-    _model.textFieldAvgPaceMask = MaskTextInputFormatter(mask: '##:##');
     _model.textFieldPrefDistanceTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.prefDistance, ''));
     _model.textFieldPrefDistanceFocusNode ??= FocusNode();
@@ -664,7 +662,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 validator: _model
                                     .textFieldAvgPaceTextControllerValidator
                                     .asValidator(context),
-                                inputFormatters: [_model.textFieldAvgPaceMask],
                               ),
                             ),
                           ),

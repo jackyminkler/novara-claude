@@ -359,6 +359,7 @@ class _WalkthroughWidgetState extends State<WalkthroughWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 15.0),
                     child: FFButtonWidget(
+                      key: ValueKey('Button_4zun'),
                       onPressed: () async {
                         logFirebaseEvent('WALKTHROUGH_PAGE_NEXT_BTN_ON_TAP');
                         logFirebaseEvent('Button_update_app_state');
