@@ -17,8 +17,10 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   TextEditingController? commentTextFieldTextController;
   String? Function(BuildContext, String?)?
       commentTextFieldTextControllerValidator;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  UsersRecord? participantNotifyYes;
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  UsersRecord? loopUserDoc;
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  UsersRecord? loopUserDocCancelled;
 
   @override
   void initState(BuildContext context) {}

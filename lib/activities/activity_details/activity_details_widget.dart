@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
@@ -2243,41 +2242,31 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                                           activityDetailsActivitiesRecord
                                                                               .participants[loop1Index];
                                                                       logFirebaseEvent(
-                                                                          'Button_firestore_query');
-                                                                      _model.participantNotifyYes =
-                                                                          await queryUsersRecordOnce(
-                                                                        queryBuilder: (usersRecord) => usersRecord
-                                                                            .where(
-                                                                              'uid',
-                                                                              isEqualTo: currentLoop1Item.id,
-                                                                            )
-                                                                            .where(
-                                                                              'notifications_on',
-                                                                              isEqualTo: true,
-                                                                            ),
-                                                                        singleRecord:
-                                                                            true,
-                                                                      ).then((s) =>
-                                                                              s.firstOrNull);
-                                                                      logFirebaseEvent(
-                                                                          'Button_trigger_push_notification');
-                                                                      triggerPushNotification(
-                                                                        notificationTitle:
-                                                                            '',
-                                                                        notificationText:
-                                                                            '',
-                                                                        userRefs: [
-                                                                          _model
-                                                                              .participantNotifyYes!
-                                                                              .reference
-                                                                        ],
-                                                                        initialPageName:
-                                                                            'ActivityDetails',
-                                                                        parameterData: {
-                                                                          'activityRef':
-                                                                              activityDetailsActivitiesRecord.reference,
-                                                                        },
-                                                                      );
+                                                                          'Button_backend_call');
+                                                                      _model.loopUserDoc =
+                                                                          await UsersRecord.getDocumentOnce(
+                                                                              currentLoop1Item);
+                                                                      if (_model
+                                                                          .loopUserDoc!
+                                                                          .notificationsOn) {
+                                                                        logFirebaseEvent(
+                                                                            'Button_trigger_push_notification');
+                                                                        triggerPushNotification(
+                                                                          notificationTitle:
+                                                                              'New Comment!',
+                                                                          notificationText:
+                                                                              'Someone commented on an event you\'re attending',
+                                                                          userRefs: [
+                                                                            _model.loopUserDoc!.reference
+                                                                          ],
+                                                                          initialPageName:
+                                                                              'ActivityDetails',
+                                                                          parameterData: {
+                                                                            'activityRef':
+                                                                                activityDetailsActivitiesRecord.reference,
+                                                                          },
+                                                                        );
+                                                                      }
                                                                     }
                                                                   }),
                                                                 ]);
@@ -2444,26 +2433,54 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                           await widget.activityRef!.delete();
                                           if (FFAppState().PNeventCancelled ==
                                               true) {
-                                            logFirebaseEvent(
-                                                'Button_trigger_push_notification');
-                                            triggerPushNotification(
-                                              notificationTitle:
-                                                  'Your upcoming event has been cancelled',
-                                              notificationText: '',
-                                              notificationSound: 'default',
-                                              userRefs:
+                                            for (int loop1Index = 0;
+                                                loop1Index <
+                                                    activityDetailsActivitiesRecord
+                                                        .participants.length;
+                                                loop1Index++) {
+                                              final currentLoop1Item =
                                                   activityDetailsActivitiesRecord
-                                                      .participants
-                                                      .toList(),
-                                              initialPageName:
-                                                  'ActivityDetails',
-                                              parameterData: {
-                                                'activityRef':
-                                                    widget.activityRef,
-                                              },
-                                            );
+                                                      .participants[loop1Index];
+                                              logFirebaseEvent(
+                                                  'Button_backend_call');
+                                              _model.loopUserDocCancelled =
+                                                  await UsersRecord
+                                                      .getDocumentOnce(
+                                                          currentLoop1Item);
+                                              if (_model.loopUserDocCancelled!
+                                                  .notificationsOn) {
+                                                logFirebaseEvent(
+                                                    'Button_trigger_push_notification');
+                                                triggerPushNotification(
+                                                  notificationTitle:
+                                                      'Cancelled event',
+                                                  notificationText:
+                                                      'Your upcoming event, ${activityDetailsActivitiesRecord.title}, on ${dateTimeFormat(
+                                                    "MMMEd",
+                                                    activityDetailsActivitiesRecord
+                                                        .date,
+                                                    locale: FFLocalizations.of(
+                                                            context)
+                                                        .languageCode,
+                                                  )} has been cancelled',
+                                                  notificationSound: 'default',
+                                                  userRefs:
+                                                      activityDetailsActivitiesRecord
+                                                          .participants
+                                                          .toList(),
+                                                  initialPageName:
+                                                      'ActivityDetails',
+                                                  parameterData: {
+                                                    'activityRef':
+                                                        widget.activityRef,
+                                                  },
+                                                );
+                                              }
+                                            }
                                           }
                                         }
+
+                                        safeSetState(() {});
                                       },
                                       text: 'Cancel Activity',
                                       options: FFButtonOptions(
@@ -2618,7 +2635,10 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                       triggerPushNotification(
                                                         notificationTitle:
                                                             'Someone joined your event!',
-                                                        notificationText: '',
+                                                        notificationText:
+                                                            '${currentUserDisplayName} has joined your event: ${activityDetailsActivitiesRecord.title}',
+                                                        notificationImageUrl:
+                                                            currentUserPhoto,
                                                         userRefs: [
                                                           columnUsersRecord
                                                               .reference
@@ -2733,8 +2753,11 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                         'Button_trigger_push_notification');
                                                     triggerPushNotification(
                                                       notificationTitle:
-                                                          'Someone left your event.',
-                                                      notificationText: '',
+                                                          'Someone left your event',
+                                                      notificationText:
+                                                          '${currentUserDisplayName} can no longer attend your event: ${activityDetailsActivitiesRecord.title}',
+                                                      notificationImageUrl:
+                                                          currentUserPhoto,
                                                       userRefs: [
                                                         columnUsersRecord
                                                             .reference
