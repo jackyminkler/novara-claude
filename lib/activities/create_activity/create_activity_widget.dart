@@ -1750,7 +1750,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                   Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondary,
+                                                      .secondaryBackground,
                                             ),
                                           );
 
