@@ -179,7 +179,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           CreateActivityWidget.routeName,
                           queryParameters: {
                             'selectedNavTab': serializeParam(
-                              1,
+                              widget.page,
                               ParamType.int,
                             ),
                           }.withoutNulls,

@@ -299,6 +299,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           required isFocused,
                                           maxLength}) =>
                                       null,
+                                  keyboardType: TextInputType.name,
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                   validator: _model

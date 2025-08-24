@@ -18,7 +18,7 @@ class UserProfileWidget extends StatefulWidget {
   final DocumentReference? selectedUserRef;
 
   static String routeName = 'UserProfile';
-  static String routePath = 'userProfile';
+  static String routePath = 'user';
 
   @override
   State<UserProfileWidget> createState() => _UserProfileWidgetState();

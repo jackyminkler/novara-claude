@@ -1,3 +1,4 @@
+import '/activities/components/add_to_calendar/add_to_calendar_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
@@ -25,7 +26,7 @@ class ActivityDetailsWidget extends StatefulWidget {
   final DocumentReference? activityRef;
 
   static String routeName = 'ActivityDetails';
-  static String routePath = 'activityDetails';
+  static String routePath = 'activity';
 
   @override
   State<ActivityDetailsWidget> createState() => _ActivityDetailsWidgetState();
@@ -45,7 +46,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
         parameters: {'screen_name': 'ActivityDetails'});
     _model.commentTextFieldTextController ??= TextEditingController();
     _model.commentTextFieldFocusNode ??= FocusNode();
-
+    _model.commentTextFieldFocusNode!.addListener(() => safeSetState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -2029,7 +2030,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                           EasyDebounce.debounce(
                                                         '_model.commentTextFieldTextController',
                                                         Duration(
-                                                            milliseconds: 2000),
+                                                            milliseconds: 500),
                                                         () =>
                                                             safeSetState(() {}),
                                                       ),
@@ -2354,6 +2355,19 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         ].divide(SizedBox(height: 4.0)),
                                       ),
                                     ),
+                                  ),
+                                ),
+                              ),
+                            if (!isWeb)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: wrapWithModel(
+                                  model: _model.addToCalendarModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: AddToCalendarWidget(
+                                    activityRef:
+                                        activityDetailsActivitiesRecord,
                                   ),
                                 ),
                               ),

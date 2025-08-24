@@ -135,11 +135,6 @@ final parametersBuilderMap =
           'activityRef': getParameter<DocumentReference>(data, 'activityRef'),
         },
       ),
-  'CreateActivity': (data) async => ParameterData(
-        allParams: {
-          'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
-        },
-      ),
   'MyActivities': (data) async => ParameterData(
         allParams: {
           'selectedUserRef':
@@ -163,6 +158,11 @@ final parametersBuilderMap =
       ),
   'Onboarding': ParameterData.none(),
   'NotificationSettings': ParameterData.none(),
+  'CreateActivity': (data) async => ParameterData(
+        allParams: {
+          'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

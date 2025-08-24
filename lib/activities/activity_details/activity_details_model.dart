@@ -1,3 +1,4 @@
+import '/activities/components/add_to_calendar/add_to_calendar_widget.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -19,15 +20,21 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
       commentTextFieldTextControllerValidator;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   UsersRecord? loopUserDoc;
+  // Model for AddToCalendar component.
+  late AddToCalendarModel addToCalendarModel;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   UsersRecord? loopUserDocCancelled;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    addToCalendarModel = createModel(context, () => AddToCalendarModel());
+  }
 
   @override
   void dispose() {
     commentTextFieldFocusNode?.dispose();
     commentTextFieldTextController?.dispose();
+
+    addToCalendarModel.dispose();
   }
 }

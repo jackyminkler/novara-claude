@@ -162,16 +162,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) {
             ),
           ),
           FFRoute(
-            name: CreateActivityWidget.routeName,
-            path: CreateActivityWidget.routePath,
-            builder: (context, params) => CreateActivityWidget(
-              selectedNavTab: params.getParam(
-                'selectedNavTab',
-                ParamType.int,
-              ),
-            ),
-          ),
-          FFRoute(
             name: MyActivitiesWidget.routeName,
             path: MyActivitiesWidget.routePath,
             builder: (context, params) => MyActivitiesWidget(
@@ -235,6 +225,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) {
             name: NotificationSettingsWidget.routeName,
             path: NotificationSettingsWidget.routePath,
             builder: (context, params) => NotificationSettingsWidget(),
+          ),
+          FFRoute(
+            name: CreateActivityWidget.routeName,
+            path: CreateActivityWidget.routePath,
+            builder: (context, params) => CreateActivityWidget(
+              selectedNavTab: params.getParam(
+                'selectedNavTab',
+                ParamType.int,
+              ),
+            ),
           ),
           FFRoute(
             name: $utility_functions_library_8g4bud.HomePageWidget.routeName,

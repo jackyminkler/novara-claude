@@ -99,7 +99,7 @@ class _ShareActivityWidgetState extends State<ShareActivityWidget> {
                           logFirebaseEvent('SHARE_ACTIVITY_COMP_Share_ON_TAP');
                           logFirebaseEvent('Share_share');
                           await Share.share(
-                            'novara://novara.social${GoRouterState.of(context).uri.toString()}',
+                            'novara://app.novara.social${GoRouterState.of(context).uri.toString()}',
                             sharePositionOrigin: getWidgetBoundingBox(context),
                           );
                           logFirebaseEvent('Share_dismiss_dialog');
@@ -188,7 +188,7 @@ class _ShareActivityWidgetState extends State<ShareActivityWidget> {
                     logFirebaseEvent('CopyLink_copy_to_clipboard');
                     await Clipboard.setData(ClipboardData(
                         text:
-                            'novara://novara.social${GoRouterState.of(context).uri.toString()}'));
+                            'novara://app.novara.social${GoRouterState.of(context).uri.toString()}'));
                     logFirebaseEvent('CopyLink_dismiss_dialog');
                     Navigator.pop(context);
                     logFirebaseEvent('CopyLink_show_snack_bar');
