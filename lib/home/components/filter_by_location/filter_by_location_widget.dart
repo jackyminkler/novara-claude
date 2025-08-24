@@ -55,26 +55,35 @@ class _FilterByLocationWidgetState extends State<FilterByLocationWidget> {
             topRight: Radius.circular(15.0),
           ),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-              child: Container(
-                width: 50.0,
-                height: 6.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).border,
-                  borderRadius: BorderRadius.circular(10.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                child: Container(
+                  width: 50.0,
+                  height: 6.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).border,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
-              child: Text(
-                'Select a Location',
-                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      font: GoogleFonts.rubik(
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+                child: Text(
+                  'Select a Location',
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        font: GoogleFonts.rubik(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .fontStyle,
+                        ),
+                        letterSpacing: 0.0,
                         fontWeight: FlutterFlowTheme.of(context)
                             .headlineSmall
                             .fontWeight,
@@ -82,73 +91,80 @@ class _FilterByLocationWidgetState extends State<FilterByLocationWidget> {
                             .headlineSmall
                             .fontStyle,
                       ),
-                      letterSpacing: 0.0,
-                      fontWeight:
-                          FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                    ),
+                ),
               ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Container(
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 0.0),
-                    child: Builder(
-                      builder: (context) {
-                        final listLocation =
-                            FFAppConstants.LocationOptions.toList();
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 0.0),
+                      child: Builder(
+                        builder: (context) {
+                          final listLocation =
+                              FFAppConstants.LocationOptions.sortedList(
+                                      keyOf: (e) => e, desc: false)
+                                  .toList();
 
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listLocation.length,
-                          itemBuilder: (context, listLocationIndex) {
-                            final listLocationItem =
-                                listLocation[listLocationIndex];
-                            return InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'FILTER_BY_LOCATION_Row_oc51d5ut_ON_TAP');
-                                logFirebaseEvent('Row_update_app_state');
-                                FFAppState().SelectedLocation =
-                                    listLocationItem;
-                                FFAppState().update(() {});
-                                if (FFAppState().updater) {
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listLocation.length,
+                            itemBuilder: (context, listLocationIndex) {
+                              final listLocationItem =
+                                  listLocation[listLocationIndex];
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'FILTER_BY_LOCATION_Row_oc51d5ut_ON_TAP');
                                   logFirebaseEvent('Row_update_app_state');
-                                  FFAppState().updater = false;
+                                  FFAppState().SelectedLocation =
+                                      listLocationItem;
                                   FFAppState().update(() {});
-                                } else {
-                                  logFirebaseEvent('Row_update_app_state');
-                                  FFAppState().updater = true;
-                                  FFAppState().update(() {});
-                                }
+                                  if (FFAppState().updater) {
+                                    logFirebaseEvent('Row_update_app_state');
+                                    FFAppState().updater = false;
+                                    FFAppState().update(() {});
+                                  } else {
+                                    logFirebaseEvent('Row_update_app_state');
+                                    FFAppState().updater = true;
+                                    FFAppState().update(() {});
+                                  }
 
-                                logFirebaseEvent('Row_close_dialog_drawer_etc');
-                                Navigator.pop(context);
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 14.0, 0.0, 14.0),
-                                    child: Text(
-                                      listLocationItem,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            font: GoogleFonts.rubik(
+                                  logFirebaseEvent(
+                                      'Row_close_dialog_drawer_etc');
+                                  Navigator.pop(context);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 14.0, 0.0, 14.0),
+                                      child: Text(
+                                        listLocationItem,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              font: GoogleFonts.rubik(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -158,39 +174,31 @@ class _FilterByLocationWidgetState extends State<FilterByLocationWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
-                                  ),
-                                  if ((listLocationItem ==
-                                          FFAppState().SelectedLocation) ||
-                                      (FFAppState().SelectedLocation == ''))
-                                    Icon(
-                                      FFIcons.kcheck,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
+                                    if ((listLocationItem ==
+                                            FFAppState().SelectedLocation) ||
+                                        (FFAppState().SelectedLocation ==
+                                                ''))
+                                      Icon(
+                                        FFIcons.kcheck,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        size: 24.0,
+                                      ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ].addToEnd(SizedBox(height: 15.0)),
-            ),
-          ],
+                ].addToEnd(SizedBox(height: 15.0)),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -37,10 +37,7 @@ class _AppWidgetState extends State<AppWidget> {
       } else {
         if (isAndroid) {
           logFirebaseEvent('App_launch_u_r_l');
-          await launchURL('');
-        } else {
-          logFirebaseEvent('App_launch_u_r_l');
-          await launchURL('app.novara.social');
+          await launchURL('https://testflight.apple.com/join/TSufQKkz');
         }
       }
     });
@@ -129,8 +126,7 @@ class _AppWidgetState extends State<AppWidget> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -230,7 +226,8 @@ class _AppWidgetState extends State<AppWidget> {
                     onTap: () async {
                       logFirebaseEvent('APP_PAGE_Android_ON_TAP');
                       logFirebaseEvent('Android_launch_u_r_l');
-                      await launchURL('https://app.novara.social');
+                      await launchURL(
+                          'https://play.google.com/apps/internaltest/4701273655422438956');
                     },
                     child: Container(
                       decoration: BoxDecoration(
