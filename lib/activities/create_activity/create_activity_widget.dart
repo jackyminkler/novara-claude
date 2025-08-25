@@ -1743,14 +1743,14 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .info,
                                                 ),
                                               ),
                                               duration:
                                                   Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .coreYellow,
                                             ),
                                           );
 

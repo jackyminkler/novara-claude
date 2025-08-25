@@ -1406,6 +1406,12 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                                     notificationsOn:
                                                                         true,
                                                                   ));
+                                                                  logFirebaseEvent(
+                                                                      'Button_navigate_to');
+
+                                                                  context.pushNamed(
+                                                                      HomeWidget
+                                                                          .routeName);
                                                                 } else {
                                                                   logFirebaseEvent(
                                                                       'Button_backend_call');

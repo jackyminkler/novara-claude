@@ -1659,6 +1659,19 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                   ),
                                 ),
                               ),
+                            if (!isWeb)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: wrapWithModel(
+                                  model: _model.addToCalendarModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: AddToCalendarWidget(
+                                    activityRef:
+                                        activityDetailsActivitiesRecord,
+                                  ),
+                                ),
+                              ),
                             if ((activityDetailsActivitiesRecord.creatorID ==
                                     currentUserReference?.id) ||
                                 activityDetailsActivitiesRecord.participants
@@ -2355,19 +2368,6 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                         ].divide(SizedBox(height: 4.0)),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            if (!isWeb)
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 15.0, 0.0, 0.0),
-                                child: wrapWithModel(
-                                  model: _model.addToCalendarModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: AddToCalendarWidget(
-                                    activityRef:
-                                        activityDetailsActivitiesRecord,
                                   ),
                                 ),
                               ),
