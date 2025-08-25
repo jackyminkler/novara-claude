@@ -367,35 +367,6 @@ class _NotificationSettingsWidgetState
                 ),
               ],
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 14.0, 0.0, 14.0),
-                  child: Text(
-                    'Upcoming event reminders',
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.rubik(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontStyle,
-                          ),
-                          letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                        ),
-                  ),
-                ),
-              ],
-            ),
           ].addToStart(SizedBox(height: 15.0)).addToEnd(SizedBox(height: 15.0)),
         ),
       ),

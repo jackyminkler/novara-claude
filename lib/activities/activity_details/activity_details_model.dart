@@ -13,6 +13,8 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
   ActivitiesRecord? activityDetailsPreviousSnapshot;
+  // Model for AddToCalendar component.
+  late AddToCalendarModel addToCalendarModel;
   // State field(s) for Comment-TextField widget.
   FocusNode? commentTextFieldFocusNode;
   TextEditingController? commentTextFieldTextController;
@@ -20,8 +22,6 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
       commentTextFieldTextControllerValidator;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   UsersRecord? loopUserDoc;
-  // Model for AddToCalendar component.
-  late AddToCalendarModel addToCalendarModel;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   UsersRecord? loopUserDocCancelled;
 
@@ -32,9 +32,8 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
 
   @override
   void dispose() {
+    addToCalendarModel.dispose();
     commentTextFieldFocusNode?.dispose();
     commentTextFieldTextController?.dispose();
-
-    addToCalendarModel.dispose();
   }
 }

@@ -149,7 +149,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       backgroundColor: Colors.transparent,
                                       barrierColor:
                                           FlutterFlowTheme.of(context).barier,
-                                      useSafeArea: true,
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
@@ -162,7 +161,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
                                             child: Container(
-                                              height: double.infinity,
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.85,
                                               child: FilterByLocationWidget(),
                                             ),
                                           ),
