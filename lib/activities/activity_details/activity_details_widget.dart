@@ -1,4 +1,5 @@
 import '/activities/components/add_to_calendar/add_to_calendar_widget.dart';
+import '/activities/components/add_to_calendar_web/add_to_calendar_web_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
@@ -1667,6 +1668,19 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                   model: _model.addToCalendarModel,
                                   updateCallback: () => safeSetState(() {}),
                                   child: AddToCalendarWidget(
+                                    activityRef:
+                                        activityDetailsActivitiesRecord,
+                                  ),
+                                ),
+                              ),
+                            if (isWeb)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: wrapWithModel(
+                                  model: _model.addToCalendarWebModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: AddToCalendarWebWidget(
                                     activityRef:
                                         activityDetailsActivitiesRecord,
                                   ),

@@ -95,7 +95,7 @@ class _ShareProfileWidgetState extends State<ShareProfileWidget> {
                           logFirebaseEvent('SHARE_PROFILE_COMP_Share_ON_TAP');
                           logFirebaseEvent('Share_share');
                           await Share.share(
-                            'https://app.novara.social/userProfile?selectedUserRef=${currentUserUid}',
+                            'https://app.novara.social/user?selectedUserRef=${currentUserUid}',
                             sharePositionOrigin: getWidgetBoundingBox(context),
                           );
                           logFirebaseEvent('Share_dismiss_dialog');
@@ -184,7 +184,7 @@ class _ShareProfileWidgetState extends State<ShareProfileWidget> {
                     logFirebaseEvent('Container_copy_to_clipboard');
                     await Clipboard.setData(ClipboardData(
                         text:
-                            'https://app.novara.social/userProfile?selectedUserRef=${currentUserUid}'));
+                            'https://app.novara.social/user?selectedUserRef=${currentUserUid}'));
                     logFirebaseEvent('Container_dismiss_dialog');
                     Navigator.pop(context);
                     logFirebaseEvent('Container_show_snack_bar');
