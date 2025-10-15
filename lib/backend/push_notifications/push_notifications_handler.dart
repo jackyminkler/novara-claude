@@ -115,11 +115,6 @@ final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'EditProfile': ParameterData.none(),
   'Notifications': ParameterData.none(),
-  'Home': (data) async => ParameterData(
-        allParams: {
-          'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
-        },
-      ),
   'UserProfile': (data) async => ParameterData(
         allParams: {
           'selectedUserRef':
@@ -158,6 +153,11 @@ final parametersBuilderMap =
       ),
   'Onboarding': ParameterData.none(),
   'NotificationSettings': ParameterData.none(),
+  'Home': (data) async => ParameterData(
+        allParams: {
+          'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),
+        },
+      ),
   'CreateActivity': (data) async => ParameterData(
         allParams: {
           'selectedNavTab': getParameter<int>(data, 'selectedNavTab'),

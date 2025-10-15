@@ -108,16 +108,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) {
             builder: (context, params) => NotificationsWidget(),
           ),
           FFRoute(
-            name: HomeWidget.routeName,
-            path: HomeWidget.routePath,
-            builder: (context, params) => HomeWidget(
-              selectedNavTab: params.getParam(
-                'selectedNavTab',
-                ParamType.int,
-              ),
-            ),
-          ),
-          FFRoute(
             name: UserProfileWidget.routeName,
             path: UserProfileWidget.routePath,
             builder: (context, params) => UserProfileWidget(
@@ -225,6 +215,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) {
             name: NotificationSettingsWidget.routeName,
             path: NotificationSettingsWidget.routePath,
             builder: (context, params) => NotificationSettingsWidget(),
+          ),
+          FFRoute(
+            name: HomeWidget.routeName,
+            path: HomeWidget.routePath,
+            builder: (context, params) => HomeWidget(
+              selectedNavTab: params.getParam(
+                'selectedNavTab',
+                ParamType.int,
+              ),
+            ),
           ),
           FFRoute(
             name: CreateActivityWidget.routeName,
