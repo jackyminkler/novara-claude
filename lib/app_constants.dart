@@ -29,4 +29,5 @@ abstract class FFAppConstants {
     'Sunset District',
     'Other (see details)'
   ];
+  static const List<String> HostTypeOptions = ['Run Club', 'Individual'];
 }

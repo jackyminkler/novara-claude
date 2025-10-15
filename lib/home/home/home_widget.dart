@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/home/components/activity_card/activity_card_widget.dart';
+import '/home/components/filter_by_host/filter_by_host_widget.dart';
 import '/home/components/filter_by_location/filter_by_location_widget.dart';
 import '/home/components/filter_by_run_terrain/filter_by_run_terrain_widget.dart';
 import '/home/components/filter_by_run_type/filter_by_run_type_widget.dart';
@@ -131,6 +132,210 @@ class _HomeWidgetState extends State<HomeWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'HOME_PAGE_HostButton_ON_TAP');
+                                    logFirebaseEvent('HostButton_bottom_sheet');
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      barrierColor:
+                                          FlutterFlowTheme.of(context).barier,
+                                      context: context,
+                                      builder: (context) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                          },
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: Container(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.85,
+                                              child: FilterByHostWidget(),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
+                                  child: Container(
+                                    height: 40.0,
+                                    decoration: BoxDecoration(
+                                      color: valueOrDefault<Color>(
+                                        FFAppState()
+                                                        .SelectedHostTypeHomeFilter ==
+                                                    ''
+                                            ? (Theme.of(context).brightness ==
+                                                    Brightness.light
+                                                ? FlutterFlowTheme.of(context)
+                                                    .white2
+                                                : FlutterFlowTheme.of(context)
+                                                    .accent1)
+                                            : FlutterFlowTheme.of(context)
+                                                .tertiary,
+                                        FlutterFlowTheme.of(context).accent1,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 3.0,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Color(0x386572F2)
+                                              : Color(0x00000000),
+                                          offset: Offset(
+                                            0.0,
+                                            1.0,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 10.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Icon(
+                                              Icons.person,
+                                              color: valueOrDefault<Color>(
+                                                FFAppState()
+                                                                .SelectedHostTypeHomeFilter !=
+                                                            ''
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .info
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                              ),
+                                              size: 18.0,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 7.0, 5.0, 7.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                FFAppState()
+                                                                .SelectedHostTypeHomeFilter !=
+                                                            ''
+                                                    ? FFAppState()
+                                                        .SelectedHostTypeHomeFilter
+                                                    : 'Host',
+                                                'Host',
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    font: GoogleFonts.rubik(
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
+                                                    ),
+                                                    color:
+                                                        valueOrDefault<Color>(
+                                                      FFAppState()
+                                                                      .SelectedHostTypeHomeFilter !=
+                                                                  ''
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                    ),
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontStyle,
+                                                  ),
+                                            ),
+                                          ),
+                                          if (FFAppState()
+                                                      .SelectedHostTypeHomeFilter !=
+                                                  '')
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'HOME_PAGE_Icon_bisitn3k_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Icon_update_app_state');
+                                                  FFAppState()
+                                                      .SelectedHostTypeHomeFilter = '';
+                                                  safeSetState(() {});
+                                                },
+                                                child: Icon(
+                                                  FFIcons.kxClose,
+                                                  color: valueOrDefault<Color>(
+                                                    FFAppState()
+                                                                    .SelectedHostTypeHomeFilter !=
+                                                                ''
+                                                        ? FlutterFlowTheme.of(
+                                                                context)
+                                                            .info
+                                                        : FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryText,
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                  ),
+                                                  size: 18.0,
+                                                ),
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
@@ -302,7 +507,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'HOME_PAGE_Icon_bisitn3k_ON_TAP');
+                                                      'HOME_PAGE_Icon_l97kvgax_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Icon_update_app_state');
                                                   FFAppState()
@@ -766,21 +971,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ((e.runType ==
                                                               FFAppState()
                                                                   .SelectedRunTypeHomeFilter) ||
-                                                          (FFAppState()
-                                                                      .SelectedRunTypeHomeFilter ==
+                                                          (FFAppState().SelectedRunTypeHomeFilter ==
                                                                   '')) &&
                                                       ((e.runTerrain ==
                                                               FFAppState()
                                                                   .SelectedRunTerrainHomeFilter) ||
-                                                          (FFAppState()
-                                                                      .SelectedRunTerrainHomeFilter ==
+                                                          (FFAppState().SelectedRunTerrainHomeFilter ==
                                                                   '')) &&
-                                                      ((e.location ==
+                                                      ((e.location == FFAppState().SelectedLocation) ||
+                                                          (FFAppState().SelectedLocation ==
+                                                                  '')) &&
+                                                      ((e.hostType ==
                                                               FFAppState()
-                                                                  .SelectedLocation) ||
-                                                          (FFAppState()
-                                                                      .SelectedLocation ==
-                                                                  '')))
+                                                                  .SelectedHostTypeHomeFilter) ||
+                                                          (FFAppState().SelectedHostTypeHomeFilter == '')))
                                                   .toList();
 
                                               return ListView.separated(

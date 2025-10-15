@@ -119,6 +119,12 @@ class FFAppState extends ChangeNotifier {
     _FromRegister = value;
   }
 
+  String _SelectedHostTypeHomeFilter = '';
+  String get SelectedHostTypeHomeFilter => _SelectedHostTypeHomeFilter;
+  set SelectedHostTypeHomeFilter(String value) {
+    _SelectedHostTypeHomeFilter = value;
+  }
+
   String _SelectedLocation = '';
   String get SelectedLocation => _SelectedLocation;
   set SelectedLocation(String value) {

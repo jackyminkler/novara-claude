@@ -1656,72 +1656,85 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
 
                                           var activitiesRecordReference =
                                               ActivitiesRecord.collection.doc();
-                                          await activitiesRecordReference
-                                              .set(createActivitiesRecordData(
-                                            title: _model.textFieldTitleTextController
-                                                            .text !=
-                                                        ''
-                                                ? _model
-                                                    .textFieldTitleTextController
-                                                    .text
-                                                : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
-                                            description: _model
-                                                .textFieldDetailsTextController
-                                                .text,
-                                            createdAt: getCurrentTimestamp,
-                                            date: _model.activityDate,
-                                            creatorID: currentUserReference?.id,
-                                            location:
-                                                _model.dropDownLocationValue,
-                                            runType:
-                                                _model.choiceChipsRunTypeValue,
-                                            runTerrain: _model
-                                                .choiceChipsRunTerrainValue,
-                                            pace: _model
-                                                .textFieldPaceTextController
-                                                .text,
-                                            distance: _model
-                                                .textFieldDistanceTextController
-                                                .text,
-                                            creatorRef: currentUserReference,
-                                            clubHosted: false,
-                                          ));
+                                          await activitiesRecordReference.set({
+                                            ...createActivitiesRecordData(
+                                              title: _model.textFieldTitleTextController
+                                                              .text !=
+                                                          ''
+                                                  ? _model
+                                                      .textFieldTitleTextController
+                                                      .text
+                                                  : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
+                                              description: _model
+                                                  .textFieldDetailsTextController
+                                                  .text,
+                                              createdAt: getCurrentTimestamp,
+                                              date: _model.activityDate,
+                                              creatorID:
+                                                  currentUserReference?.id,
+                                              location:
+                                                  _model.dropDownLocationValue,
+                                              runType: _model
+                                                  .choiceChipsRunTypeValue,
+                                              runTerrain: _model
+                                                  .choiceChipsRunTerrainValue,
+                                              pace: _model
+                                                  .textFieldPaceTextController
+                                                  .text,
+                                              distance: _model
+                                                  .textFieldDistanceTextController
+                                                  .text,
+                                              creatorRef: currentUserReference,
+                                              hostType: 'Individual',
+                                            ),
+                                            ...mapToFirestore(
+                                              {
+                                                'participants': [
+                                                  currentUserReference
+                                                ],
+                                              },
+                                            ),
+                                          });
                                           _model.newActivity = ActivitiesRecord
-                                              .getDocumentFromData(
-                                                  createActivitiesRecordData(
-                                                    title: _model.textFieldTitleTextController
-                                                                    .text !=
-                                                                ''
-                                                        ? _model
-                                                            .textFieldTitleTextController
-                                                            .text
-                                                        : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
-                                                    description: _model
-                                                        .textFieldDetailsTextController
-                                                        .text,
-                                                    createdAt:
-                                                        getCurrentTimestamp,
-                                                    date: _model.activityDate,
-                                                    creatorID:
-                                                        currentUserReference
-                                                            ?.id,
-                                                    location: _model
-                                                        .dropDownLocationValue,
-                                                    runType: _model
-                                                        .choiceChipsRunTypeValue,
-                                                    runTerrain: _model
-                                                        .choiceChipsRunTerrainValue,
-                                                    pace: _model
-                                                        .textFieldPaceTextController
-                                                        .text,
-                                                    distance: _model
-                                                        .textFieldDistanceTextController
-                                                        .text,
-                                                    creatorRef:
-                                                        currentUserReference,
-                                                    clubHosted: false,
-                                                  ),
-                                                  activitiesRecordReference);
+                                              .getDocumentFromData({
+                                            ...createActivitiesRecordData(
+                                              title: _model.textFieldTitleTextController
+                                                              .text !=
+                                                          ''
+                                                  ? _model
+                                                      .textFieldTitleTextController
+                                                      .text
+                                                  : '${_model.choiceChipsRunTypeValue} ${_model.choiceChipsRunTerrainValue} Run',
+                                              description: _model
+                                                  .textFieldDetailsTextController
+                                                  .text,
+                                              createdAt: getCurrentTimestamp,
+                                              date: _model.activityDate,
+                                              creatorID:
+                                                  currentUserReference?.id,
+                                              location:
+                                                  _model.dropDownLocationValue,
+                                              runType: _model
+                                                  .choiceChipsRunTypeValue,
+                                              runTerrain: _model
+                                                  .choiceChipsRunTerrainValue,
+                                              pace: _model
+                                                  .textFieldPaceTextController
+                                                  .text,
+                                              distance: _model
+                                                  .textFieldDistanceTextController
+                                                  .text,
+                                              creatorRef: currentUserReference,
+                                              hostType: 'Individual',
+                                            ),
+                                            ...mapToFirestore(
+                                              {
+                                                'participants': [
+                                                  currentUserReference
+                                                ],
+                                              },
+                                            ),
+                                          }, activitiesRecordReference);
                                           logFirebaseEvent(
                                               'Button_navigate_to');
 
