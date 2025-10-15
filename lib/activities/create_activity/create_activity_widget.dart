@@ -1684,6 +1684,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                 .textFieldDistanceTextController
                                                 .text,
                                             creatorRef: currentUserReference,
+                                            clubHosted: false,
                                           ));
                                           _model.newActivity = ActivitiesRecord
                                               .getDocumentFromData(
@@ -1718,6 +1719,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                         .text,
                                                     creatorRef:
                                                         currentUserReference,
+                                                    clubHosted: false,
                                                   ),
                                                   activitiesRecordReference);
                                           logFirebaseEvent(

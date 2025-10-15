@@ -41,59 +41,61 @@ class _FilterByRunTypeWidgetState extends State<FilterByRunTypeWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Align(
-      alignment: AlignmentDirectional(0.0, 1.0),
-      child: Container(
-        width: double.infinity,
-        height: 600.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(0.0),
-            bottomRight: Radius.circular(0.0),
-            topLeft: Radius.circular(15.0),
-            topRight: Radius.circular(15.0),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-              child: Container(
-                width: 50.0,
-                height: 6.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).border,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: AlignmentDirectional(0.0, 1.0),
+          child: Container(
+            width: MediaQuery.sizeOf(context).width * 1.0,
+            height: MediaQuery.sizeOf(context).height * 0.7,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(0.0),
+                bottomRight: Radius.circular(0.0),
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
-              child: Text(
-                'Select a Run Type',
-                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      font: GoogleFonts.rubik(
-                        fontWeight: FlutterFlowTheme.of(context)
-                            .headlineSmall
-                            .fontWeight,
-                        fontStyle: FlutterFlowTheme.of(context)
-                            .headlineSmall
-                            .fontStyle,
-                      ),
-                      letterSpacing: 0.0,
-                      fontWeight:
-                          FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                    ),
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                  child: Container(
+                    width: 50.0,
+                    height: 6.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).border,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+                  child: Text(
+                    'Select a Run Type',
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          font: GoogleFonts.rubik(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .fontStyle,
+                          ),
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .fontStyle,
+                        ),
+                  ),
+                ),
+                Expanded(
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 0.0),
@@ -104,6 +106,7 @@ class _FilterByRunTypeWidgetState extends State<FilterByRunTypeWidget> {
 
                         return ListView.builder(
                           padding: EdgeInsets.zero,
+                          primary: false,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: listRunType.length,
@@ -144,7 +147,10 @@ class _FilterByRunTypeWidgetState extends State<FilterByRunTypeWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 14.0, 0.0, 14.0),
                                     child: Text(
-                                      listRunTypeItem,
+                                      valueOrDefault<String>(
+                                        listRunTypeItem,
+                                        'Casual',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -191,11 +197,11 @@ class _FilterByRunTypeWidgetState extends State<FilterByRunTypeWidget> {
                     ),
                   ),
                 ),
-              ].addToEnd(SizedBox(height: 15.0)),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

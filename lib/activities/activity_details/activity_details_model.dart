@@ -1,4 +1,5 @@
 import '/activities/components/add_to_calendar/add_to_calendar_widget.dart';
+import '/activities/components/add_to_calendar_web/add_to_calendar_web_widget.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -15,6 +16,8 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   ActivitiesRecord? activityDetailsPreviousSnapshot;
   // Model for AddToCalendar component.
   late AddToCalendarModel addToCalendarModel;
+  // Model for AddToCalendarWeb component.
+  late AddToCalendarWebModel addToCalendarWebModel;
   // State field(s) for Comment-TextField widget.
   FocusNode? commentTextFieldFocusNode;
   TextEditingController? commentTextFieldTextController;
@@ -28,11 +31,13 @@ class ActivityDetailsModel extends FlutterFlowModel<ActivityDetailsWidget> {
   @override
   void initState(BuildContext context) {
     addToCalendarModel = createModel(context, () => AddToCalendarModel());
+    addToCalendarWebModel = createModel(context, () => AddToCalendarWebModel());
   }
 
   @override
   void dispose() {
     addToCalendarModel.dispose();
+    addToCalendarWebModel.dispose();
     commentTextFieldFocusNode?.dispose();
     commentTextFieldTextController?.dispose();
   }

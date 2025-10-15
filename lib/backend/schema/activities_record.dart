@@ -90,6 +90,11 @@ class ActivitiesRecord extends FirestoreRecord {
   DocumentReference? get creatorRef => _creatorRef;
   bool hasCreatorRef() => _creatorRef != null;
 
+  // "clubHosted" field.
+  bool? _clubHosted;
+  bool get clubHosted => _clubHosted ?? false;
+  bool hasClubHosted() => _clubHosted != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _description = snapshotData['description'] as String?;
@@ -104,6 +109,7 @@ class ActivitiesRecord extends FirestoreRecord {
     _distance = snapshotData['distance'] as String?;
     _activityID = snapshotData['activityID'] as String?;
     _creatorRef = snapshotData['creatorRef'] as DocumentReference?;
+    _clubHosted = snapshotData['clubHosted'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -153,6 +159,7 @@ Map<String, dynamic> createActivitiesRecordData({
   String? distance,
   String? activityID,
   DocumentReference? creatorRef,
+  bool? clubHosted,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -168,6 +175,7 @@ Map<String, dynamic> createActivitiesRecordData({
       'distance': distance,
       'activityID': activityID,
       'creatorRef': creatorRef,
+      'clubHosted': clubHosted,
     }.withoutNulls,
   );
 
@@ -192,7 +200,8 @@ class ActivitiesRecordDocumentEquality implements Equality<ActivitiesRecord> {
         e1?.pace == e2?.pace &&
         e1?.distance == e2?.distance &&
         e1?.activityID == e2?.activityID &&
-        e1?.creatorRef == e2?.creatorRef;
+        e1?.creatorRef == e2?.creatorRef &&
+        e1?.clubHosted == e2?.clubHosted;
   }
 
   @override
@@ -209,7 +218,8 @@ class ActivitiesRecordDocumentEquality implements Equality<ActivitiesRecord> {
         e?.pace,
         e?.distance,
         e?.activityID,
-        e?.creatorRef
+        e?.creatorRef,
+        e?.clubHosted
       ]);
 
   @override

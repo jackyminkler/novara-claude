@@ -1,15 +1,14 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'add_to_calendar_model.dart';
-export 'add_to_calendar_model.dart';
+import 'add_to_calendar_web_model.dart';
+export 'add_to_calendar_web_model.dart';
 
-class AddToCalendarWidget extends StatefulWidget {
-  const AddToCalendarWidget({
+class AddToCalendarWebWidget extends StatefulWidget {
+  const AddToCalendarWebWidget({
     super.key,
     required this.activityRef,
   });
@@ -17,11 +16,11 @@ class AddToCalendarWidget extends StatefulWidget {
   final ActivitiesRecord? activityRef;
 
   @override
-  State<AddToCalendarWidget> createState() => _AddToCalendarWidgetState();
+  State<AddToCalendarWebWidget> createState() => _AddToCalendarWebWidgetState();
 }
 
-class _AddToCalendarWidgetState extends State<AddToCalendarWidget> {
-  late AddToCalendarModel _model;
+class _AddToCalendarWebWidgetState extends State<AddToCalendarWebWidget> {
+  late AddToCalendarWebModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -32,7 +31,7 @@ class _AddToCalendarWidgetState extends State<AddToCalendarWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddToCalendarModel());
+    _model = createModel(context, () => AddToCalendarWebModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -103,15 +102,14 @@ class _AddToCalendarWidgetState extends State<AddToCalendarWidget> {
                   ),
                   onPressed: () async {
                     logFirebaseEvent(
-                        'ADD_TO_CALENDAR_calendarPlus01_ICN_ON_TA');
-                    logFirebaseEvent('IconButton_custom_action');
-                    await actions.addToDeviceCalendar(
-                      widget.activityRef!.title,
-                      'Get up-to-date information at:  https://app.novara.social/activity?activityRef=${widget.activityRef?.reference.id}     ${widget.activityRef?.description}',
-                      widget.activityRef?.location,
-                      widget.activityRef!.date!,
-                      60,
-                    );
+                        'ADD_TO_CALENDAR_WEB_calendarPlus01_ICN_O');
+                    logFirebaseEvent('IconButton_launch_u_r_l');
+                    await launchURL(
+                        'https://calendar.google.com/calendar/render?action=TEMPLATE&text=${widget.activityRef?.title}&dates=${dateTimeFormat(
+                      "yyyyMMddTHHmmssZ",
+                      widget.activityRef?.date,
+                      locale: FFLocalizations.of(context).languageCode,
+                    )}&details=${widget.activityRef?.description}&location=${widget.activityRef?.location}');
                   },
                 ),
               ),
