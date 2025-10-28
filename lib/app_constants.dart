@@ -21,13 +21,15 @@ abstract class FFAppConstants {
     'Presidio',
     'Dolores Park',
     'Embarcadero',
-    'Williamsburg',
-    'Menlo Park',
-    'Palo Alto',
-    'Oakland',
     'Marin',
     'Sunset District',
-    'Other (see details)'
+    'Other (see details)',
+    'Presidio Heights',
+    'Cow Hollow',
+    'SoMa',
+    'Inner Richmond',
+    'Mission',
+    'Castro'
   ];
   static const List<String> HostTypeOptions = ['Run Club', 'Individual'];
 }

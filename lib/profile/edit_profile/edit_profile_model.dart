@@ -29,6 +29,16 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   TextEditingController? textFieldPrefDistanceTextController;
   String? Function(BuildContext, String?)?
       textFieldPrefDistanceTextControllerValidator;
+  // State field(s) for TextField-instagram widget.
+  FocusNode? textFieldInstagramFocusNode;
+  TextEditingController? textFieldInstagramTextController;
+  String? Function(BuildContext, String?)?
+      textFieldInstagramTextControllerValidator;
+  // State field(s) for TextField-strava widget.
+  FocusNode? textFieldStravaFocusNode;
+  TextEditingController? textFieldStravaTextController;
+  String? Function(BuildContext, String?)?
+      textFieldStravaTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -46,5 +56,11 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
     textFieldPrefDistanceFocusNode?.dispose();
     textFieldPrefDistanceTextController?.dispose();
+
+    textFieldInstagramFocusNode?.dispose();
+    textFieldInstagramTextController?.dispose();
+
+    textFieldStravaFocusNode?.dispose();
+    textFieldStravaTextController?.dispose();
   }
 }

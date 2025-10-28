@@ -12,6 +12,7 @@ import '/index.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'my_profile_model.dart';
 export 'my_profile_model.dart';
@@ -262,15 +263,94 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                 ),
                               ),
                             ),
-                            wrapWithModel(
-                              model: _model.profileHighlightsModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: ProfileHighlightsWidget(
-                                userRef: myProfileUsersRecord,
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: wrapWithModel(
+                                model: _model.profileHighlightsModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: ProfileHighlightsWidget(
+                                  userRef: myProfileUsersRecord,
+                                ),
                               ),
                             ),
                           ],
                         ),
+                        if (myProfileUsersRecord.hasInstagram() ||
+                            myProfileUsersRecord.hasStrava() ||
+                            myProfileUsersRecord.hasHeylo())
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 20.0, 10.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (myProfileUsersRecord.hasInstagram())
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'MY_PROFILE_PAGE_Icon_x60dc638_ON_TAP');
+                                        logFirebaseEvent('Icon_launch_u_r_l');
+                                        await launchURL(
+                                            'https://www.instagram.com/${myProfileUsersRecord.instagram}');
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.instagram,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 23.0,
+                                      ),
+                                    ),
+                                  if (myProfileUsersRecord.hasStrava())
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'MY_PROFILE_PAGE_Icon_rusxfcm5_ON_TAP');
+                                        logFirebaseEvent('Icon_launch_u_r_l');
+                                        await launchURL(
+                                            'https://www.strava.com/athletes/${myProfileUsersRecord.strava}');
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.strava,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 23.0,
+                                      ),
+                                    ),
+                                  if (myProfileUsersRecord.hasHeylo())
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'MY_PROFILE_PAGE_Icon_vhpj58ds_ON_TAP');
+                                        logFirebaseEvent('Icon_launch_u_r_l');
+                                        await launchURL(
+                                            myProfileUsersRecord.heylo);
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.link,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 23.0,
+                                      ),
+                                    ),
+                                ].divide(SizedBox(width: 40.0)),
+                              ),
+                            ),
+                          ),
                         Align(
                           alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(

@@ -199,7 +199,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                   Text(
                                     valueOrDefault<String>(
                                       activityDetailsActivitiesRecord.title,
-                                      'Morning Run in the Park',
+                                      'Open Run',
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .displaySmall
@@ -425,7 +425,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                               String>(
                                                             activityDetailsActivitiesRecord
                                                                 .distance,
-                                                            '3',
+                                                            'Any',
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -589,7 +589,7 @@ class _ActivityDetailsWidgetState extends State<ActivityDetailsWidget> {
                                                               String>(
                                                             activityDetailsActivitiesRecord
                                                                 .pace,
-                                                            '9:00',
+                                                            'Any',
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
