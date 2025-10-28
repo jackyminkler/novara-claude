@@ -46,7 +46,7 @@ class _ProfileHighlightsWidgetState extends State<ProfileHighlightsWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10.0, 25.0, 10.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

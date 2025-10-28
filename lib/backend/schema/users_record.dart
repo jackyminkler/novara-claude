@@ -81,6 +81,21 @@ class UsersRecord extends FirestoreRecord {
   bool get notificationsOn => _notificationsOn ?? false;
   bool hasNotificationsOn() => _notificationsOn != null;
 
+  // "instagram" field.
+  String? _instagram;
+  String get instagram => _instagram ?? '';
+  bool hasInstagram() => _instagram != null;
+
+  // "strava" field.
+  String? _strava;
+  String get strava => _strava ?? '';
+  bool hasStrava() => _strava != null;
+
+  // "heylo" field.
+  String? _heylo;
+  String get heylo => _heylo ?? '';
+  bool hasHeylo() => _heylo != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _location = snapshotData['location'] as String?;
@@ -95,6 +110,9 @@ class UsersRecord extends FirestoreRecord {
     _userTimezone = snapshotData['userTimezone'] as String?;
     _onboarded = snapshotData['onboarded'] as bool?;
     _notificationsOn = snapshotData['notifications_on'] as bool?;
+    _instagram = snapshotData['instagram'] as String?;
+    _strava = snapshotData['strava'] as String?;
+    _heylo = snapshotData['heylo'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -144,6 +162,9 @@ Map<String, dynamic> createUsersRecordData({
   String? userTimezone,
   bool? onboarded,
   bool? notificationsOn,
+  String? instagram,
+  String? strava,
+  String? heylo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -160,6 +181,9 @@ Map<String, dynamic> createUsersRecordData({
       'userTimezone': userTimezone,
       'onboarded': onboarded,
       'notifications_on': notificationsOn,
+      'instagram': instagram,
+      'strava': strava,
+      'heylo': heylo,
     }.withoutNulls,
   );
 
@@ -183,7 +207,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.prefDistance == e2?.prefDistance &&
         e1?.userTimezone == e2?.userTimezone &&
         e1?.onboarded == e2?.onboarded &&
-        e1?.notificationsOn == e2?.notificationsOn;
+        e1?.notificationsOn == e2?.notificationsOn &&
+        e1?.instagram == e2?.instagram &&
+        e1?.strava == e2?.strava &&
+        e1?.heylo == e2?.heylo;
   }
 
   @override
@@ -200,7 +227,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.prefDistance,
         e?.userTimezone,
         e?.onboarded,
-        e?.notificationsOn
+        e?.notificationsOn,
+        e?.instagram,
+        e?.strava,
+        e?.heylo
       ]);
 
   @override
