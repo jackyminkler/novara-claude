@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/profile/components/profile_highlights/profile_highlights_widget.dart';
 import '/profile/components/profile_user_activities/profile_user_activities_widget.dart';
+import '/profile/components/social_media/social_media_widget.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -223,6 +224,17 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                     updateCallback: () => safeSetState(() {}),
                     child: ProfileHighlightsWidget(
                       userRef: userProfileUsersRecord,
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                    child: wrapWithModel(
+                      model: _model.socialMediaModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: SocialMediaWidget(
+                        userRef: userProfileUsersRecord,
+                      ),
                     ),
                   ),
                   wrapWithModel(

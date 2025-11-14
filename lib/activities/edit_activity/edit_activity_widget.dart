@@ -8,6 +8,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'edit_activity_model.dart';
@@ -40,6 +41,17 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'EditActivity'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('EDIT_ACTIVITY_EditActivity_ON_INIT_STATE');
+      logFirebaseEvent('EditActivity_backend_call');
+      _model.activityRefOutput =
+          await ActivitiesRecord.getDocumentOnce(widget.activityRef!);
+      logFirebaseEvent('EditActivity_update_page_state');
+      _model.activityDate = _model.activityRefOutput?.date;
+      _model.startTime = _model.activityRefOutput?.date;
+      safeSetState(() {});
+    });
 
     _model.textFieldTitleFocusNode ??= FocusNode();
 
@@ -410,8 +422,13 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                       final _datePickedDate =
                                           await showDatePicker(
                                         context: context,
-                                        initialDate: getCurrentTimestamp,
-                                        firstDate: getCurrentTimestamp,
+                                        initialDate:
+                                            (editActivityActivitiesRecord
+                                                    .date ??
+                                                DateTime.now()),
+                                        firstDate: (editActivityActivitiesRecord
+                                                .date ??
+                                            DateTime.now()),
                                         lastDate: DateTime(2050),
                                         builder: (context, child) {
                                           return wrapInMaterialDatePickerTheme(
@@ -466,18 +483,83 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                         },
                                       );
 
+                                      TimeOfDay? _datePickedTime;
                                       if (_datePickedDate != null) {
+                                        _datePickedTime = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.fromDateTime(
+                                              (editActivityActivitiesRecord
+                                                      .date ??
+                                                  DateTime.now())),
+                                          builder: (context, child) {
+                                            return wrapInMaterialTimePickerTheme(
+                                              context,
+                                              child!,
+                                              headerBackgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              headerForegroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              headerTextStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .override(
+                                                        font: GoogleFonts.rubik(
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineLarge
+                                                                  .fontStyle,
+                                                        ),
+                                                        fontSize: 32.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineLarge
+                                                                .fontStyle,
+                                                      ),
+                                              pickerBackgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              pickerForegroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              selectedDateTimeBackgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              selectedDateTimeForegroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              actionButtonForegroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              iconSize: 24.0,
+                                            );
+                                          },
+                                        );
+                                      }
+
+                                      if (_datePickedDate != null &&
+                                          _datePickedTime != null) {
                                         safeSetState(() {
                                           _model.datePicked = DateTime(
                                             _datePickedDate.year,
                                             _datePickedDate.month,
                                             _datePickedDate.day,
+                                            _datePickedTime!.hour,
+                                            _datePickedTime.minute,
                                           );
                                         });
                                       } else if (_model.datePicked != null) {
                                         safeSetState(() {
                                           _model.datePicked =
-                                              getCurrentTimestamp;
+                                              editActivityActivitiesRecord.date;
                                         });
                                       }
                                       logFirebaseEvent(
@@ -505,8 +587,7 @@ class _EditActivityWidgetState extends State<EditActivityWidget> {
                                             Text(
                                               dateTimeFormat(
                                                 "M/d h:mm a",
-                                                editActivityActivitiesRecord
-                                                    .date!,
+                                                _model.activityDate,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,

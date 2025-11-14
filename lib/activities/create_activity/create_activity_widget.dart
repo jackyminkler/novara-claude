@@ -561,7 +561,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                               Text(
                                                 dateTimeFormat(
                                                   "M/d h:mm a",
-                                                  _model.datePicked,
+                                                  _model.activityDate,
                                                   locale: FFLocalizations.of(
                                                           context)
                                                       .languageCode,

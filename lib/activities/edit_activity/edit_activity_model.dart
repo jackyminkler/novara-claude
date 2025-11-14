@@ -16,6 +16,8 @@ class EditActivityModel extends FlutterFlowModel<EditActivityWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Read Document] action in EditActivity widget.
+  ActivitiesRecord? activityRefOutput;
   // State field(s) for TextField-Title widget.
   FocusNode? textFieldTitleFocusNode;
   TextEditingController? textFieldTitleTextController;
