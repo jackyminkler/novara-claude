@@ -7,11 +7,11 @@ class UploadImageModel extends FlutterFlowModel<UploadImageWidget> {
 
   bool isDataUploading_uploadedProfileImgCamera = false;
   FFUploadedFile uploadedLocalFile_uploadedProfileImgCamera =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
 
   bool isDataUploading_uploadedProfileImgGallery = false;
   FFUploadedFile uploadedLocalFile_uploadedProfileImgGallery =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
 
   @override
   void initState(BuildContext context) {}

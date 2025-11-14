@@ -96,6 +96,11 @@ class UsersRecord extends FirestoreRecord {
   String get heylo => _heylo ?? '';
   bool hasHeylo() => _heylo != null;
 
+  // "birthday" field.
+  DateTime? _birthday;
+  DateTime? get birthday => _birthday;
+  bool hasBirthday() => _birthday != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _location = snapshotData['location'] as String?;
@@ -113,6 +118,7 @@ class UsersRecord extends FirestoreRecord {
     _instagram = snapshotData['instagram'] as String?;
     _strava = snapshotData['strava'] as String?;
     _heylo = snapshotData['heylo'] as String?;
+    _birthday = snapshotData['birthday'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -165,6 +171,7 @@ Map<String, dynamic> createUsersRecordData({
   String? instagram,
   String? strava,
   String? heylo,
+  DateTime? birthday,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -184,6 +191,7 @@ Map<String, dynamic> createUsersRecordData({
       'instagram': instagram,
       'strava': strava,
       'heylo': heylo,
+      'birthday': birthday,
     }.withoutNulls,
   );
 
@@ -210,7 +218,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.notificationsOn == e2?.notificationsOn &&
         e1?.instagram == e2?.instagram &&
         e1?.strava == e2?.strava &&
-        e1?.heylo == e2?.heylo;
+        e1?.heylo == e2?.heylo &&
+        e1?.birthday == e2?.birthday;
   }
 
   @override
@@ -230,7 +239,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.notificationsOn,
         e?.instagram,
         e?.strava,
-        e?.heylo
+        e?.heylo,
+        e?.birthday
       ]);
 
   @override

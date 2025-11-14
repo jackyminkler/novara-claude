@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
@@ -5,12 +6,19 @@ import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
+  ///  Local state fields for this page.
+
+  DateTime? birthdayPageState;
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Read Document] action in EditProfile widget.
+  UsersRecord? userRefOutput;
   // State field(s) for TextField-name widget.
   FocusNode? textFieldNameFocusNode;
   TextEditingController? textFieldNameTextController;
   String? Function(BuildContext, String?)? textFieldNameTextControllerValidator;
+  DateTime? datePicked;
   // State field(s) for TextField-location widget.
   FocusNode? textFieldLocationFocusNode;
   TextEditingController? textFieldLocationTextController;

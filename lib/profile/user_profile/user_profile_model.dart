@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/profile/components/profile_highlights/profile_highlights_widget.dart';
 import '/profile/components/profile_user_activities/profile_user_activities_widget.dart';
+import '/profile/components/social_media/social_media_widget.dart';
 import 'user_profile_widget.dart' show UserProfileWidget;
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
 
   // Model for ProfileHighlights component.
   late ProfileHighlightsModel profileHighlightsModel;
+  // Model for SocialMedia component.
+  late SocialMediaModel socialMediaModel;
   // Model for ProfileUserActivities component.
   late ProfileUserActivitiesModel profileUserActivitiesModel;
 
@@ -20,6 +23,7 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   void initState(BuildContext context) {
     profileHighlightsModel =
         createModel(context, () => ProfileHighlightsModel());
+    socialMediaModel = createModel(context, () => SocialMediaModel());
     profileUserActivitiesModel =
         createModel(context, () => ProfileUserActivitiesModel());
   }
@@ -27,6 +31,7 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   @override
   void dispose() {
     profileHighlightsModel.dispose();
+    socialMediaModel.dispose();
     profileUserActivitiesModel.dispose();
   }
 }
