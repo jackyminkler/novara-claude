@@ -10,6 +10,9 @@ import 'package:flutter/foundation.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+export 'push_notifications_handler.dart';
+export 'serialization_util.dart';
+
 // Platform detection helper that's safe for all platforms including web
 String get _deviceType {
   if (kIsWeb) return 'Web';
@@ -17,9 +20,6 @@ String get _deviceType {
   if (defaultTargetPlatform == TargetPlatform.iOS) return 'iOS';
   return 'Android';
 }
-
-export 'push_notifications_handler.dart';
-export 'serialization_util.dart';
 
 const kUserPushNotificationsCollectionName = 'ff_user_push_notifications';
 
