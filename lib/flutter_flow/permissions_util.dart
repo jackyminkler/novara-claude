@@ -26,12 +26,19 @@ Future<void> requestPermission(Permission setting) async {
   if (setting == Permission.photos && isAndroid) {
     final androidInfo = await DeviceInfoPlugin().androidInfo;
     if (androidInfo.version.sdkInt <= 32) {
+      // Android 12 and below use storage permission
       await Permission.storage.request();
     } else {
+      // Android 13+ uses granular media permissions
       await Permission.photos.request();
+      // Also request videos permission for complete media access
+      await Permission.videos.request();
     }
+  } else {
+    // For all other permissions, request normally
+    await setting.request();
   }
-  await setting.request();
+
   if (setting == Permission.notification) {
     kNotificationsBehaviorSubject.add(false);
   }

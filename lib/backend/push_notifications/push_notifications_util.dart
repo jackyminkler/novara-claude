@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:rxdart/subjects.dart';
@@ -11,6 +9,14 @@ import '../cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
+// Platform detection helper that's safe for all platforms including web
+String get _deviceType {
+  if (kIsWeb) return 'Web';
+  // Use defaultTargetPlatform which is web-safe
+  if (defaultTargetPlatform == TargetPlatform.iOS) return 'iOS';
+  return 'Android';
+}
 
 export 'push_notifications_handler.dart';
 export 'serialization_util.dart';
@@ -27,7 +33,9 @@ final kNotificationsBehaviorSubject = BehaviorSubject<bool>.seeded(true);
 
 Stream<UserTokenInfo> getFcmTokenStream(String userPath) =>
     kNotificationsBehaviorSubject.stream
-        .where((_) => !kIsWeb && (Platform.isIOS || Platform.isAndroid))
+        .where((_) => !kIsWeb &&
+            (defaultTargetPlatform == TargetPlatform.iOS ||
+             defaultTargetPlatform == TargetPlatform.android))
         .asyncMap<String?>((_) async {
           final settings =
               await FirebaseMessaging.instance.getNotificationSettings();
@@ -52,7 +60,7 @@ final fcmTokenUserStream = authenticatedUserStream
         {
           'userDocPath': userTokenInfo.userPath,
           'fcmToken': userTokenInfo.fcmToken,
-          'deviceType': Platform.isIOS ? 'iOS' : 'Android',
+          'deviceType': _deviceType,
         },
       ),
     );

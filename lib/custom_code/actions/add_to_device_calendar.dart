@@ -48,6 +48,9 @@ Future<bool> addToDeviceCalendar(
             ? Duration(minutes: reminderMinutes)
             : null,
       ),
+      androidParams: AndroidParams(
+        emailInvites: null,
+      ),
     );
 
     await Add2Calendar.addEvent2Cal(event);

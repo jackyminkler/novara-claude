@@ -296,9 +296,14 @@ Future<MediaDimensions> _getImageDimensions(Uint8List mediaBytes) async {
 Future<MediaDimensions> _getVideoDimensions(String path) async {
   final VideoPlayerController videoPlayerController =
       VideoPlayerController.asset(path);
-  await videoPlayerController.initialize();
-  final size = videoPlayerController.value.size;
-  return MediaDimensions(width: size.width, height: size.height);
+  try {
+    await videoPlayerController.initialize();
+    final size = videoPlayerController.value.size;
+    return MediaDimensions(width: size.width, height: size.height);
+  } finally {
+    // Always dispose the controller to prevent resource leaks
+    await videoPlayerController.dispose();
+  }
 }
 
 String _getStoragePath(
